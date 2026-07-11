@@ -28,41 +28,76 @@ const storage = multer.diskStorage({
 
 });
 
-
-
 const fileFilter=(req,file,cb)=>{
 
 
-    const allowed = [
-        ".jpg",
-        ".jpeg",
-        ".png"
-    ];
+const allowedTypes=[
+
+"image/jpeg",
+
+"image/png",
+
+"image/jpg",
+
+"image/webp"
+
+];
 
 
-    const ext =
-    path.extname(file.originalname)
-    .toLowerCase();
+if(
+allowedTypes.includes(file.mimetype)
+){
 
+cb(null,true);
 
+}
 
-    if(allowed.includes(ext)){
+else{
 
-        cb(null,true);
+cb(
+new Error(
+"Only image files (jpg, jpeg, png, webp) are allowed"
+)
+);
 
-    }
-    else{
-
-        cb(
-            new Error(
-            "Only jpg and png allowed"
-            )
-        );
-
-    }
+}
 
 
 };
+
+// const fileFilter=(req,file,cb)=>{
+
+
+//     const allowed = [
+//         ".jpg",
+//         ".jpeg",
+//         ".png"
+//     ];
+
+
+//     const ext =
+//     path.extname(file.originalname)
+//     .toLowerCase();
+
+
+
+//     if(allowed.includes(ext)){
+
+//         cb(null,true);
+
+//     }
+//     else{
+
+//         cb(
+//             new Error(
+//             "Only jpg and png allowed"
+//             )
+//         );
+
+//     }
+
+
+// };
 
 
 

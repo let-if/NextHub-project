@@ -808,6 +808,7 @@ function Sidebar() {
     },
   ];
 
+
   return (
     <aside style={styles.sidebar}>
       <div>
@@ -841,6 +842,7 @@ function Sidebar() {
             </NavLink>
           ))}
         </nav>
+    
       </div>
 
       <div>
