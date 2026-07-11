@@ -448,16 +448,24 @@ Actions
 members.map(member=>{
 
 
+// const image = member.profile_image
+
+// ?
+
+// `http://localhost:5000/${member.profile_image}`
+
+// :
+
+// null;
 const image = member.profile_image
 
 ?
 
-`http://localhost:5000/${member.profile_image}`
+`http://localhost:5000/uploads/${member.profile_image}`
 
 :
 
 null;
-
 
 
 return(
@@ -1053,32 +1061,44 @@ borderBottom:"1px solid #f1f5f9"
 /* IMAGE */
 
 
+// photoCell:{
+
+// padding:"12px 16px"
+
+// },
 photoCell:{
-
-padding:"12px 16px"
-
+ padding:"12px 16px",
+ width:"90px",
 },
 
 
 
 
+// photo:{
 
+// width:"58px",
+
+// height:"58px",
+
+// borderRadius:"50%",
+
+// objectFit:"cover",
+
+// border:"4px solid #dbeafe",
+
+// boxShadow:"0 5px 15px rgba(37,99,235,.15)"
+
+// },
 photo:{
-
 width:"58px",
-
 height:"58px",
-
 borderRadius:"50%",
-
 objectFit:"cover",
-
+display:"block",
+flexShrink:0,
 border:"4px solid #dbeafe",
-
 boxShadow:"0 5px 15px rgba(37,99,235,.15)"
-
 },
-
 
 
 

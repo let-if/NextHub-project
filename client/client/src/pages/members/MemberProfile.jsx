@@ -205,12 +205,11 @@ Employee not found
 
 
 
-
 const imageURL = member.profile_image
 
 ?
 
-`http://localhost:5000/${member.profile_image}`
+`http://localhost:5000/uploads/${member.profile_image}`
 
 :
 
@@ -1102,3 +1101,5 @@ fontWeight:"600"
 
 
 export default MemberProfile;
+
+

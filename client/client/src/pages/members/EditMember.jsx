@@ -106,12 +106,23 @@ status:m.status || "Active"
 
 
 
+// if(m.profile_image){
+
+
+// setPreview(
+
+// `http://localhost:5000/${m.profile_image}`
+
+// );
+
+
+// }
 if(m.profile_image){
 
 
 setPreview(
 
-`http://localhost:5000/${m.profile_image}`
+`http://localhost:5000/uploads/${m.profile_image}`
 
 );
 
