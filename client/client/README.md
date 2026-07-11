@@ -1,16 +1,109 @@
-# React + Vite
+# 🚀 NextHub - Enterprise Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+![NextHub Logo](https://img.shields.io/badge/NextHub-Management%20System-blue)
 
-Currently, two official plugins are available:
+## 📌 Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**NextHub** is a modern enterprise management platform designed to help organizations efficiently manage their employees, departments, assets, resources, and work requests through a centralized digital system.
 
-## React Compiler
+The system provides a professional dashboard experience with role-based access control, real-time data management, and a secure backend architecture.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+NextHub helps organizations reduce manual processes, improve communication, and maintain better control over their resources.
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+# ✨ Features
+
+## 🔐 Authentication & Security
+
+- Secure user login system
+- JWT-based authentication
+- Role-based access control
+- Protected routes
+- Password encryption using bcrypt
+- Profile management
+- Profile image upload
+- Change password functionality
+
+
+## 👥 User Management
+
+- Create and manage employees
+- Update user information
+- View employee profiles
+- Assign roles and departments
+- Manage account status
+
+
+## 🏢 Department Management
+
+- Create departments
+- Update department information
+- View department details
+- Organize company structure
+
+
+## 📦 Asset Management
+
+- Add and manage company assets
+- Track asset information
+- Assign assets to users
+- View asset history
+
+
+## 📝 Work Request Management
+
+- Create work requests
+- Track request status
+- Manage pending and completed requests
+- Monitor workflow progress
+
+
+## 📊 Dashboard & Analytics
+
+- Professional admin dashboard
+- Statistics overview
+- User count
+- Asset count
+- Request monitoring
+- Recent activity tracking
+
+
+## 🔎 Search System
+
+- Global search functionality
+- Quick access to users, assets, and departments
+
+
+---
+
+# 🛠️ Technology Stack
+
+## Frontend
+
+- React.js
+- React Router
+- Axios
+- Modern Responsive UI
+- Component-based architecture
+
+
+## Backend
+
+- Node.js
+- Express.js
+- JWT Authentication
+- Multer File Upload
+- RESTful API
+
+
+## Database
+
+- MySQL
+- Relational database design
+- Secure queries
+
+
+---
+
+# 📂 Project Structure
