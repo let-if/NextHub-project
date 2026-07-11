@@ -9,36 +9,39 @@ const getDepartmentRequests = (req,res)=>{
 
 
 const department_id = req.user.department_id;
+console.log("Logged in user:");
+console.log(req.user);
 
+console.log("Department ID:", department_id);
 
 
 const sql = `
 
 SELECT
 
-wr.id,
-wr.request_number,
-wr.title,
-wr.description,
-wr.category,
-wr.priority,
-wr.status,
-wr.created_at,
-
+wr.*,
 
 CONCAT(
 u.first_name,
 ' ',
 u.last_name
-) AS requester
+) AS requester,
+
+CONCAT(
+a.first_name,
+' ',
+a.last_name
+) AS assigned_to_name
 
 
 FROM work_requests wr
 
 
 LEFT JOIN users u
-
 ON wr.requested_by=u.id
+
+LEFT JOIN users a
+ON wr.assigned_to=a.id
 
 
 WHERE wr.department_id=?

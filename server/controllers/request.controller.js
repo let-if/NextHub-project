@@ -1,3 +1,4 @@
+
 const db = require("../config/db");
 
 
@@ -15,19 +16,20 @@ const generateRequestNumber = () => {
 
 
 
+// ===============================
 // CREATE REQUEST
+// ===============================
+
 const createRequest = (req,res)=>{
 
-
-const userId = req.user.id;
-
+const userId=req.user.id;
 
 const {
-    title,
-    description,
-    category,
-    priority,
-    department_id
+title,
+description,
+category,
+priority,
+department_id
 }=req.body;
 
 
@@ -37,7 +39,6 @@ if(!title){
 return res.status(400).json({
 
 success:false,
-
 message:"Title is required"
 
 });
@@ -46,15 +47,13 @@ message:"Title is required"
 
 
 
-const requestNumber =
-generateRequestNumber();
+const requestNumber=generateRequestNumber();
 
 
 
 const sql=`
 
 INSERT INTO work_requests
-
 (
 request_number,
 title,
@@ -65,7 +64,7 @@ requested_by,
 department_id
 )
 
-VALUES (?,?,?,?,?,?,?)
+VALUES(?,?,?,?,?,?,?)
 
 `;
 
@@ -85,6 +84,7 @@ userId,
 department_id
 ],
 
+
 (err,result)=>{
 
 
@@ -95,13 +95,11 @@ console.log(err);
 return res.status(500).json({
 
 success:false,
-
 message:"Database error"
 
 });
 
 }
-
 
 
 
@@ -111,19 +109,15 @@ success:true,
 
 message:"Request created successfully",
 
-request_id:result.insertId,
+id:result.insertId,
 
 request_number:requestNumber
+
+});
 
 
 });
 
-}
-
-
-);
-
-
 
 };
 
@@ -131,131 +125,16 @@ request_number:requestNumber
 
 
 
+// ===============================
 // GET MY REQUESTS
-
-// const getMyRequests=(req,res)=>{
-
-
-// const userId=req.user.id;
+// ===============================
 
 
-
-// const sql=`
-
-// SELECT
-
-// wr.*,
-
-// u.first_name,
-
-// u.last_name
+const getMyRequests=(req,res)=>{
 
 
-// FROM work_requests wr
+const userId=req.user.id;
 
-// JOIN users u
-
-// ON wr.requested_by=u.id
-
-
-// WHERE wr.requested_by=?
-
-
-// ORDER BY wr.created_at DESC
-
-
-// `;
-
-
-
-// db.query(
-// sql,
-// [userId],
-
-// (err,results)=>{
-
-
-// if(err){
-
-// return res.status(500).json({
-
-// success:false,
-// message:"Database error"
-
-// });
-
-// }
-
-
-
-// res.json({
-
-// success:true,
-
-// requests:results
-
-// });
-
-
-// }
-
-
-// );
-
-
-
-// };
-const getMyRequests = (req, res) => {
-  const userId = req.user.id;
-
-  const sql = `
-    SELECT
-      wr.*,
-      d.department_name,
-      CONCAT(
-        u.first_name,
-        ' ',
-        u.last_name
-      ) AS assigned_to_name
-
-    FROM work_requests wr
-
-    LEFT JOIN departments d
-      ON wr.department_id = d.id
-
-    LEFT JOIN users u
-      ON wr.assigned_to = u.id
-
-    WHERE wr.requested_by = ?
-
-    ORDER BY wr.created_at DESC
-  `;
-
-  db.query(sql, [userId], (err, results) => {
-    if (err) {
-      console.log(err);
-
-      return res.status(500).json({
-        success: false,
-        message: "Database error",
-      });
-    }
-
-    res.json({
-      success: true,
-      requests: results,
-    });
-  });
-};
-
-
-
-
-
-
-// GET ALL REQUESTS
-
-const getAllRequests=(req,res)=>{
 
 
 const sql=`
@@ -264,18 +143,29 @@ SELECT
 
 wr.*,
 
+d.department_name,
+
 CONCAT(
 u.first_name,
 ' ',
 u.last_name
-) AS requester
+) AS assigned_to_name
 
 
 FROM work_requests wr
 
-JOIN users u
 
-ON wr.requested_by=u.id
+LEFT JOIN departments d
+
+ON wr.department_id=d.id
+
+
+LEFT JOIN users u
+
+ON wr.assigned_to=u.id
+
+
+WHERE wr.requested_by=?
 
 
 ORDER BY wr.created_at DESC
@@ -285,10 +175,16 @@ ORDER BY wr.created_at DESC
 
 
 
-db.query(sql,(err,results)=>{
+db.query(
+sql,
+[userId],
+
+(err,results)=>{
 
 
 if(err){
+
+console.log(err);
 
 return res.status(500).json({
 
@@ -319,32 +215,76 @@ requests:results
 
 
 
-// UPDATE STATUS
-
-const updateRequestStatus=(req,res)=>{
 
 
-const requestId=req.params.id;
+// ===============================
+// VIEW SINGLE REQUEST
+// ===============================
 
-const userId=req.user.id;
+
+const getRequestById=(req,res)=>{
 
 
-const {
-status
-}=req.body;
+const id=req.params.id;
+
+
+
+const sql=`
+
+SELECT
+
+wr.*,
+
+d.department_name,
+
+CONCAT(
+u.first_name,
+' ',
+u.last_name
+) requester_name
+
+
+FROM work_requests wr
+
+
+LEFT JOIN departments d
+
+ON wr.department_id=d.id
+
+
+LEFT JOIN users u
+
+ON wr.requested_by=u.id
+
+
+WHERE wr.id=?
+
+
+`;
 
 
 
 db.query(
-
-"SELECT status FROM work_requests WHERE id=?",
-
-[requestId],
+sql,
+[id],
 
 (err,result)=>{
 
 
-if(err || result.length===0){
+if(err){
+
+return res.status(500).json({
+
+success:false,
+message:"Database error"
+
+});
+
+}
+
+
+
+if(result.length===0){
 
 return res.status(404).json({
 
@@ -357,27 +297,78 @@ message:"Request not found"
 
 
 
-const oldStatus=result[0].status;
+res.json({
+
+success:true,
+
+request:result[0]
+
+});
+
+
+});
+
+
+};
+
+
+
+
+
+
+
+// ===============================
+// EDIT REQUEST
+// ===============================
+
+
+const updateRequest=(req,res)=>{
+
+
+const id=req.params.id;
+
+
+
+const {
+title,
+description,
+category,
+priority,
+department_id
+}=req.body;
+
+
+
+const sql=`
+
+UPDATE work_requests
+
+SET
+
+title=?,
+description=?,
+category=?,
+priority=?,
+department_id=?
+
+WHERE id=?
+
+`;
 
 
 
 db.query(
 
-`
-
-UPDATE work_requests
-
-SET status=?
-
-WHERE id=?
-
-`,
+sql,
 
 [
-status,
-requestId
+title,
+description,
+category,
+priority,
+department_id,
+id
 ],
-
 
 (err)=>{
 
@@ -395,60 +386,16 @@ message:"Update failed"
 
 
 
-
-// save history
-
-
-db.query(
-
-`
-
-INSERT INTO request_history
-
-(
-request_id,
-changed_by,
-old_status,
-new_status
-)
-
-VALUES(?,?,?,?)
-
-`,
-
-[
-requestId,
-userId,
-oldStatus,
-status
-]
-
-);
-
-
-
 res.json({
 
 success:true,
 
-message:"Status updated"
+message:"Request updated successfully"
 
 });
 
 
-}
-
-
-
-);
-
-
-
-}
-
-
-);
-
+});
 
 
 };
@@ -458,14 +405,281 @@ message:"Status updated"
 
 
 
+
+// ===============================
+// DELETE REQUEST
+// ===============================
+
+
+const deleteRequest=(req,res)=>{
+
+
+const id=req.params.id;
+
+
+
+db.query(
+
+"DELETE FROM work_requests WHERE id=?",
+
+[id],
+
+(err)=>{
+
+
+if(err){
+
+return res.status(500).json({
+
+success:false,
+message:"Delete failed"
+
+});
+
+}
+
+
+
+res.json({
+
+success:true,
+
+message:"Request deleted successfully"
+
+});
+
+
+});
+
+
+};
+
+
+
+
+
+
+// ===============================
+// ASSIGN REQUEST
+// ===============================
+
+
+const assignRequest = (req, res) => {
+
+    const id = req.params.id;
+
+    const { assigned_to } = req.body;
+
+    const sql = `
+        UPDATE work_requests
+        SET
+            assigned_to = ?,
+            status = 'Assigned'
+        WHERE id = ?
+    `;
+
+    db.query(
+        sql,
+        [assigned_to, id],
+        (err) => {
+
+            if (err) {
+                console.log(err);
+
+                return res.status(500).json({
+                    success: false,
+                    message: "Assignment failed"
+                });
+            }
+
+            res.json({
+                success: true,
+                message: "Request assigned successfully"
+            });
+
+        }
+    );
+
+};
+// db.query(
+
+// `
+
+// UPDATE work_requests
+
+// SET
+
+// assigned_to=?,
+// status='Assigned'
+
+// WHERE id=?
+
+// `,
+
+// [
+// assigned_to,
+// id
+// ],
+
+
+// (err)=>{
+
+
+// if(err){
+
+// return res.status(500).json({
+
+// success:false,
+// message:"Assignment failed"
+
+// });
+
+// }
+
+
+
+// res.json({
+
+// success:true,
+
+// message:"Request assigned successfully"
+
+// });
+
+
+// });
+
+
+// };
+
+
+
+
+
+
+// // ===============================
+// // UPDATE STATUS
+// // ===============================
+
+
+// const updateRequestStatus=(req,res)=>{
+
+
+// const id=req.params.id;
+
+
+// const {
+// status
+// }=req.body;
+
+
+
+// db.query(
+
+// `
+
+// UPDATE work_requests
+
+// SET status=?
+
+// WHERE id=?
+
+// `,
+
+// [
+// status,
+// id
+// ],
+
+
+
+// (err)=>{
+
+
+// if(err){
+
+// return res.status(500).json({
+
+// success:false,
+// message:"Status update failed"
+
+// });
+
+// }
+
+
+
+// res.json({
+
+// success:true,
+
+// message:"Status updated"
+
+// });
+
+
+// });
+
+
+const updateRequestStatus = (req, res) => {
+
+    console.log("UPDATE STATUS CALLED");
+    console.log(req.params.id);
+    console.log(req.body);
+
+    const id = req.params.id;
+    const { status } = req.body;
+
+    db.query(
+        `
+        UPDATE work_requests
+        SET status = ?
+        WHERE id = ?
+        `,
+        [status, id],
+        (err) => {
+
+            if (err) {
+                console.log(err);
+
+                return res.status(500).json({
+                    success: false,
+                    message: "Status update failed"
+                });
+            }
+
+            console.log("Rows updated:", id, status);
+
+            res.json({
+                success: true,
+                message: "Status updated successfully"
+            });
+
+        }
+    );
+
+};
+
+
+
+
+
 module.exports={
+
 
 createRequest,
 
 getMyRequests,
 
-getAllRequests,
+getRequestById,
+
+updateRequest,
+
+deleteRequest,
+
+assignRequest,
 
 updateRequestStatus
+
 
 };

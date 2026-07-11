@@ -1,97 +1,166 @@
+
 import API from "../api/axios";
-import ENDPOINTS from "../api/endpoints";
 
 
-
-// ========================================
+// =================================
 // CREATE REQUEST
-// ========================================
+// =================================
 
-export const createRequest = async(data)=>{
+export async function createRequest(data){
 
+    const response = await API.post(
+        "/requests",
+        data
+    );
 
-const response = await API.post(
+    return response.data;
 
-ENDPOINTS.CREATE_REQUEST,
-
-data
-
-);
-
-
-return response.data;
-
-
-};
+}
 
 
 
-
-
-
-// ========================================
+// =================================
 // GET MY REQUESTS
-// ========================================
+// =================================
 
-export const getMyRequests = async()=>{
+export async function getMyRequests(){
 
+    const response = await API.get(
+        "/requests/my"
+    );
 
-const response = await API.get(
+    return response.data;
 
-ENDPOINTS.MY_REQUESTS
-
-);
-
-
-return response.data;
-
-
-};
+}
 
 
 
-
-
-
-// ========================================
+// =================================
 // GET ALL REQUESTS
-// ========================================
+// =================================
 
-export const getAllRequests = async()=>{
+export async function getAllRequests(){
 
+    const response = await API.get(
+        "/requests"
+    );
 
-const response = await API.get(
+    return response.data;
 
-ENDPOINTS.REQUESTS
-
-);
-
-
-return response.data;
-
-
-};
+}
 
 
 
+// =================================
+// GET SINGLE REQUEST
+// =================================
+
+export async function getRequestById(id){
+
+    const response = await API.get(
+        `/requests/${id}`
+    );
+
+    return response.data;
+
+}
 
 
 
-// ========================================
+// =================================
+// UPDATE REQUEST
+// =================================
+
+export async function updateRequest(
+    id,
+    data
+){
+
+    const response = await API.put(
+        `/requests/${id}`,
+        data
+    );
+
+
+    return response.data;
+
+}
+
+
+
+// =================================
+// DELETE REQUEST
+// =================================
+
+export async function deleteRequest(id){
+
+    const response = await API.delete(
+        `/requests/${id}`
+    );
+
+
+    return response.data;
+
+}
+
+
+
+// =================================
+// ASSIGN REQUEST
+// =================================
+
+export async function assignRequest(
+    id,
+    data
+){
+
+    const response = await API.put(
+        `/requests/${id}/assign`,
+        data
+    );
+
+
+    return response.data;
+
+}
+
+
+
+// =================================
+// UPDATE STATUS
+// =================================
+
+export async function updateRequestStatus(
+    id,
+    status
+){
+
+    const response = await API.put(
+        `/requests/${id}/status`,
+        {
+            status
+        }
+    );
+
+
+    return response.data;
+
+}
+
+
+
+
+// =================================
 // GET DEPARTMENTS
-// ========================================
+// =================================
 
-export const getDepartments = async()=>{
+export async function getDepartments(){
 
-
-const response = await API.get(
-
-"/departments"
-
-);
+    const response = await API.get(
+        "/departments"
+    );
 
 
-return response.data;
+    return response.data;
 
-
-};
+}
