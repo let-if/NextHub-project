@@ -1,440 +1,108 @@
 
 import { useEffect, useState } from "react";
+
 import API from "../api/axios";
 
 
-function Statistics() {
 
+function Statistics(){
 
-  const [stats, setStats] = useState(null);
-  const [loading, setLoading] = useState(true);
 
+const [stats,setStats]=useState(null);
 
+const [loading,setLoading]=useState(true);
 
-  useEffect(() => {
 
 
-    const fetchStatistics = async () => {
 
 
-      try {
+useEffect(()=>{
 
 
-        const response = await API.get(
-          "/statistics"
-        );
+const fetchStatistics=async()=>{
 
 
-        setStats(
-          response.data.statistics
-        );
+try{
 
 
-      } catch (error) {
+const response = await API.get(
+"/statistics"
+);
 
 
-        console.log(
-          "Statistics Error:",
-          error
-        );
 
+setStats(
+response.data.statistics
+);
 
-      } finally {
 
 
-        setLoading(false);
+}
 
+catch(error){
 
-      }
 
+console.log(
+"Statistics Error:",
+error
+);
 
-    };
 
+}
 
-    fetchStatistics();
+finally{
 
 
-  }, []);
+setLoading(false);
 
 
+}
 
 
+};
 
 
-  if (loading) {
 
+fetchStatistics();
 
-    return (
 
-      <div style={styles.loadingBox}>
+},[]);
 
-        <div style={styles.spinner}></div>
 
-        <p>
-          Loading statistics...
-        </p>
 
-      </div>
 
-    );
 
-  }
+if(loading){
 
 
+return(
 
+<div style={styles.loadingBox}>
 
 
+<div style={styles.spinner}></div>
 
 
-  if (!stats) {
+<h3>
 
+Loading Analytics
 
-    return (
+</h3>
 
-      <div style={styles.emptyBox}>
 
-        <h3>
-          No statistics available
-        </h3>
+<p>
 
-        <p>
-          Statistics data will appear when the system contains records.
-        </p>
+Preparing system statistics...
 
-      </div>
+</p>
 
-    );
 
-  }
 
+</div>
 
 
+);
 
-
-
-  return (
-
-    <div style={styles.container}>
-
-
-      <div style={styles.header}>
-
-        <div>
-
-          <h1 style={styles.title}>
-            System Statistics
-          </h1>
-
-
-          <p style={styles.subtitle}>
-            Overview of NexusHub management activities
-          </p>
-
-        </div>
-
-
-      </div>
-
-
-
-
-
-
-      <div style={styles.grid}>
-
-
-        {/* MEMBERS DEPARTMENT */}
-
-        <div style={styles.card}>
-
-
-          <div style={styles.cardHeader}>
-
-            <div style={styles.iconBlue}>
-              👥
-            </div>
-
-
-            <h3>
-              Members By Department
-            </h3>
-
-          </div>
-
-
-
-
-          {
-            stats.membersByDepartment?.length > 0 ?
-
-            stats.membersByDepartment.map(
-              (item)=>(
-
-                <div
-                  key={item.department_name}
-                  style={styles.row}
-                >
-
-                  <span>
-                    {item.department_name}
-                  </span>
-
-
-                  <strong>
-                    {item.total}
-                  </strong>
-
-
-                </div>
-
-              )
-
-            )
-
-            :
-
-            <p style={styles.noData}>
-              No members available
-            </p>
-          }
-
-
-
-        </div>
-
-
-
-
-
-
-
-        {/* REQUEST STATUS */}
-
-
-        <div style={styles.card}>
-
-
-          <div style={styles.cardHeader}>
-
-            <div style={styles.iconGreen}>
-              📋
-            </div>
-
-
-            <h3>
-              Requests By Status
-            </h3>
-
-          </div>
-
-
-
-
-          {
-            stats.requestsByStatus?.length > 0 ?
-
-            stats.requestsByStatus.map(
-              (item)=>(
-
-                <div
-                  key={item.status}
-                  style={styles.row}
-                >
-
-                  <span>
-                    {item.status}
-                  </span>
-
-
-                  <strong>
-                    {item.total}
-                  </strong>
-
-
-                </div>
-
-              )
-
-            )
-
-            :
-
-            <p style={styles.noData}>
-              No requests available
-            </p>
-
-          }
-
-
-
-        </div>
-
-
-
-
-
-
-
-
-
-        {/* RESOURCES / ASSETS */}
-
-
-        <div style={styles.card}>
-
-
-          <div style={styles.cardHeader}>
-
-            <div style={styles.iconPurple}>
-              💻
-            </div>
-
-
-            <h3>
-              Resources By Category
-            </h3>
-
-          </div>
-
-
-
-
-
-          {
-            stats.resourcesByCategory?.length > 0 ?
-
-            stats.resourcesByCategory.map(
-              (item)=>(
-
-
-                <div
-
-                  key={item.category}
-
-                  style={styles.row}
-
-                >
-
-                  <span>
-                    {item.category}
-                  </span>
-
-
-                  <strong>
-                    {item.total}
-                  </strong>
-
-
-                </div>
-
-
-              )
-
-            )
-
-            :
-
-            <p style={styles.noData}>
-              No resources available
-            </p>
-
-          }
-
-
-
-
-
-        </div>
-
-
-
-
-
-
-
-
-
-        {/* MEMBERS STATUS */}
-
-
-        <div style={styles.card}>
-
-
-          <div style={styles.cardHeader}>
-
-
-            <div style={styles.iconOrange}>
-              🔐
-            </div>
-
-
-            <h3>
-              Members Status
-            </h3>
-
-
-          </div>
-
-
-
-
-
-          {
-            stats.membersStatus?.length > 0 ?
-
-            stats.membersStatus.map(
-              (item)=>(
-
-
-                <div
-
-                  key={item.status}
-
-                  style={styles.row}
-
-                >
-
-
-                  <span>
-                    {item.status}
-                  </span>
-
-
-                  <strong>
-                    {item.total}
-                  </strong>
-
-
-                </div>
-
-
-              )
-
-            )
-
-            :
-
-            <p style={styles.noData}>
-              No member status available
-            </p>
-
-          }
-
-
-
-
-        </div>
-
-
-
-
-
-      </div>
-
-
-    </div>
-
-  );
 
 }
 
@@ -442,24 +110,879 @@ function Statistics() {
 
 
 
+
+if(!stats){
+
+
+return(
+
+<div style={styles.emptyBox}>
+
+
+<div style={styles.emptyIcon}>
+
+📊
+
+</div>
+
+
+<h2>
+
+No Statistics Available
+
+</h2>
+
+
+<p>
+
+System data will appear after records are created.
+
+</p>
+
+
+</div>
+
+);
+
+
+}
+
+return (
+
+<div style={styles.container}>
+
+
+{/* ================= HEADER ================= */}
+
+
+<div style={styles.header}>
+
+
+<div>
+
+
+<h1 style={styles.title}>
+
+📊 System Analytics Dashboard
+
+</h1>
+
+
+
+<p style={styles.subtitle}>
+
+Real-time overview of NexusHub management activities
+
+</p>
+
+
+</div>
+
+
+
+<div style={styles.dateBadge}>
+
+⚡ Live Statistics
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{/* ================= SUMMARY CARDS ================= */}
+
+
+<div style={styles.summaryGrid}>
+
+
+<SummaryCard
+
+icon="👥"
+
+title="Total Members"
+
+value={
+
+stats.membersByDepartment?.reduce(
+
+(total,item)=>
+
+total + Number(item.total),
+
+0
+
+) || 0
+
+}
+
+color="blue"
+
+/>
+
+
+
+
+<SummaryCard
+
+icon="📋"
+
+title="Total Requests"
+
+value={
+
+stats.requestsByStatus?.reduce(
+
+(total,item)=>
+
+total + Number(item.total),
+
+0
+
+) || 0
+
+}
+
+color="green"
+
+/>
+
+
+
+
+
+<SummaryCard
+
+icon="💻"
+
+title="Resources"
+
+value={
+
+stats.resourcesByCategory?.reduce(
+
+(total,item)=>
+
+total + Number(item.total),
+
+0
+
+) || 0
+
+}
+
+color="purple"
+
+/>
+
+
+
+
+
+<SummaryCard
+
+icon="🔐"
+
+title="Member Status"
+
+value={
+
+stats.membersStatus?.length || 0
+
+}
+
+color="orange"
+
+/>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{/* ================= ANALYTICS GRID ================= */}
+
+
+
+<div style={styles.grid}>
+
+
+
+
+
+
+{/* MEMBERS DEPARTMENT */}
+
+
+
+<AnalyticsCard
+
+title="Members By Department"
+
+icon="👥"
+
+color="blue"
+
+
+>
+
+
+{
+
+
+stats.membersByDepartment?.length > 0 ?
+
+
+stats.membersByDepartment.map((item)=>(
+
+
+<ProgressRow
+
+key={item.department_name}
+
+label={item.department_name}
+
+value={item.total}
+
+total={
+
+stats.membersByDepartment.reduce(
+
+(a,b)=>
+
+a+Number(b.total),
+
+0
+
+)
+
+}
+
+color="#2563eb"
+
+/>
+
+
+))
+
+
+:
+
+
+<p style={styles.noData}>
+
+No members available
+
+</p>
+
+
+}
+
+
+
+</AnalyticsCard>
+
+
+
+
+
+
+
+
+
+{/* REQUEST STATUS */}
+
+
+
+<AnalyticsCard
+
+title="Requests By Status"
+
+icon="📋"
+
+color="green"
+
+>
+
+
+
+{
+
+
+stats.requestsByStatus?.length > 0 ?
+
+
+stats.requestsByStatus.map((item)=>(
+
+
+<ProgressRow
+
+
+key={item.status}
+
+
+label={item.status}
+
+
+value={item.total}
+
+
+total={
+
+stats.requestsByStatus.reduce(
+
+(a,b)=>
+
+a+Number(b.total),
+
+0
+
+)
+
+}
+
+
+color="#16a34a"
+
+
+
+/>
+
+
+))
+
+
+:
+
+
+<p style={styles.noData}>
+
+No requests available
+
+</p>
+
+
+}
+
+
+
+</AnalyticsCard>
+
+
+
+
+
+
+
+
+
+{/* RESOURCES */}
+
+
+
+<AnalyticsCard
+
+title="Resources By Category"
+
+icon="💻"
+
+color="purple"
+
+
+>
+
+
+
+{
+
+
+stats.resourcesByCategory?.length > 0 ?
+
+
+stats.resourcesByCategory.map((item)=>(
+
+
+<ProgressRow
+
+
+key={item.category}
+
+
+label={item.category}
+
+
+value={item.total}
+
+
+total={
+
+stats.resourcesByCategory.reduce(
+
+(a,b)=>
+
+a+Number(b.total),
+
+0
+
+)
+
+}
+
+
+color="#9333ea"
+
+
+
+/>
+
+
+))
+
+
+:
+
+
+<p style={styles.noData}>
+
+No resources available
+
+</p>
+
+
+}
+
+
+
+
+</AnalyticsCard>
+
+
+
+
+
+
+
+
+
+{/* MEMBER STATUS */}
+
+
+
+<AnalyticsCard
+
+title="Members Status"
+
+icon="🔐"
+
+color="orange"
+
+>
+
+
+
+{
+
+
+stats.membersStatus?.length > 0 ?
+
+
+stats.membersStatus.map((item)=>(
+
+
+<ProgressRow
+
+
+key={item.status}
+
+
+label={item.status}
+
+
+value={item.total}
+
+
+total={
+
+stats.membersStatus.reduce(
+
+(a,b)=>
+
+a+Number(b.total),
+
+0
+
+)
+
+}
+
+
+color="#ea580c"
+
+
+
+/>
+
+
+))
+
+
+:
+
+
+<p style={styles.noData}>
+
+No status information
+
+</p>
+
+
+}
+
+
+
+</AnalyticsCard>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+);
+
+}
+
+
+
+function SummaryCard({
+
+icon,
+
+title,
+
+value,
+
+color
+
+}){
+
+
+return(
+
+
+<div
+
+style={{
+
+...styles.summaryCard,
+
+borderTop:
+
+`5px solid ${color}`
+
+}}
+
+>
+
+
+<div
+
+style={{
+
+...styles.summaryIcon,
+
+background:
+
+`${color}20`
+
+}}
+
+>
+
+
+{icon}
+
+
+</div>
+
+
+
+
+<div>
+
+
+<p style={styles.summaryTitle}>
+
+{title}
+
+</p>
+
+
+
+<h2 style={styles.summaryValue}>
+
+{value}
+
+</h2>
+
+
+</div>
+
+
+
+</div>
+
+
+);
+
+
+}
+
+
+
+
+
+
+
+
+
+function AnalyticsCard({
+
+title,
+
+icon,
+
+children
+
+}){
+
+
+return(
+
+
+<div style={styles.card}>
+
+
+<div style={styles.cardHeader}>
+
+
+<div style={styles.analyticsIcon}>
+
+{icon}
+
+</div>
+
+
+
+<h3 style={styles.cardTitle}>
+
+{title}
+
+</h3>
+
+
+
+</div>
+
+
+
+<div>
+
+
+{children}
+
+</div>
+
+
+
+</div>
+
+
+);
+
+
+}
+
+
+
+
+
+
+
+
+
+function ProgressRow({
+
+label,
+
+value,
+
+total,
+
+color
+
+}){
+
+
+const percentage = total
+
+?
+
+Math.round(
+
+(value / total) * 100
+
+)
+
+:
+
+0;
+
+
+
+return(
+
+
+<div style={styles.progressContainer}>
+
+
+<div style={styles.progressHeader}>
+
+
+<span>
+
+{label}
+
+</span>
+
+
+
+<strong>
+
+{value}
+
+</strong>
+
+
+</div>
+
+
+
+
+
+
+
+<div style={styles.progressBackground}>
+
+
+<div
+
+style={{
+
+...styles.progressBar,
+
+width:`${percentage}%`,
+
+background:color
+
+}}
+
+/>
+
+
+</div>
+
+
+
+
+
+
+<div style={styles.percentText}>
+
+
+{percentage}%
+
+
+</div>
+
+
+
+</div>
+
+
+);
+
+
+}
+
 const styles = {
 
 
 container:{
 
-width:"100%"
+
+width:"100%",
+
+
+minHeight:"100vh"
+
 
 },
+
+
+
+
 
 
 
 header:{
 
 
-marginBottom:35
+display:"flex",
+
+
+justifyContent:"space-between",
+
+
+alignItems:"center",
+
+
+marginBottom:"35px",
+
+
+flexWrap:"wrap",
+
+
+gap:"20px"
 
 
 },
+
+
+
 
 
 
@@ -469,9 +992,12 @@ title:{
 
 margin:0,
 
-fontSize:32,
 
-fontWeight:800,
+fontSize:"34px",
+
+
+fontWeight:"800",
+
 
 color:"#0f172a"
 
@@ -480,12 +1006,18 @@ color:"#0f172a"
 
 
 
+
+
+
+
 subtitle:{
 
 
-marginTop:8,
+marginTop:"8px",
 
-fontSize:15,
+
+fontSize:"15px",
+
 
 color:"#64748b"
 
@@ -497,18 +1029,201 @@ color:"#64748b"
 
 
 
+
+dateBadge:{
+
+
+background:"#dbeafe",
+
+
+color:"#1d4ed8",
+
+
+padding:"12px 22px",
+
+
+borderRadius:"30px",
+
+
+fontWeight:"700",
+
+
+fontSize:"14px"
+
+
+},
+
+
+
+
+
+
+
+/* ================= SUMMARY ================= */
+
+
+summaryGrid:{
+
+
+display:"grid",
+
+
+gridTemplateColumns:
+
+
+"repeat(auto-fit,minmax(230px,1fr))",
+
+
+gap:"22px",
+
+
+marginBottom:"35px"
+
+
+},
+
+
+
+
+
+
+
+summaryCard:{
+
+
+background:"#ffffff",
+
+
+borderRadius:"22px",
+
+
+padding:"22px",
+
+
+display:"flex",
+
+
+alignItems:"center",
+
+
+gap:"18px",
+
+
+boxShadow:
+
+"0 15px 35px rgba(15,23,42,.08)",
+
+
+transition:"transform .25s ease"
+
+
+},
+
+
+
+
+
+
+
+summaryIcon:{
+
+
+width:"60px",
+
+
+height:"60px",
+
+
+borderRadius:"18px",
+
+
+display:"flex",
+
+
+alignItems:"center",
+
+
+justifyContent:"center",
+
+
+fontSize:"30px"
+
+
+},
+
+
+
+
+
+
+
+summaryTitle:{
+
+
+margin:0,
+
+
+fontSize:"14px",
+
+
+color:"#64748b"
+
+
+},
+
+
+
+
+
+
+
+summaryValue:{
+
+
+margin:"6px 0 0",
+
+
+fontSize:"30px",
+
+
+fontWeight:"800",
+
+
+color:"#0f172a"
+
+
+},
+
+
+
+
+
+
+
+
+
+/* ================= ANALYTICS CARDS ================= */
+
+
 grid:{
 
 
 display:"grid",
 
-gridTemplateColumns:
-"repeat(auto-fit,minmax(320px,1fr))",
 
-gap:25
+gridTemplateColumns:
+
+
+"repeat(auto-fit,minmax(350px,1fr))",
+
+
+gap:"25px"
 
 
 },
+
+
+
 
 
 
@@ -520,18 +1235,25 @@ card:{
 
 background:"#ffffff",
 
-borderRadius:18,
 
-padding:25,
+borderRadius:"24px",
+
+
+padding:"28px",
+
 
 boxShadow:
-"0 10px 30px rgba(15,23,42,0.08)",
+
+"0 15px 40px rgba(15,23,42,.08)",
+
 
 border:
+
 "1px solid #e2e8f0"
 
 
 },
+
 
 
 
@@ -543,11 +1265,14 @@ cardHeader:{
 
 display:"flex",
 
+
 alignItems:"center",
 
-gap:14,
 
-marginBottom:20
+gap:"15px",
+
+
+marginBottom:"25px"
 
 
 },
@@ -557,110 +1282,32 @@ marginBottom:20
 
 
 
-cardHeaderTitle:{
+
+analyticsIcon:{
 
 
-fontSize:18
-
-},
+width:"48px",
 
 
+height:"48px",
 
 
+borderRadius:"15px",
 
-iconBlue:{
 
+background:"#eff6ff",
 
-width:45,
-
-height:45,
-
-borderRadius:12,
-
-background:"#dbeafe",
 
 display:"flex",
 
+
 alignItems:"center",
+
 
 justifyContent:"center",
 
-fontSize:22
 
-
-},
-
-
-
-
-iconGreen:{
-
-
-width:45,
-
-height:45,
-
-borderRadius:12,
-
-background:"#dcfce7",
-
-display:"flex",
-
-alignItems:"center",
-
-justifyContent:"center",
-
-fontSize:22
-
-
-},
-
-
-
-
-iconPurple:{
-
-
-width:45,
-
-height:45,
-
-borderRadius:12,
-
-background:"#f3e8ff",
-
-display:"flex",
-
-alignItems:"center",
-
-justifyContent:"center",
-
-fontSize:22
-
-
-},
-
-
-
-
-iconOrange:{
-
-
-width:45,
-
-height:45,
-
-borderRadius:12,
-
-background:"#ffedd5",
-
-display:"flex",
-
-alignItems:"center",
-
-justifyContent:"center",
-
-fontSize:22
+fontSize:"25px"
 
 
 },
@@ -670,21 +1317,65 @@ fontSize:22
 
 
 
-row:{
+
+cardTitle:{
+
+
+margin:0,
+
+
+fontSize:"19px",
+
+
+fontWeight:"700",
+
+
+color:"#0f172a"
+
+
+},
+
+
+
+
+
+
+
+/* ================= PROGRESS ================= */
+
+
+
+progressContainer:{
+
+
+marginBottom:"22px"
+
+
+},
+
+
+
+
+
+
+
+progressHeader:{
 
 
 display:"flex",
+
 
 justifyContent:"space-between",
 
+
 alignItems:"center",
 
-padding:"14px 0",
 
-borderBottom:
-"1px solid #e2e8f0",
+marginBottom:"10px",
 
-fontSize:15,
+
+fontSize:"14px",
+
 
 color:"#334155"
 
@@ -695,12 +1386,21 @@ color:"#334155"
 
 
 
-noData:{
 
 
-color:"#94a3b8",
+progressBackground:{
 
-fontSize:14
+
+height:"10px",
+
+
+background:"#e2e8f0",
+
+
+borderRadius:"20px",
+
+
+overflow:"hidden"
 
 
 },
@@ -709,18 +1409,92 @@ fontSize:14
 
 
 
+
+
+progressBar:{
+
+
+height:"100%",
+
+
+borderRadius:"20px",
+
+
+transition:"width .5s ease"
+
+
+},
+
+
+
+
+
+
+
+percentText:{
+
+
+marginTop:"6px",
+
+
+fontSize:"12px",
+
+
+color:"#64748b",
+
+
+textAlign:"right"
+
+
+},
+
+
+
+
+
+
+
+noData:{
+
+
+color:"#94a3b8",
+
+
+fontSize:"14px",
+
+
+padding:"20px 0"
+
+
+},
+
+
+
+
+
+
+
+/* ================= LOADING ================= */
+
+
+
 loadingBox:{
 
 
-height:300,
+height:"350px",
+
 
 display:"flex",
 
+
 flexDirection:"column",
+
 
 alignItems:"center",
 
+
 justifyContent:"center",
+
 
 color:"#475569"
 
@@ -730,21 +1504,36 @@ color:"#475569"
 
 
 
+
+
+
 spinner:{
 
 
-width:40,
+width:"45px",
 
-height:40,
+
+height:"45px",
+
 
 borderRadius:"50%",
 
-border:"4px solid #e2e8f0",
+
+border:
+
+"5px solid #e2e8f0",
+
 
 borderTop:
-"4px solid #2563eb",
+
+"5px solid #2563eb",
+
+
+marginBottom:"20px",
+
 
 animation:
+
 "spin 1s linear infinite"
 
 
@@ -753,28 +1542,61 @@ animation:
 
 
 
+
+
+
+/* ================= EMPTY ================= */
+
+
+
 emptyBox:{
 
 
 background:"#ffffff",
 
-padding:40,
 
-borderRadius:18,
+padding:"60px 30px",
+
+
+borderRadius:"25px",
+
 
 textAlign:"center",
 
-color:"#64748b",
 
 boxShadow:
-"0 10px 30px rgba(0,0,0,.08)"
+
+"0 15px 35px rgba(15,23,42,.08)",
+
+
+color:"#64748b"
+
+
+},
+
+
+
+
+
+
+
+emptyIcon:{
+
+
+fontSize:"70px",
+
+
+marginBottom:"20px"
 
 
 }
 
 
 
+
 };
+
+
 
 
 

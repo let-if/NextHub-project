@@ -1,7 +1,7 @@
 
-import {useEffect,useState} from "react";
+import { useEffect, useState } from "react";
 
-import {useParams,useNavigate} from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import DashboardLayout from "../../layouts/DashboardLayout";
 
@@ -16,8 +16,6 @@ function EditMember(){
 const {id}=useParams();
 
 const navigate=useNavigate();
-
-
 
 
 
@@ -50,15 +48,11 @@ const [saving,setSaving]=useState(false);
 
 
 
-
 useEffect(()=>{
-
 
 loadMember();
 
-
 },[]);
-
 
 
 
@@ -77,7 +71,6 @@ const res=await API.get(
 `/members/${id}`
 
 );
-
 
 
 const m=res.data.member;
@@ -106,26 +99,13 @@ status:m.status || "Active"
 
 
 
-// if(m.profile_image){
-
-
-// setPreview(
-
-// `http://localhost:5000/${m.profile_image}`
-
-// );
-
-
-// }
 if(m.profile_image){
-
 
 setPreview(
 
 `http://localhost:5000/uploads/${m.profile_image}`
 
 );
-
 
 }
 
@@ -134,25 +114,17 @@ setPreview(
 }
 catch(error){
 
-
 console.log(error);
-
 
 }
 finally{
 
-
 setLoading(false);
-
 
 }
 
 
-
 };
-
-
-
 
 
 
@@ -173,8 +145,6 @@ setForm({
 
 
 };
-
-
 
 
 
@@ -232,82 +202,24 @@ const data=new FormData();
 
 
 
+data.append("first_name",form.first_name);
 
+data.append("last_name",form.last_name);
 
-data.append(
+data.append("email",form.email);
 
-"first_name",
+data.append("phone",form.phone);
 
-form.first_name
+data.append("role_id",form.role_id);
 
-);
+data.append("department_id",form.department_id);
 
-
-
-data.append(
-
-"last_name",
-
-form.last_name
-
-);
-
-
-
-data.append(
-
-"email",
-
-form.email
-
-);
-
-
-
-data.append(
-
-"phone",
-
-form.phone
-
-);
-
-
-
-data.append(
-
-"role_id",
-
-form.role_id
-
-);
-
-
-
-data.append(
-
-"department_id",
-
-form.department_id
-
-);
-
-
-
-data.append(
-
-"status",
-
-form.status
-
-);
-
+data.append("status",form.status);
 
 
 
 
 if(image){
-
 
 data.append(
 
@@ -317,11 +229,7 @@ image
 
 );
 
-
 }
-
-
-
 
 
 
@@ -348,7 +256,6 @@ headers:{
 
 
 
-
 alert(
 
 res.data.message ||
@@ -360,7 +267,6 @@ res.data.message ||
 
 
 navigate("/members");
-
 
 
 
@@ -378,13 +284,11 @@ error.message
 );
 
 
-
 alert(
 
 "Update failed"
 
 );
-
 
 
 }
@@ -397,32 +301,42 @@ setSaving(false);
 }
 
 
-
 };
-
-
-
-
-
-
-
 
 
 
 
 if(loading){
 
-
 return(
 
 <DashboardLayout>
 
 
+<div style={styles.loadingCard}>
+
+
+<div style={styles.spinner}></div>
+
+
+
 <h2>
 
-Loading employee...
+Loading Employee Information
 
 </h2>
+
+
+
+<p>
+
+Please wait while we prepare the edit form...
+
+</p>
+
+
+
+</div>
 
 
 </DashboardLayout>
@@ -438,14 +352,10 @@ Loading employee...
 
 
 
-
-
-
 return(
 
 
 <DashboardLayout>
-
 
 
 <div style={styles.page}>
@@ -454,7 +364,13 @@ return(
 <div style={styles.card}>
 
 
-<h1>
+<div style={styles.header}>
+
+
+<div>
+
+
+<h1 style={styles.title}>
 
 ✏ Edit Employee
 
@@ -464,10 +380,31 @@ return(
 
 <p style={styles.subtitle}>
 
-Update employee information and profile photo
+Update employee information, department,
+role and profile picture
 
 </p>
 
+
+</div>
+
+
+
+<button
+
+style={styles.backButton}
+
+onClick={()=>navigate("/members")}
+
+>
+
+← Back
+
+</button>
+
+
+
+</div>
 
 
 
@@ -478,9 +415,13 @@ Update employee information and profile photo
 <div style={styles.photoSection}>
 
 
+<div style={styles.photoWrapper}>
+
+
 {
 
 preview ?
+
 
 <img
 
@@ -507,12 +448,18 @@ style={styles.photo}
 
 
 
+</div>
+
+
+
+
+
 
 
 <label style={styles.upload}>
 
 
-Change Photo
+📷 Change Profile Photo
 
 
 <input
@@ -527,7 +474,9 @@ hidden
 
 />
 
+
 </label>
+
 
 
 
@@ -542,6 +491,17 @@ hidden
 
 
 <form onSubmit={submit}>
+
+
+<div style={styles.formSection}>
+
+
+<h2>
+
+Personal Information
+
+</h2>
+
 
 
 <div style={styles.grid}>
@@ -584,6 +544,8 @@ style={styles.input}
 
 
 
+
+
 <input
 
 name="email"
@@ -592,13 +554,15 @@ value={form.email}
 
 onChange={handleChange}
 
-placeholder="Email"
+placeholder="Email Address"
 
 type="email"
 
 style={styles.input}
 
 />
+
+
 
 
 
@@ -612,7 +576,7 @@ value={form.phone}
 
 onChange={handleChange}
 
-placeholder="Phone"
+placeholder="Phone Number"
 
 style={styles.input}
 
@@ -621,6 +585,32 @@ style={styles.input}
 
 
 
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div style={styles.formSection}>
+
+
+<h2>
+
+Employment Information
+
+</h2>
+
+
+
+<div style={styles.grid}>
 
 
 <select
@@ -671,7 +661,10 @@ Viewer
 </option>
 
 
+
 </select>
+
+
 
 
 
@@ -742,6 +735,8 @@ Maintenance
 
 
 
+
+
 <select
 
 name="status"
@@ -755,14 +750,15 @@ style={styles.input}
 >
 
 
-<option>
+<option value="Active">
 
 Active
 
 </option>
 
 
-<option>
+
+<option value="Inactive">
 
 Inactive
 
@@ -773,6 +769,7 @@ Inactive
 
 
 
+</div>
 
 
 </div>
@@ -783,13 +780,28 @@ Inactive
 
 
 
+
+
 <button
 
-style={styles.button}
+style={
+
+saving
+
+?
+
+styles.buttonDisabled
+
+:
+
+styles.button
+
+}
 
 disabled={saving}
 
 >
+
 
 {
 
@@ -797,13 +809,14 @@ saving
 
 ?
 
-"Saving..."
+"⏳ Saving Changes..."
 
 :
 
-"Save Changes"
+"💾 Save Employee Changes"
 
 }
+
 
 
 </button>
@@ -811,9 +824,8 @@ saving
 
 
 
+
 </form>
-
-
 
 
 
@@ -832,29 +844,74 @@ saving
 );
 
 
-
 }
-
-
-
-
-
-
-
-
-
-
-
 const styles={
+
 
 
 
 page:{
 
 
-maxWidth:"900px",
+maxWidth:"1000px",
 
-margin:"auto"
+margin:"0 auto",
+
+padding:"25px"
+
+
+},
+
+
+
+
+
+
+loadingCard:{
+
+
+minHeight:"400px",
+
+background:"#ffffff",
+
+borderRadius:"25px",
+
+display:"flex",
+
+flexDirection:"column",
+
+alignItems:"center",
+
+justifyContent:"center",
+
+boxShadow:
+"0 15px 45px rgba(0,0,0,.08)"
+
+
+},
+
+
+
+
+
+
+spinner:{
+
+
+width:"55px",
+
+height:"55px",
+
+borderRadius:"50%",
+
+border:"5px solid #e2e8f0",
+
+borderTop:"5px solid #2563eb",
+
+animation:"spin 1s linear infinite",
+
+marginBottom:"20px"
+
 
 },
 
@@ -866,15 +923,60 @@ margin:"auto"
 card:{
 
 
-background:"white",
+background:"#ffffff",
+
+borderRadius:"28px",
 
 padding:"40px",
 
-borderRadius:"25px",
+boxShadow:
+"0 20px 50px rgba(15,23,42,.12)"
 
-boxShadow:"0 15px 40px rgba(0,0,0,.1)"
 
 },
+
+
+
+
+
+
+header:{
+
+
+display:"flex",
+
+justifyContent:"space-between",
+
+alignItems:"center",
+
+gap:"20px",
+
+marginBottom:"35px",
+
+flexWrap:"wrap"
+
+
+},
+
+
+
+
+
+
+title:{
+
+
+fontSize:"32px",
+
+fontWeight:"750",
+
+color:"#0f172a",
+
+margin:"0 0 8px"
+
+
+},
+
 
 
 
@@ -883,7 +985,39 @@ boxShadow:"0 15px 40px rgba(0,0,0,.1)"
 subtitle:{
 
 
-color:"#64748b"
+color:"#64748b",
+
+fontSize:"15px",
+
+margin:0
+
+
+},
+
+
+
+
+
+
+backButton:{
+
+
+background:"#475569",
+
+color:"#ffffff",
+
+border:"none",
+
+padding:"12px 22px",
+
+borderRadius:"12px",
+
+cursor:"pointer",
+
+fontWeight:"600",
+
+fontSize:"15px"
+
 
 },
 
@@ -895,11 +1029,32 @@ color:"#64748b"
 photoSection:{
 
 
-textAlign:"center",
+display:"flex",
 
-marginBottom:"30px"
+flexDirection:"column",
+
+alignItems:"center",
+
+marginBottom:"40px"
+
 
 },
+
+
+
+
+
+
+photoWrapper:{
+
+
+position:"relative",
+
+marginBottom:"18px"
+
+
+},
+
 
 
 
@@ -908,17 +1063,22 @@ marginBottom:"30px"
 photo:{
 
 
-width:"130px",
+width:"150px",
 
-height:"130px",
+height:"150px",
 
 borderRadius:"50%",
 
 objectFit:"cover",
 
-border:"5px solid #2563eb"
+border:"6px solid #2563eb",
+
+boxShadow:
+"0 10px 30px rgba(37,99,235,.25)"
+
 
 },
+
 
 
 
@@ -927,13 +1087,14 @@ border:"5px solid #2563eb"
 avatar:{
 
 
-width:"130px",
+width:"150px",
 
-height:"130px",
+height:"150px",
 
 borderRadius:"50%",
 
-background:"#e2e8f0",
+background:
+"linear-gradient(135deg,#1e293b,#475569)",
 
 display:"flex",
 
@@ -941,9 +1102,15 @@ alignItems:"center",
 
 justifyContent:"center",
 
-fontSize:"50px",
+fontSize:"55px",
 
-margin:"auto"
+color:"#ffffff",
+
+border:"6px solid white",
+
+boxShadow:
+"0 10px 30px rgba(0,0,0,.2)"
+
 
 },
 
@@ -955,19 +1122,46 @@ margin:"auto"
 upload:{
 
 
-display:"inline-block",
+background:
+"linear-gradient(135deg,#2563eb,#1d4ed8)",
 
-marginTop:"15px",
+color:"#ffffff",
 
-padding:"10px 20px",
+padding:"12px 25px",
 
-background:"#2563eb",
+borderRadius:"12px",
 
-color:"white",
+cursor:"pointer",
 
-borderRadius:"10px",
+fontWeight:"600",
 
-cursor:"pointer"
+fontSize:"14px",
+
+boxShadow:
+"0 8px 20px rgba(37,99,235,.25)"
+
+
+},
+
+
+
+
+
+
+
+formSection:{
+
+
+background:"#f8fafc",
+
+padding:"25px",
+
+borderRadius:"20px",
+
+marginBottom:"25px",
+
+border:"1px solid #e2e8f0"
+
 
 },
 
@@ -982,10 +1176,10 @@ grid:{
 display:"grid",
 
 gridTemplateColumns:
-
-"repeat(auto-fit,minmax(250px,1fr))",
+"repeat(auto-fit,minmax(280px,1fr))",
 
 gap:"20px"
+
 
 },
 
@@ -997,13 +1191,22 @@ gap:"20px"
 input:{
 
 
-padding:"14px",
+width:"100%",
 
-borderRadius:"10px",
+boxSizing:"border-box",
 
-border:"1px solid #ddd",
+padding:"15px",
 
-fontSize:"15px"
+borderRadius:"12px",
+
+border:"1px solid #cbd5e1",
+
+background:"#ffffff",
+
+fontSize:"15px",
+
+outline:"none"
+
 
 },
 
@@ -1015,29 +1218,70 @@ fontSize:"15px"
 button:{
 
 
-marginTop:"30px",
-
 width:"100%",
 
-padding:"15px",
+padding:"16px",
 
-background:"#2563eb",
+marginTop:"15px",
 
-color:"white",
+background:
+"linear-gradient(135deg,#2563eb,#1d4ed8)",
+
+color:"#ffffff",
 
 border:"none",
 
-borderRadius:"12px",
+borderRadius:"14px",
+
+fontSize:"16px",
 
 fontWeight:"700",
 
-cursor:"pointer"
+cursor:"pointer",
+
+boxShadow:
+"0 10px 25px rgba(37,99,235,.25)"
+
+
+},
+
+
+
+
+
+
+buttonDisabled:{
+
+
+width:"100%",
+
+padding:"16px",
+
+marginTop:"15px",
+
+background:"#94a3b8",
+
+color:"#ffffff",
+
+border:"none",
+
+borderRadius:"14px",
+
+fontSize:"16px",
+
+fontWeight:"700",
+
+cursor:"not-allowed"
+
 
 }
 
 
 
+
+
 };
+
 
 
 

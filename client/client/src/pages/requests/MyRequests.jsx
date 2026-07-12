@@ -1,7 +1,7 @@
-
-import { 
-  useEffect, 
-  useState 
+ 
+import {
+  useEffect,
+  useState
 } from "react";
 
 
@@ -10,9 +10,10 @@ import {
   deleteRequest,
   updateRequest,
   updateRequestStatus,
-  assignRequest,
   getRequestById
 } from "../../services/requestService";
+
+
 
 
 
@@ -28,6 +29,11 @@ const [selected,setSelected]=useState(null);
 
 
 const [modal,setModal]=useState(null);
+
+
+
+
+
 
 
 
@@ -51,13 +57,11 @@ result.requests || []
 
 
 }
-
 catch(error){
 
 console.log(error);
 
 }
-
 finally{
 
 setLoading(false);
@@ -66,6 +70,8 @@ setLoading(false);
 
 
 };
+
+
 
 
 
@@ -83,9 +89,7 @@ loadRequests();
 
 
 
-// =============================
-// DELETE
-// =============================
+
 
 
 const handleDelete=async(id)=>{
@@ -127,9 +131,6 @@ console.log(error);
 
 
 
-// =============================
-// VIEW
-// =============================
 
 
 const handleView=async(id)=>{
@@ -169,11 +170,6 @@ console.log(error);
 
 
 
-// =============================
-// STATUS
-// =============================
-
-
 const changeStatus=async(
 id,
 status
@@ -202,30 +198,35 @@ console.log(error);
 
 
 };
-
-
-
-
-
-
-
-
-
 if(loading){
-
 
 return(
 
-<div style={styles.loading}>
+<div style={styles.loadingContainer}>
 
-Loading requests...
+
+<div style={styles.loader}></div>
+
+
+<h2>
+
+Loading Requests
+
+</h2>
+
+
+<p>
+
+Fetching your submitted work requests...
+
+</p>
+
 
 </div>
 
 );
 
 }
-
 
 
 
@@ -242,67 +243,114 @@ return(
 
 <div>
 
+
 <h1 style={styles.title}>
+
 📋 My Work Requests
+
 </h1>
 
 
 <p style={styles.subtitle}>
-Manage and track your submitted requests
+
+Manage, track and update your submitted requests
+
 </p>
 
 
 </div>
 
 
-<div style={styles.badge}>
-{requests.length} Requests
-</div>
+
+
+
+<div style={styles.countCard}>
+
+
+<span>
+
+Total Requests
+
+</span>
+
+
+<strong>
+
+{requests.length}
+
+</strong>
 
 
 </div>
 
 
+</div>
 
 
 
 
 
-<div style={styles.card}>
+
+
+
+
+<div style={styles.tableCard}>
+
+
+<div style={styles.tableWrapper}>
 
 
 <table style={styles.table}>
 
 
 <thead>
+
+
 <tr>
+
 
 <th style={styles.th}>
 Request No
 </th>
 
+
+
 <th style={styles.th}>
-Title
+Request Title
 </th>
+
+
 
 <th style={styles.th}>
 Priority
 </th>
 
+
+
 <th style={styles.th}>
 Status
 </th>
+
+
 
 <th style={styles.th}>
 Department
 </th>
 
+
+
 <th style={styles.th}>
 Actions
 </th>
 
+
 </tr>
+
+
 </thead>
+
+
+
 
 
 
@@ -310,68 +358,139 @@ Actions
 <tbody>
 
 
+
 {
-requests.length===0?
+
+requests.length===0 ?
+
 
 <tr>
 
+
 <td
+
 colSpan="6"
+
 style={styles.empty}
+
 >
 
-No requests found
+
+<div style={styles.emptyIcon}>
+
+📭
+
+</div>
+
+
+<h3>
+
+No Requests Found
+
+</h3>
+
+
+<p>
+
+You have not submitted any work requests yet.
+
+</p>
+
 
 </td>
+
 
 </tr>
 
 
-:
 
+
+
+:
 
 requests.map((request)=>(
 
 
-<tr key={request.id}>
+
+<tr
+
+key={request.id}
+
+style={styles.row}
+
+>
 
 
-<td style={styles.code}>
 
-{request.request_number}
+<td style={styles.requestNumber}>
+
+
+#{request.request_number}
+
 
 </td>
 
 
 
-<td>
+
+
+
+
+<td style={styles.titleCell}>
+
 
 <strong>
+
 {request.title}
+
 </strong>
+
+
+
+<p>
+
+{request.description?.substring(0,50)}
+
+</p>
+
 
 </td>
 
 
 
 
+
+
+
 <td>
 
+
 <span
+
 style={{
+
 ...styles.priority,
+
 background:
+
 priorityColor(
 request.priority
 )
+
 }}
+
 >
+
 
 {request.priority}
 
+
 </span>
 
+
 </td>
+
+
 
 
 
@@ -382,39 +501,63 @@ request.priority
 
 <select
 
+
 value={request.status}
 
+
 onChange={(e)=>
+
 changeStatus(
+
 request.id,
+
 e.target.value
+
 )
+
 }
 
-style={styles.select}
+
+style={styles.statusSelect}
+
 
 >
 
 
 <option>
+
 Pending
+
 </option>
 
+
 <option>
+
 Assigned
+
 </option>
 
+
 <option>
+
 In Progress
+
 </option>
 
+
 <option>
+
 Completed
+
 </option>
 
+
 <option>
+
 Rejected
+
 </option>
+
 
 
 </select>
@@ -427,13 +570,33 @@ Rejected
 
 
 
-<td>
+
+
+
+<td style={styles.department}>
+
+
+<div>
+
+🏢
+
+</div>
+
+
+<span>
 
 {
 request.department_name || "-"
 }
 
+</span>
+
+
 </td>
+
+
+
+
 
 
 
@@ -448,22 +611,24 @@ request.department_name || "-"
 
 <button
 
-onClick={()=>
-handleView(request.id)
-}
+style={styles.viewButton}
 
-style={styles.view}
+onClick={()=>handleView(request.id)}
 
 >
 
-👁 View
+👁
 
 </button>
 
 
 
 
+
+
 <button
+
+style={styles.editButton}
 
 onClick={()=>{
 
@@ -473,13 +638,12 @@ setModal("edit");
 
 }}
 
-style={styles.edit}
-
 >
 
-✏ Edit
+✏
 
 </button>
+
 
 
 
@@ -488,15 +652,13 @@ style={styles.edit}
 
 <button
 
-onClick={()=>
-handleDelete(request.id)
-}
+style={styles.deleteButton}
 
-style={styles.delete}
+onClick={()=>handleDelete(request.id)}
 
 >
 
-🗑 Delete
+🗑
 
 </button>
 
@@ -505,9 +667,7 @@ style={styles.delete}
 </div>
 
 
-
 </td>
-
 
 
 
@@ -515,9 +675,12 @@ style={styles.delete}
 </tr>
 
 
+
 ))
 
+
 }
+
 
 
 </tbody>
@@ -529,6 +692,11 @@ style={styles.delete}
 </div>
 
 
+</div>
+
+
+
+
 
 
 
@@ -536,7 +704,9 @@ style={styles.delete}
 
 
 {
+
 modal &&
+
 
 <div style={styles.overlay}>
 
@@ -552,7 +722,8 @@ onClick={()=>setModal(null)}
 
 >
 
-✕
+×
+
 
 </button>
 
@@ -561,46 +732,93 @@ onClick={()=>setModal(null)}
 
 
 
+
+
+
 {
+
 modal==="view" && selected &&
 
-<>
+
+<div>
 
 
-<h2>
+<h2 style={styles.modalTitle}>
+
 Request Details
+
 </h2>
 
 
+
+
+<div style={styles.detailBox}>
+
+
 <p>
+
 <b>Request No:</b>
+
 {" "}
+
 {selected.request_number}
+
 </p>
 
 
+
 <p>
+
 <b>Title:</b>
+
 {" "}
+
 {selected.title}
+
 </p>
 
 
+
+
 <p>
+
 <b>Description:</b>
-{" "}
-{selected.description}
+
 </p>
+
+
+<div style={styles.description}>
+
+{selected.description}
+
+</div>
+
+
+
 
 
 <p>
+
 <b>Status:</b>
+
 {" "}
+
+<span>
+
 {selected.status}
+
+</span>
+
 </p>
 
 
-</>
+
+</div>
+
+
+
+</div>
+
 
 }
 
@@ -613,7 +831,9 @@ Request Details
 
 
 {
+
 modal==="edit" && selected &&
+
 
 <EditForm
 
@@ -625,7 +845,9 @@ refresh={loadRequests}
 
 />
 
+
 }
+
 
 
 
@@ -646,20 +868,6 @@ refresh={loadRequests}
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-// EDIT FORM COMPONENT
-
-
 function EditForm({
 request,
 close,
@@ -679,14 +887,18 @@ priority:request.priority,
 
 department_id:request.department_id
 
-
 });
 
 
 
 
 
+
+
 const save=async()=>{
+
+
+try{
 
 
 await updateRequest(
@@ -703,7 +915,18 @@ close();
 refresh();
 
 
+}
+
+catch(error){
+
+console.log(error);
+
+}
+
+
 };
+
+
 
 
 
@@ -714,9 +937,24 @@ return(
 <div>
 
 
-<h2>
-Edit Request
+<h2 style={styles.modalTitle}>
+
+✏ Edit Request
+
 </h2>
+
+
+
+
+<div style={styles.formGroup}>
+
+
+<label>
+
+Request Title
+
+</label>
+
 
 
 <input
@@ -737,7 +975,27 @@ title:e.target.value
 
 }
 
+
 />
+
+
+</div>
+
+
+
+
+
+
+
+
+<div style={styles.formGroup}>
+
+
+<label>
+
+Description
+
+</label>
 
 
 
@@ -759,7 +1017,87 @@ description:e.target.value
 
 }
 
+
 />
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div style={styles.formGroup}>
+
+
+<label>
+
+Priority
+
+</label>
+
+
+
+<select
+
+style={styles.input}
+
+value={form.priority}
+
+onChange={(e)=>
+
+setForm({
+
+...form,
+
+priority:e.target.value
+
+})
+
+}
+
+>
+
+
+<option>
+
+Low
+
+</option>
+
+
+<option>
+
+Medium
+
+</option>
+
+
+<option>
+
+High
+
+</option>
+
+
+<option>
+
+Urgent
+
+</option>
+
+
+</select>
+
+
+
+</div>
+
+
 
 
 
@@ -767,15 +1105,17 @@ description:e.target.value
 
 <button
 
-style={styles.save}
+style={styles.saveButton}
 
 onClick={save}
 
 >
 
-Save Changes
+💾 Save Changes
 
 </button>
+
+
 
 
 </div>
@@ -792,24 +1132,39 @@ Save Changes
 
 
 
+
 function priorityColor(priority){
 
 
 switch(priority){
 
+
 case "Urgent":
+
 return "#dc2626";
 
+
+
 case "High":
+
 return "#ea580c";
 
+
+
 case "Medium":
+
 return "#2563eb";
 
+
+
 case "Low":
+
 return "#16a34a";
 
+
+
 default:
+
 return "#64748b";
 
 
@@ -826,11 +1181,12 @@ return "#64748b";
 
 
 
-
 const styles={
 
 
+
 page:{
+
 
 padding:"35px",
 
@@ -838,10 +1194,16 @@ background:"#f8fafc",
 
 minHeight:"100vh"
 
+
 },
 
 
+
+
+
+
 header:{
+
 
 display:"flex",
 
@@ -849,73 +1211,253 @@ justifyContent:"space-between",
 
 alignItems:"center",
 
-marginBottom:"30px"
+marginBottom:"30px",
+
+flexWrap:"wrap",
+
+gap:"20px"
+
 
 },
+
+
+
 
 
 
 title:{
 
+
 fontSize:"34px",
 
-color:"#0f172a"
+fontWeight:"750",
+
+color:"#0f172a",
+
+margin:0
+
 
 },
+
+
 
 
 
 subtitle:{
 
-color:"#64748b"
+
+color:"#64748b",
+
+fontSize:"15px"
+
 
 },
 
 
 
-badge:{
 
-background:"#2563eb",
 
-color:"#fff",
 
-padding:"12px 22px",
+countCard:{
 
-borderRadius:"30px",
 
-fontWeight:"700"
+background:
+"linear-gradient(135deg,#2563eb,#1d4ed8)",
+
+color:"white",
+
+padding:"15px 25px",
+
+borderRadius:"18px",
+
+display:"flex",
+
+flexDirection:"column",
+
+alignItems:"center",
+
+minWidth:"120px"
+
 
 },
 
 
 
-card:{
 
-background:"#fff",
+
+tableCard:{
+
+
+background:"#ffffff",
+
+borderRadius:"25px",
 
 padding:"25px",
 
-borderRadius:"20px",
-
 boxShadow:
-"0 15px 35px rgba(0,0,0,.08)"
+"0 20px 50px rgba(0,0,0,.08)"
+
 
 },
+
+
+
+
+
+tableWrapper:{
+
+
+overflowX:"auto"
+
+
+},
+
 
 
 
 
 table:{
 
+
 width:"100%",
 
 borderCollapse:"collapse"
+
 
 },
 
 
 
+
+
+th:{
+
+
+padding:"18px",
+
+background:"#f8fafc",
+
+color:"#475569",
+
+textAlign:"left",
+
+fontWeight:"700",
+
+fontSize:"14px",
+
+borderBottom:"2px solid #e2e8f0"
+
+
+},
+
+
+
+
+
+row:{
+
+
+borderBottom:"1px solid #eef2f7"
+
+
+},
+
+
+
+
+
+requestNumber:{
+
+
+padding:"20px",
+
+fontWeight:"700",
+
+color:"#2563eb",
+
+whiteSpace:"nowrap"
+
+
+},
+
+
+
+
+
+titleCell:{
+
+
+padding:"20px",
+
+minWidth:"230px"
+
+
+},
+
+
+
+
+
+department:{
+
+
+display:"flex",
+
+alignItems:"center",
+
+gap:"8px",
+
+padding:"20px",
+
+color:"#475569"
+
+
+},
+
+
+
+
+
+priority:{
+
+
+padding:"7px 15px",
+
+borderRadius:"30px",
+
+color:"#ffffff",
+
+fontSize:"12px",
+
+fontWeight:"700"
+
+
+},
+
+
+
+
+
+statusSelect:{
+
+
+padding:"9px 12px",
+
+borderRadius:"10px",
+
+border:"1px solid #cbd5e1",
+
+background:"#ffffff"
+
+
+},
+
+
+
+
+
 actions:{
+
 
 display:"flex",
 
@@ -925,22 +1467,34 @@ gap:"8px"
 
 
 
-view:{
 
-background:"#0ea5e9",
+
+
+viewButton:{
+
+
+background:"#0284c7",
 
 color:"#fff",
 
 border:"none",
 
-padding:"8px 12px",
+padding:"10px",
 
-borderRadius:"8px"
+borderRadius:"10px",
+
+cursor:"pointer"
+
 
 },
 
 
-edit:{
+
+
+
+
+editButton:{
+
 
 background:"#2563eb",
 
@@ -948,15 +1502,21 @@ color:"#fff",
 
 border:"none",
 
-padding:"8px 12px",
+padding:"10px",
 
-borderRadius:"8px"
+borderRadius:"10px",
+
+cursor:"pointer"
+
 
 },
 
 
 
-delete:{
+
+
+deleteButton:{
+
 
 background:"#dc2626",
 
@@ -964,88 +1524,175 @@ color:"#fff",
 
 border:"none",
 
-padding:"8px 12px",
+padding:"10px",
 
-borderRadius:"8px"
+borderRadius:"10px",
+
+cursor:"pointer"
+
 
 },
 
 
 
-priority:{
 
-color:"#fff",
+loadingContainer:{
 
-padding:"6px 12px",
 
-borderRadius:"20px",
+minHeight:"400px",
 
-fontSize:"12px"
+background:"#ffffff",
+
+borderRadius:"25px",
+
+display:"flex",
+
+flexDirection:"column",
+
+alignItems:"center",
+
+justifyContent:"center",
+
+boxShadow:
+"0 15px 40px rgba(0,0,0,.08)"
+
 
 },
 
 
 
-select:{
 
-padding:"8px",
 
-borderRadius:"8px"
+
+loader:{
+
+
+width:"55px",
+
+height:"55px",
+
+borderRadius:"50%",
+
+border:"5px solid #e2e8f0",
+
+borderTop:"5px solid #2563eb",
+
+animation:
+"spin 1s linear infinite",
+
+marginBottom:"20px"
+
 
 },
 
 
 
-// code:{
 
-// color:"#2563eb",
 
-// fontWeight:"700"
 
-// },
-code:{
-  color:"#2563eb",
-  fontWeight:"700",
-  paddingLeft:"40px"
+
+empty:{
+
+
+padding:"70px 20px",
+
+textAlign:"center",
+
+color:"#64748b"
+
+
 },
+
+
+
+
+
+
+emptyIcon:{
+
+
+fontSize:"45px",
+
+marginBottom:"15px"
+
+
+},
+
+
+
+
+
+
+actionsWrapper:{
+
+
+display:"flex",
+
+gap:"10px"
+
+
+},
+
+
+
 
 
 
 overlay:{
 
+
 position:"fixed",
 
 inset:0,
 
-background:"rgba(0,0,0,.4)",
+background:"rgba(15,23,42,.55)",
 
 display:"flex",
 
 justifyContent:"center",
 
-alignItems:"center"
+alignItems:"center",
+
+zIndex:1000,
+
+padding:"20px"
+
 
 },
+
+
+
 
 
 
 modal:{
 
-background:"#fff",
 
-width:"500px",
+background:"#ffffff",
 
-padding:"30px",
+width:"520px",
 
-borderRadius:"20px",
+maxWidth:"100%",
 
-position:"relative"
+padding:"35px",
+
+borderRadius:"25px",
+
+position:"relative",
+
+boxShadow:
+"0 25px 70px rgba(0,0,0,.25)"
+
 
 },
 
 
 
+
+
+
 close:{
+
 
 position:"absolute",
 
@@ -1053,89 +1700,172 @@ right:"20px",
 
 top:"15px",
 
+width:"35px",
+
+height:"35px",
+
+borderRadius:"50%",
+
 border:"none",
 
-fontSize:"22px"
+background:"#f1f5f9",
+
+fontSize:"22px",
+
+cursor:"pointer"
+
 
 },
+
+
+
+
+
+
+modalTitle:{
+
+
+fontSize:"25px",
+
+color:"#0f172a",
+
+marginBottom:"25px"
+
+
+},
+
+
+
+
+
+
+detailBox:{
+
+
+background:"#f8fafc",
+
+padding:"20px",
+
+borderRadius:"15px",
+
+lineHeight:"1.8"
+
+},
+
+
+
+
+
+
+description:{
+
+
+background:"#ffffff",
+
+padding:"15px",
+
+borderRadius:"10px",
+
+border:"1px solid #e2e8f0",
+
+marginBottom:"15px"
+
+
+},
+
+
+
+
+
+
+formGroup:{
+
+
+marginBottom:"20px",
+
+display:"flex",
+
+flexDirection:"column",
+
+gap:"8px"
+
+
+},
+
+
+
 
 
 
 input:{
 
-width:"100%",
 
-padding:"12px",
+padding:"14px",
 
-marginBottom:"15px"
+borderRadius:"12px",
+
+border:"1px solid #cbd5e1",
+
+fontSize:"15px",
+
+outline:"none"
+
 
 },
+
+
+
 
 
 
 textarea:{
 
-width:"100%",
 
-height:"120px",
+height:"130px",
 
-padding:"12px",
+padding:"14px",
 
-marginBottom:"15px"
+borderRadius:"12px",
+
+border:"1px solid #cbd5e1",
+
+fontSize:"15px",
+
+resize:"vertical"
+
 
 },
 
 
 
-save:{
 
-background:"#2563eb",
 
-color:"#fff",
+
+saveButton:{
+
+
+width:"100%",
+
+background:
+"linear-gradient(135deg,#2563eb,#1d4ed8)",
+
+color:"#ffffff",
 
 border:"none",
 
-padding:"12px 25px",
+padding:"15px",
 
-borderRadius:"10px"
+borderRadius:"12px",
 
-},
+fontWeight:"700",
 
+cursor:"pointer",
 
-
-empty:{
-
-padding:"50px",
-
-textAlign:"center"
-
-},
+fontSize:"15px"
 
 
+}
 
-loading:{
-
-padding:"50px",
-
-textAlign:"center"
-
-},
-th:{
-  padding:"18px",
-  textAlign:"left",
-  fontWeight:"700",
-  color:"#475569",
-  borderBottom:"2px solid #e2e8f0",
-  position:"relative",
-  left:"-8px"
-},
-
-td:{
-  padding:"18px 18px 18px 40px",
-  color:"#334155",
-  fontSize:"15px",
-  borderBottom:"1px solid #eef2f7"
-},
 
 
 
@@ -1143,4 +1873,7 @@ td:{
 
 
 
-export default MyRequests; 
+
+
+export default MyRequests;
+

@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import DashboardLayout from "../../layouts/DashboardLayout";
 import { Link } from "react-router-dom";
@@ -116,963 +117,1280 @@ function Departments() {
     }
 
   };
+  
+return (
 
+<DashboardLayout>
 
 
+<div style={styles.page}>
 
 
 
 
+{/* ================= HEADER ================= */}
 
-  return (
 
-    <DashboardLayout>
+<div style={styles.header}>
 
-      <div style={styles.page}>
 
+<div>
 
 
+<h1 style={styles.title}>
 
+🏢 Department Management
 
-        {/* ================= HEADER ================= */}
+</h1>
 
-        <div style={styles.header}>
 
-          <div>
 
-            <h1 style={styles.title}>
+<p style={styles.subtitle}>
 
-              Department Management
+Manage organizational departments, teams and company units
 
-            </h1>
+</p>
 
-            <p style={styles.subtitle}>
-
-              Organize and manage all company departments
-
-            </p>
-
-          </div>
-
-
-
-          <Link
-
-            to="/departments/add"
-
-            style={styles.addButton}
-
-          >
-
-            ➕ Add Department
-
-          </Link>
-
-        </div>
-
-
-
-
-
-
-
-        {/* ================= STATISTICS ================= */}
-
-        <div style={styles.cards}>
-
-
-          <StatCard
-
-            title="Departments"
-
-            value={departments.length}
-
-            icon="🏢"
-
-          />
-
-
-          <StatCard
-
-            title="Active"
-
-            value={departments.length}
-
-            icon="🟢"
-
-          />
-
-
-          <StatCard
-
-            title="Company Units"
-
-            value={departments.length}
-
-            icon="🏛️"
-
-          />
-
-
-          <StatCard
-
-            title="Organization"
-
-            value="100%"
-
-            icon="📊"
-
-          />
-
-
-        </div>
-
-
-
-
-
-
-
-
-        {/* ================= SEARCH ================= */}
-
-        <div style={styles.searchCard}>
-
-          <input
-
-            type="text"
-
-            placeholder="🔍 Search department..."
-
-            value={search}
-
-            onChange={(e) =>
-
-              setSearch(e.target.value)
-
-            }
-
-            style={styles.searchInput}
-
-          />
-
-        </div>
-
-
-
-
-
-
-
-        {/* ================= CONTENT ================= */}
-
-        {
-
-          loading ?
-
-          (
-
-            <div style={styles.loading}>
-
-              Loading departments...
-
-            </div>
-
-          )
-
-          :
-
-          filteredDepartments.length === 0 ?
-
-          (
-
-            <div style={styles.empty}>
-
-
-              <div style={styles.emptyIcon}>
-
-                🏢
-
-              </div>
-
-
-              <h2>
-
-                No Departments Found
-
-              </h2>
-
-
-              <p>
-
-                Create your first department to get started.
-
-              </p>
-
-
-              <Link
-
-                to="/departments/add"
-
-                style={styles.addButton}
-
-              >
-
-                Add Department
-
-              </Link>
-
-            </div>
-
-          )
-
-          :
-
-          (
-
-            <div style={styles.grid}>
-
-              {
-
-                filteredDepartments.map((department) => (
-
-                  <div
-
-                    key={department.id}
-
-                    style={styles.departmentCard}
-
-                  >
-
-                    <div style={styles.iconBox}>
-
-                      🏢
-                    </div>
-
-                    <div style={styles.departmentBody}>
-
-                      <h2 style={styles.departmentName}>
-
-                        {department.department_name}
-
-                      </h2>
-
-                      <p style={styles.description}>
-
-                        {
-
-                          department.description ||
-
-                          "No description available."
-
-                        }
-
-                      </p>
-
-                      <div style={styles.meta}>
-
-                        <span>
-
-                          📅 Created
-
-                        </span>
-
-                        <strong>
-
-                          {
-
-                            department.created_at
-
-                              ?.slice(0, 10)
-
-                          }
-
-                        </strong>
-
-                      </div>
-
-                      {/* <div style={styles.actions}>                        <Link
-                          to={`/departments/${department.id}`}
-                          style={styles.viewButton}
-                        >
-                          👁 View
-                        </Link>
-
-                        <Link
-                          to={`/departments/edit/${department.id}`}
-                          style={styles.editButton}
-                        >
-                          ✏ Edit
-                        </Link>
-
-                        <button
-                          onClick={() => handleDelete(department.id)}
-                          style={styles.deleteButton}
-                        >
-                          🗑 Delete
-                        </button>
-
-                      </div> */}
-                      <div style={styles.actions}>
-
-  <Link
-    to={`/departments/${department.id}`}
-    style={styles.view}
-  >
-    👁 View
-  </Link>
-
-
-  <Link
-    to={`/departments/edit/${department.id}`}
-    style={styles.edit}
-  >
-    ✏ Edit
-  </Link>
-
-
-  <button
-    onClick={() => handleDelete(department.id)}
-    style={styles.delete}
-  >
-    🗑 Delete
-  </button>
 
 </div>
 
-                    </div>
 
-                  </div>
 
-                ))
 
-              }
+<Link
 
-            </div>
+to="/departments/add"
 
-          )
+style={styles.addButton}
 
-        }
+>
 
-      </div>
+＋ Add Department
 
-    </DashboardLayout>
+</Link>
 
-  );
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{/* ================= STATISTICS ================= */}
+
+
+
+<div style={styles.statGrid}>
+
+
+<StatCard
+
+icon="🏢"
+
+title="Total Departments"
+
+value={departments.length}
+
+/>
+
+
+
+<StatCard
+
+icon="🟢"
+
+title="Active Departments"
+
+value={departments.length}
+
+/>
+
+
+
+<StatCard
+
+icon="👥"
+
+title="Organization Units"
+
+value={departments.length}
+
+/>
+
+
+
+<StatCard
+
+icon="📊"
+
+title="Coverage"
+
+value="100%"
+
+/>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{/* ================= SEARCH ================= */}
+
+
+
+<div style={styles.searchCard}>
+
+
+<div style={styles.searchHeader}>
+
+
+<span>
+
+🔍
+
+</span>
+
+
+<input
+
+type="text"
+
+placeholder="Search departments..."
+
+value={search}
+
+onChange={(e)=>
+
+setSearch(e.target.value)
+
+}
+
+style={styles.searchInput}
+
+/>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{/* ================= CONTENT ================= */}
+
+
+
+{
+
+loading ?
+
+
+(
+
+<div style={styles.loadingCard}>
+
+
+<div style={styles.loader}></div>
+
+
+<h3>
+
+Loading Departments
+
+</h3>
+
+
+<p>
+
+Please wait while departments are loaded...
+
+</p>
+
+
+</div>
+
+)
+
+:
+
+
+
+filteredDepartments.length===0 ?
+
+
+(
+
+
+<div style={styles.emptyCard}>
+
+
+<div style={styles.emptyIcon}>
+
+🏢
+
+</div>
+
+
+<h2>
+
+No Departments Found
+
+</h2>
+
+
+
+<p>
+
+Create a department to organize your company structure.
+
+</p>
+
+
+
+<Link
+
+to="/departments/add"
+
+style={styles.addButton}
+
+>
+
+Create Department
+
+</Link>
+
+
+
+</div>
+
+
+)
+
+:
+
+
+
+(
+
+
+<div style={styles.departmentGrid}>
+
+
+{
+
+
+filteredDepartments.map((department)=>(
+
+
+<div
+
+key={department.id}
+
+style={styles.departmentCard}
+
+>
+
+
+
+
+
+<div style={styles.cardHeader}>
+
+
+<div style={styles.departmentIcon}>
+
+🏢
+
+</div>
+
+
+
+<div>
+
+
+<h2 style={styles.departmentName}>
+
+{department.department_name}
+
+</h2>
+
+
+
+<span style={styles.departmentBadge}>
+
+Department
+
+</span>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div style={styles.cardBody}>
+
+
+<p style={styles.description}>
+
+
+{
+
+department.description ||
+
+"No description available"
 
 }
 
 
+</p>
+
+
+
+
+
+
+<div style={styles.infoRow}>
+
+
+<span>
+
+📅 Created Date
+
+</span>
+
+
+
+<strong>
+
+{
+
+department.created_at
+
+?
+
+department.created_at.slice(0,10)
+
+:
+
+"N/A"
+
+}
+
+</strong>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div style={styles.divider}></div>
+
+
+
+
+
+
+
+<div style={styles.actions}>
+
+
+<Link
+
+to={`/departments/${department.id}`}
+
+style={styles.viewButton}
+
+>
+
+👁 View
+
+</Link>
+
+
+
+
+
+
+<Link
+
+to={`/departments/edit/${department.id}`}
+
+style={styles.editButton}
+
+>
+
+✏ Edit
+
+</Link>
+
+
+
+
+
+
+
+<button
+
+onClick={()=>handleDelete(department.id)}
+
+style={styles.deleteButton}
+
+>
+
+🗑 Delete
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+))
+
+
+}
+
+
+
+</div>
+
+
+)
+
+}
+
+
+
+
+</div>
+
+
+
+</DashboardLayout>
+
+
+);
+
+}
 
 
 
 function StatCard({
 
-  title,
+icon,
 
-  value,
+title,
 
-  icon
+value
 
-}) {
+}){
 
-  return (
 
-    <div style={styles.statCard}>
+return(
 
-      <div style={styles.statIcon}>
+<div style={styles.statCard}>
 
-        {icon}
 
-      </div>
+<div style={styles.statIcon}>
 
-      <div>
+{icon}
 
-        <p style={styles.statTitle}>
+</div>
 
-          {title}
 
-        </p>
 
-        <h2 style={styles.statValue}>
+<div>
 
-          {value}
 
-        </h2>
+<p style={styles.statTitle}>
 
-      </div>
+{title}
 
-    </div>
+</p>
 
-  );
+
+
+<h2 style={styles.statValue}>
+
+{value}
+
+</h2>
+
+
+</div>
+
+
+
+</div>
+
+);
+
 
 }
-const styles = {
 
-  page: {
 
-    width: "100%",
 
-    minHeight: "100vh"
 
-  },
 
 
 
-  header: {
+const styles={
 
-    display: "flex",
 
-    justifyContent: "space-between",
 
-    alignItems: "center",
 
-    flexWrap: "wrap",
 
-    gap: "20px",
+page:{
 
-    marginBottom: "35px"
 
-  },
+width:"100%",
 
+minHeight:"100vh",
 
+padding:"30px",
 
-  title: {
+background:"#f8fafc"
 
-    margin: 0,
 
-    fontSize: "34px",
+},
 
-    color: "#0f172a",
 
-    fontWeight: "700"
 
-  },
 
 
 
-  subtitle: {
+header:{
 
-    marginTop: "8px",
 
-    color: "#64748b",
+display:"flex",
 
-    fontSize: "16px"
+justifyContent:"space-between",
 
-  },
+alignItems:"center",
 
+flexWrap:"wrap",
 
+gap:"20px",
 
-  addButton: {
+marginBottom:"35px"
 
-    background: "#2563eb",
 
-    color: "#ffffff",
+},
 
-    textDecoration: "none",
 
-    padding: "14px 24px",
 
-    borderRadius: "12px",
 
-    fontWeight: "600",
 
-    boxShadow: "0 10px 25px rgba(37,99,235,.25)",
 
-    transition: ".3s"
+title:{
 
-  },
 
+margin:0,
 
+fontSize:"34px",
 
-  cards: {
+fontWeight:"800",
 
-    display: "grid",
+color:"#0f172a"
 
-    gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
 
-    gap: "22px",
+},
 
-    marginBottom: "30px"
 
-  },
 
 
 
-  statCard: {
 
-    background: "#ffffff",
+subtitle:{
 
-    borderRadius: "22px",
 
-    padding: "22px",
+marginTop:"8px",
 
-    display: "flex",
+fontSize:"16px",
 
-    alignItems: "center",
+color:"#64748b"
 
-    gap: "18px",
 
-    boxShadow: "0 15px 35px rgba(0,0,0,.08)"
+},
 
-  },
 
 
 
-  statIcon: {
 
-    width: "65px",
 
-    height: "65px",
+addButton:{
 
-    borderRadius: "18px",
 
-    background: "#eff6ff",
+background:
+"linear-gradient(135deg,#2563eb,#1d4ed8)",
 
-    display: "flex",
+color:"#ffffff",
 
-    justifyContent: "center",
+textDecoration:"none",
 
-    alignItems: "center",
+padding:"14px 25px",
 
-    fontSize: "32px"
+borderRadius:"14px",
 
-  },
+fontWeight:"700",
 
+fontSize:"15px",
 
+boxShadow:
+"0 10px 25px rgba(37,99,235,.25)",
 
-  statTitle: {
+display:"inline-block"
 
-    margin: 0,
 
-    color: "#64748b",
+},
 
-    fontSize: "14px"
 
-  },
 
 
 
-  statValue: {
 
-    margin: "6px 0 0",
 
-    color: "#0f172a",
 
-    fontSize: "30px",
+statGrid:{
 
-    fontWeight: "700"
 
-  },
+display:"grid",
 
+gridTemplateColumns:
+"repeat(auto-fit,minmax(230px,1fr))",
 
+gap:"22px",
 
-  searchCard: {
+marginBottom:"30px"
 
-    background: "#ffffff",
 
-    borderRadius: "20px",
+},
 
-    padding: "22px",
 
-    marginBottom: "30px",
 
-    boxShadow: "0 10px 30px rgba(0,0,0,.08)"
 
-  },
 
 
+statCard:{
 
-  searchInput: {
 
-    width: "100%",
+background:"#ffffff",
 
-    padding: "15px 18px",
+borderRadius:"22px",
 
-    border: "1px solid #dbe2ea",
+padding:"25px",
 
-    borderRadius: "12px",
+display:"flex",
 
-    outline: "none",
+alignItems:"center",
 
-    fontSize: "15px",
+gap:"18px",
 
-    boxSizing: "border-box"
+boxShadow:
+"0 15px 35px rgba(15,23,42,.08)",
 
-  },
+border:
+"1px solid #f1f5f9"
 
 
+},
 
-  grid: {
 
-    display: "grid",
 
-    gridTemplateColumns: "repeat(auto-fit,minmax(330px,1fr))",
 
-    gap: "28px"
 
-  },
 
+statIcon:{
 
 
-  departmentCard: {
+width:"65px",
 
-    background: "#ffffff",
+height:"65px",
 
-    borderRadius: "24px",
+borderRadius:"18px",
 
-    overflow: "hidden",
+background:"#eff6ff",
 
-    boxShadow: "0 15px 35px rgba(0,0,0,.08)",
+display:"flex",
 
-    transition: ".3s"
+alignItems:"center",
 
-  },
+justifyContent:"center",
 
+fontSize:"32px"
 
 
-  iconBox: {
+},
 
-    height: "130px",
 
-    background: "linear-gradient(135deg,#2563eb,#1d4ed8)",
 
-    display: "flex",
 
-    justifyContent: "center",
 
-    alignItems: "center",
 
-    fontSize: "65px",
+statTitle:{
 
-    color: "#ffffff"
 
-  },
+margin:0,
 
+fontSize:"14px",
 
+color:"#64748b",
 
-  departmentBody: {
+fontWeight:"600"
 
-    padding: "24px"
 
-  },
+},
 
 
 
-  departmentName: {
 
-    margin: 0,
 
-    color: "#0f172a",
 
-    fontSize: "24px",
+statValue:{
 
-    fontWeight: "700"
 
-  },
+margin:"8px 0 0",
 
+fontSize:"30px",
 
+color:"#0f172a",
 
-  description: {
+fontWeight:"800"
 
-    color: "#64748b",
 
-    lineHeight: "1.7",
+},
 
-    marginTop: "12px",
 
-    minHeight: "60px"
 
-  },
 
 
 
-  meta: {
 
-    display: "flex",
 
-    justifyContent: "space-between",
+searchCard:{
 
-    alignItems: "center",
 
-    marginTop: "18px",
+background:"#ffffff",
 
-    paddingTop: "18px",
+padding:"22px",
 
-    borderTop: "1px solid #e2e8f0",
+borderRadius:"20px",
 
-    color: "#475569",
+marginBottom:"30px",
 
-    fontSize: "14px"
+boxShadow:
+"0 10px 30px rgba(15,23,42,.08)"
 
-  },
 
+},
 
 
-  actions: {
 
-    display: "flex",
 
-    justifyContent: "space-between",
 
-    gap: "12px",
 
-    marginTop: "22px"
+searchHeader:{
 
-  },
-  page: {
-    width: "100%",
-  },
 
-  header: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: "30px",
-    flexWrap: "wrap",
-    gap: "20px",
-  },
+display:"flex",
 
-  title: {
-    margin: 0,
-    fontSize: "34px",
-    color: "#0f172a",
-    fontWeight: "700",
-  },
+alignItems:"center",
 
-  subtitle: {
-    color: "#64748b",
-    marginTop: "8px",
-    fontSize: "15px",
-  },
+gap:"12px"
 
-  addButton: {
-    background: "#2563eb",
-    color: "#fff",
-    border: "none",
-    padding: "14px 24px",
-    borderRadius: "12px",
-    cursor: "pointer",
-    fontWeight: "600",
-    fontSize: "15px",
-    boxShadow: "0 10px 25px rgba(37,99,235,.25)",
-  },
 
-  statGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
-    gap: "20px",
-    marginBottom: "30px",
-  },
+},
 
-  statCard: {
-    background: "#fff",
-    borderRadius: "20px",
-    padding: "24px",
-    boxShadow: "0 12px 30px rgba(15,23,42,.08)",
-    display: "flex",
-    alignItems: "center",
-    gap: "18px",
-  },
 
-  statIcon: {
-    fontSize: "38px",
-  },
 
-  statTitle: {
-    margin: 0,
-    color: "#64748b",
-    fontSize: "14px",
-  },
 
-  statValue: {
-    margin: "5px 0 0",
-    color: "#0f172a",
-    fontSize: "30px",
-    fontWeight: "700",
-  },
 
-  searchCard: {
-    background: "#fff",
-    borderRadius: "20px",
-    padding: "20px",
-    marginBottom: "30px",
-    boxShadow: "0 10px 25px rgba(15,23,42,.08)",
-  },
 
-  input: {
-    width: "100%",
-    padding: "14px 18px",
-    borderRadius: "12px",
-    border: "1px solid #cbd5e1",
-    fontSize: "15px",
-    outline: "none",
-    boxSizing: "border-box",
-  },
+searchInput:{
 
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit,minmax(320px,1fr))",
-    gap: "25px",
-  },
 
-  card: {
-    background: "#fff",
-    borderRadius: "22px",
-    padding: "24px",
-    boxShadow: "0 15px 35px rgba(15,23,42,.08)",
-    transition: ".3s",
-  },
+width:"100%",
 
-  topRow: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    gap: "15px",
-    marginBottom: "18px",
-  },
+padding:"15px 18px",
 
-  avatar: {
-    width: "60px",
-    height: "60px",
-    borderRadius: "18px",
-    background: "linear-gradient(135deg,#2563eb,#1d4ed8)",
-    color: "#fff",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontWeight: "700",
-    fontSize: "24px",
-  },
+borderRadius:"14px",
 
-  deptName: {
-    margin: 0,
-    color: "#0f172a",
-    fontSize: "21px",
-    fontWeight: "700",
-  },
+border:"1px solid #cbd5e1",
 
-  badge: {
-    display: "inline-block",
-    marginTop: "8px",
-    padding: "6px 12px",
-    borderRadius: "20px",
-    background: "#dbeafe",
-    color: "#1d4ed8",
-    fontWeight: "600",
-    fontSize: "13px",
-  },
+fontSize:"15px",
 
-  description: {
-    color: "#475569",
-    lineHeight: "1.7",
-    marginBottom: "25px",
-    minHeight: "55px",
-  },
+outline:"none"
 
-  actions: {
-    display: "flex",
-    gap: "12px",
-  },
 
-  edit: {
-    flex: 1,
-    background: "#2563eb",
-    color: "#fff",
-    border: "none",
-    padding: "12px",
-    borderRadius: "10px",
-    cursor: "pointer",
-    fontWeight: "600",
-  },
+},
 
-  delete: {
-    flex: 1,
-    background: "#ef4444",
-    color: "#fff",
-    border: "none",
-    padding: "12px",
-    borderRadius: "10px",
-    cursor: "pointer",
-    fontWeight: "600",
-  },
 
-  empty: {
-    background: "#fff",
-    borderRadius: "20px",
-    padding: "80px 30px",
-    textAlign: "center",
-    boxShadow: "0 15px 35px rgba(15,23,42,.08)",
-  },
 
-  emptyIcon: {
-    fontSize: "70px",
-    marginBottom: "15px",
-  },
 
-  modal: {
-    position: "fixed",
-    inset: 0,
-    background: "rgba(15,23,42,.45)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    zIndex: 999,
-  },
 
-  modalCard: {
-    width: "100%",
-    maxWidth: "550px",
-    background: "#fff",
-    borderRadius: "22px",
-    padding: "30px",
-    boxShadow: "0 20px 40px rgba(0,0,0,.15)",
-  },
 
-  modalTitle: {
-    marginTop: 0,
-    marginBottom: "20px",
-    color: "#0f172a",
-  },
 
-  textarea: {
-    width: "100%",
-    minHeight: "120px",
-    padding: "14px",
-    borderRadius: "12px",
-    border: "1px solid #cbd5e1",
-    resize: "vertical",
-    outline: "none",
-    boxSizing: "border-box",
-    fontSize: "15px",
-  },
+loadingCard:{
 
-  modalButtons: {
-    display: "flex",
-    justifyContent: "flex-end",
-    gap: "12px",
-    marginTop: "25px",
-  },
 
-  cancel: {
-    background: "#e2e8f0",
-    color: "#334155",
-    border: "none",
-    padding: "12px 20px",
-    borderRadius: "10px",
-    cursor: "pointer",
-    fontWeight: "600",
-  },
+background:"#ffffff",
 
-  save: {
-    background: "#2563eb",
-    color: "#fff",
-    border: "none",
-    padding: "12px 20px",
-    borderRadius: "10px",
-    cursor: "pointer",
-    fontWeight: "600",
-  },
+padding:"70px",
+
+borderRadius:"25px",
+
+textAlign:"center",
+
+boxShadow:
+"0 15px 35px rgba(0,0,0,.08)"
+
+
+},
+
+
+
+
+
+
+loader:{
+
+
+width:"50px",
+
+height:"50px",
+
+borderRadius:"50%",
+
+border:
+"5px solid #e2e8f0",
+
+borderTop:
+"5px solid #2563eb",
+
+margin:"auto",
+
+animation:
+"spin 1s linear infinite"
+
+
+},
+
+
+
+
+
+
+emptyCard:{
+
+
+background:"#ffffff",
+
+padding:"80px 30px",
+
+borderRadius:"25px",
+
+textAlign:"center",
+
+boxShadow:
+"0 15px 35px rgba(0,0,0,.08)"
+
+
+},
+
+
+
+
+
+
+emptyIcon:{
+
+
+fontSize:"70px",
+
+marginBottom:"15px"
+
+
+},
+
+
+
+
+
+
+departmentGrid:{
+
+
+display:"grid",
+
+gridTemplateColumns:
+"repeat(auto-fit,minmax(330px,1fr))",
+
+gap:"25px"
+
+
+},
+
+
+
+
+
+
+departmentCard:{
+
+
+background:"#ffffff",
+
+borderRadius:"24px",
+
+padding:"25px",
+
+boxShadow:
+"0 15px 35px rgba(15,23,42,.08)",
+
+border:
+"1px solid #f1f5f9",
+
+transition:"0.3s"
+
+
+},
+
+
+
+
+
+
+cardHeader:{
+
+
+display:"flex",
+
+alignItems:"center",
+
+gap:"18px",
+
+marginBottom:"25px"
+
+
+},
+
+
+
+
+
+
+departmentIcon:{
+
+
+width:"65px",
+
+height:"65px",
+
+borderRadius:"18px",
+
+background:
+"linear-gradient(135deg,#2563eb,#1d4ed8)",
+
+display:"flex",
+
+alignItems:"center",
+
+justifyContent:"center",
+
+fontSize:"32px",
+
+color:"#ffffff"
+
+
+},
+
+
+
+
+
+
+departmentName:{
+
+
+margin:0,
+
+fontSize:"22px",
+
+fontWeight:"750",
+
+color:"#0f172a"
+
+
+},
+
+
+
+
+
+
+departmentBadge:{
+
+
+display:"inline-block",
+
+marginTop:"8px",
+
+padding:"5px 14px",
+
+borderRadius:"20px",
+
+background:"#dbeafe",
+
+color:"#1d4ed8",
+
+fontSize:"12px",
+
+fontWeight:"700"
+
+
+},
+
+
+
+
+cardBody:{
+
+
+display:"flex",
+
+flexDirection:"column",
+
+gap:"15px"
+
+
+},
+
+
+
+
+
+
+description:{
+
+
+color:"#475569",
+
+lineHeight:"1.7",
+
+fontSize:"15px",
+
+minHeight:"55px",
+
+margin:0
+
+
+},
+
+
+
+
+
+
+infoRow:{
+
+
+display:"flex",
+
+justifyContent:"space-between",
+
+alignItems:"center",
+
+padding:"14px 0",
+
+color:"#64748b",
+
+fontSize:"14px"
+
+
+},
+
+
+
+
+
+
+divider:{
+
+
+height:"1px",
+
+background:"#e2e8f0",
+
+margin:"5px 0"
+
+
+},
+
+
+
+
+
+
+actions:{
+
+
+display:"flex",
+
+gap:"10px",
+
+marginTop:"10px",
+
+flexWrap:"wrap"
+
+
+},
+
+
+
+
+
+
+viewButton:{
+
+
+flex:1,
+
+background:"#0ea5e9",
+
+color:"#ffffff",
+
+textDecoration:"none",
+
+textAlign:"center",
+
+padding:"12px",
+
+borderRadius:"12px",
+
+fontWeight:"700",
+
+fontSize:"14px"
+
+
+},
+
+
+
+
+
+
+editButton:{
+
+
+flex:1,
+
+background:"#2563eb",
+
+color:"#ffffff",
+
+textDecoration:"none",
+
+textAlign:"center",
+
+padding:"12px",
+
+borderRadius:"12px",
+
+fontWeight:"700",
+
+fontSize:"14px"
+
+
+},
+
+
+
+
+
+
+deleteButton:{
+
+
+flex:1,
+
+background:"#dc2626",
+
+color:"#ffffff",
+
+border:"none",
+
+padding:"12px",
+
+borderRadius:"12px",
+
+fontWeight:"700",
+
+fontSize:"14px",
+
+cursor:"pointer"
+
+
+},
+
+
+
+
+
+
 };
+
+
+
+
 
 export default Departments;
