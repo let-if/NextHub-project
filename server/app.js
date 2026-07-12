@@ -22,7 +22,7 @@ const statisticsRoutes =
 require("./routes/statistics.routes");
 const path = require("path");
 
-
+const notificationRoutes = require("./routes/notification.routes");
 
 const app = express();
 
@@ -78,4 +78,5 @@ app.use(
 "/api/statistics",
 statisticsRoutes
 );
+app.use("/api/notifications", notificationRoutes);
 module.exports = app;

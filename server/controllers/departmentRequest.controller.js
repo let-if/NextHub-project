@@ -7,15 +7,10 @@ const db = require("../config/db");
 
 const getDepartmentRequests = (req,res)=>{
 
-
-const department_id = req.user.department_id;
-console.log("Logged in user:");
-console.log(req.user);
-
-console.log("Department ID:", department_id);
+const user = req.user;
 
 
-const sql = `
+let sql = `
 
 SELECT
 
@@ -26,6 +21,7 @@ u.first_name,
 ' ',
 u.last_name
 ) AS requester,
+
 
 CONCAT(
 a.first_name,
@@ -40,15 +36,34 @@ FROM work_requests wr
 LEFT JOIN users u
 ON wr.requested_by=u.id
 
+
 LEFT JOIN users a
 ON wr.assigned_to=a.id
 
+`;
+
+
+let params = [];
+
+
+// ADMIN CAN SEE ALL REQUESTS
+if(user.role_id !== 1){
+
+sql += `
 
 WHERE wr.department_id=?
 
+`;
+
+params.push(user.department_id);
+
+}
+
+
+
+sql += `
 
 ORDER BY wr.created_at DESC
-
 
 `;
 
@@ -58,7 +73,7 @@ db.query(
 
 sql,
 
-[department_id],
+params,
 
 
 (err,result)=>{
@@ -71,6 +86,7 @@ console.log(err);
 return res.status(500).json({
 
 success:false,
+
 message:"Database error"
 
 });
@@ -82,19 +98,16 @@ message:"Database error"
 res.json({
 
 success:true,
+
 requests:result
 
 });
 
 
-}
-
-
-);
+});
 
 
 };
-
 
 
 

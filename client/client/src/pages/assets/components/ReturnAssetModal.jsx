@@ -1,3 +1,4 @@
+
 import {
 returnAsset
 }
@@ -56,6 +57,8 @@ setLoading(false);
 
 
 
+
+
 return(
 
 <div style={styles.overlay}>
@@ -64,16 +67,30 @@ return(
 <div style={styles.modal}>
 
 
-<h2>
+<div style={styles.iconBox}>
+
+↩
+
+</div>
+
+
+
+<h2 style={styles.title}>
+
 Return Asset
+
 </h2>
 
 
-<p>
 
-Are you sure this asset has been returned?
+<p style={styles.message}>
+
+Are you sure this asset has been physically returned?
+
+The asset status will be changed back to available.
 
 </p>
+
 
 
 
@@ -95,21 +112,32 @@ Cancel
 
 
 
+
 <button
 
 onClick={submit}
+
+disabled={loading}
 
 style={styles.return}
 
 >
 
+
 {
+
 loading
+
 ?
+
 "Returning..."
+
 :
+
 "Confirm Return"
+
 }
+
 
 </button>
 
@@ -118,11 +146,11 @@ loading
 </div>
 
 
-</div>
-
 
 </div>
 
+
+</div>
 
 );
 
@@ -132,46 +160,155 @@ loading
 
 
 
+
+
 const styles={
 
 
+
 overlay:{
+
 
 position:"fixed",
 
 inset:0,
 
-background:"rgba(0,0,0,.5)",
+background:
+"rgba(15,23,42,.65)",
+
+backdropFilter:
+"blur(8px)",
 
 display:"flex",
 
 alignItems:"center",
 
-justifyContent:"center"
+justifyContent:"center",
+
+zIndex:3000,
+
+padding:"20px"
 
 },
+
+
+
 
 
 
 modal:{
 
-background:"white",
 
-padding:"30px",
+width:"430px",
 
-borderRadius:"20px",
+maxWidth:"100%",
 
-width:"400px"
+background:
+"linear-gradient(145deg,#ffffff,#f8fafc)",
+
+padding:"38px",
+
+borderRadius:"32px",
+
+textAlign:"center",
+
+boxShadow:
+"0 35px 90px rgba(15,23,42,.30)",
+
+animation:
+"modalShow .3s ease"
 
 },
 
 
 
-buttons:{
+
+
+
+iconBox:{
+
+
+width:"85px",
+
+height:"85px",
+
+borderRadius:"50%",
+
+
+margin:"0 auto 20px",
+
 
 display:"flex",
 
-justifyContent:"flex-end",
+alignItems:"center",
+
+justifyContent:"center",
+
+
+fontSize:"40px",
+
+color:"#ffffff",
+
+
+background:
+"linear-gradient(135deg,#f59e0b,#d97706)",
+
+
+boxShadow:
+"0 15px 35px rgba(245,158,11,.35)"
+
+},
+
+
+
+
+
+
+
+title:{
+
+
+fontSize:"30px",
+
+fontWeight:"850",
+
+color:"#0f172a",
+
+marginBottom:"12px"
+
+},
+
+
+
+
+
+
+message:{
+
+
+fontSize:"16px",
+
+lineHeight:"1.7",
+
+color:"#64748b",
+
+marginBottom:"32px"
+
+},
+
+
+
+
+
+
+
+
+buttons:{
+
+
+display:"flex",
+
+justifyContent:"center",
 
 gap:"15px"
 
@@ -179,30 +316,65 @@ gap:"15px"
 
 
 
+
+
+
 cancel:{
 
-padding:"12px 20px",
 
-border:"none",
+padding:"14px 28px",
 
-borderRadius:"10px"
+borderRadius:"15px",
+
+border:"1px solid #cbd5e1",
+
+background:"#f8fafc",
+
+color:"#475569",
+
+fontWeight:"700",
+
+cursor:"pointer",
+
+transition:"all .25s ease"
+
 
 },
 
 
+
+
+
+
+
 return:{
 
-background:"#f59e0b",
 
-color:"white",
+padding:"14px 32px",
+
+borderRadius:"15px",
 
 border:"none",
 
-padding:"12px 20px",
+background:
+"linear-gradient(135deg,#f59e0b,#d97706)",
 
-borderRadius:"10px"
+color:"#ffffff",
+
+fontWeight:"800",
+
+fontSize:"15px",
+
+cursor:"pointer",
+
+boxShadow:
+"0 15px 30px rgba(245,158,11,.35)",
+
+transition:"all .25s ease"
 
 }
+
+
 
 
 };

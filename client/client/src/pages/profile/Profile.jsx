@@ -568,14 +568,23 @@ showPassword &&
 
 <div>
 
-<h2>
-Change Password
+
+<h2 style={{
+margin:0,
+fontSize:"26px",
+fontWeight:"800",
+color:"#0f172a"
+}}>
+🔐 Change Password
 </h2>
 
-<p>
-Update your account password securely
+<p style={{
+marginTop:"8px",
+color:"#64748b",
+fontSize:"14px"
+}}>
+Create a strong password to protect your account
 </p>
-
 </div>
 
 
@@ -1061,17 +1070,26 @@ backdropFilter:"blur(5px)"
 
 
 
+
 passwordModal:{
 
-width:"450px",
+width:"480px",
+
+maxWidth:"95%",
 
 background:"#ffffff",
 
-borderRadius:"24px",
+borderRadius:"28px",
 
-padding:"35px",
+padding:"40px",
 
-boxShadow:"0 25px 60px rgba(0,0,0,.25)"
+boxShadow:
+"0 30px 80px rgba(15,23,42,.35)",
+
+animation:
+"fadeIn .25s ease",
+
+position:"relative"
 
 },
 
@@ -1085,9 +1103,15 @@ justifyContent:"space-between",
 
 alignItems:"flex-start",
 
-marginBottom:"30px"
+marginBottom:"35px",
+
+paddingBottom:"20px",
+
+borderBottom:
+"1px solid #e2e8f0"
 
 },
+
 
 
 
@@ -1097,19 +1121,28 @@ border:"none",
 
 background:"#f1f5f9",
 
-width:"35px",
+width:"42px",
 
-height:"35px",
+height:"42px",
 
 borderRadius:"50%",
 
-fontSize:"24px",
+fontSize:"26px",
 
 cursor:"pointer",
 
-color:"#475569"
+color:"#475569",
+
+display:"flex",
+
+alignItems:"center",
+
+justifyContent:"center",
+
+transition:"0.3s"
 
 },
+
 
 
 
@@ -1119,12 +1152,50 @@ display:"flex",
 
 flexDirection:"column",
 
-gap:"8px",
+gap:"10px",
 
-marginBottom:"20px"
+marginBottom:"22px"
+
+},
+passwordLabel:{
+
+fontSize:"14px",
+
+fontWeight:"700",
+
+color:"#334155"
 
 },
 
+
+passwordInput:{
+
+padding:"15px 18px",
+
+borderRadius:"14px",
+
+border:"1px solid #cbd5e1",
+
+fontSize:"15px",
+
+outline:"none",
+
+transition:"0.25s",
+
+background:"#f8fafc"
+
+},
+
+
+passwordInputFocus:{
+
+border:
+"1px solid #2563eb",
+
+boxShadow:
+"0 0 0 4px rgba(37,99,235,.15)"
+
+},
 
 
 formGroupLabel:{
@@ -1155,39 +1226,45 @@ outline:"none"
 
 
 
+
 passwordActions:{
 
 display:"flex",
 
-justifyContent:"flex-end",
+justifyContent:"space-between",
 
 gap:"15px",
 
-marginTop:"30px"
+marginTop:"35px"
 
 },
+
 
 
 
 cancelButton:{
 
-padding:"12px 25px",
+flex:1,
 
-borderRadius:"12px",
+padding:"14px",
 
-border:"none",
+borderRadius:"14px",
 
-background:"#e2e8f0",
+border:"1px solid #cbd5e1",
 
-color:"#334155",
+background:"#ffffff",
 
-fontWeight:"600",
+color:"#475569",
 
-cursor:"pointer"
+fontWeight:"700",
+
+cursor:"pointer",
+
+fontSize:"15px",
+
+transition:"0.25s"
 
 },
-
-
 
 updatePasswordButton:{
 

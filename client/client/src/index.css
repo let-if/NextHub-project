@@ -109,3 +109,203 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+@keyframes spin {
+
+0%{
+transform:rotate(0deg);
+}
+
+100%{
+transform:rotate(360deg);
+}
+
+}
+.global-search-item:hover{
+
+background:#f8fafc;
+
+border-color:#dbeafe;
+
+transform:translateY(-1px);
+
+}
+.activity-scroll::-webkit-scrollbar{
+width:6px;
+}
+
+.activity-scroll::-webkit-scrollbar-thumb{
+background:#cbd5e1;
+border-radius:20px;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* Activity Hover */
+
+
+.activityCard:hover{
+
+
+transform:
+translateY(-8px)
+translateX(5px);
+
+
+box-shadow:
+0 25px 60px rgba(37,99,235,.18);
+
+
+border-color:
+#93c5fd;
+
+
+}
+
+
+
+/* Activity scrolling */
+
+
+.activityList::-webkit-scrollbar{
+
+
+width:8px;
+
+
+}
+
+
+.activityList::-webkit-scrollbar-track{
+
+
+background:#f1f5f9;
+
+
+border-radius:20px;
+
+
+}
+
+
+
+.activityList::-webkit-scrollbar-thumb{
+
+
+background:
+linear-gradient(
+180deg,
+#2563eb,
+#06b6d4
+);
+
+
+border-radius:20px;
+
+
+}
+
+
+
+
+
+@keyframes activityEnter{
+
+
+from{
+
+
+opacity:0;
+
+
+transform:
+translateX(30px);
+
+
+}
+
+
+to{
+
+
+opacity:1;
+
+
+transform:
+translateX(0);
+
+
+}
+
+
+}
+
+
+
+.activityCard{
+
+
+animation:
+activityEnter .45s ease;
+
+
+}
+@keyframes modalShow{
+
+from{
+
+opacity:0;
+
+transform:translateY(25px) scale(.95);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:translateY(0) scale(1);
+
+}
+
+}
+
+
+button:hover{
+
+transform:translateY(-3px);
+
+}
+
+
+button:active{
+
+transform:scale(.97);
+
+}
+button:hover{
+transform:translateY(-3px);
+filter:brightness(1.05);
+}
+
+
+tr:hover td{
+background:#f8fbff;
+}
+
+
+.card:hover{
+transform:translateY(-3px);
+}
+
+
+input:focus{
+box-shadow:
+0 0 0 4px rgba(37,99,235,.15);
+}

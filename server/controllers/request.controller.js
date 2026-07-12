@@ -14,7 +14,9 @@ const generateRequestNumber = () => {
 };
 
 
-
+const {
+    notifyDepartment
+} = require("./notification.controller");
 
 // ===============================
 // CREATE REQUEST

@@ -749,21 +749,29 @@ return(
 
 
 
-
-
-
 const styles={
 
 
 page:{
 
-width:"100%"
+width:"100%",
+
+minHeight:"100vh",
+
+animation:"fadeIn .6s ease"
 
 },
 
 
 
+
+
+
+/* ================= HEADER ================= */
+
+
 header:{
+
 
 display:"flex",
 
@@ -771,7 +779,11 @@ justifyContent:"space-between",
 
 alignItems:"center",
 
-marginBottom:"30px"
+marginBottom:"40px",
+
+flexWrap:"wrap",
+
+gap:"20px"
 
 },
 
@@ -780,77 +792,145 @@ marginBottom:"30px"
 
 title:{
 
-fontSize:"32px",
+
+fontSize:"42px",
+
+fontWeight:"950",
+
+letterSpacing:"-1px",
 
 margin:0,
 
-color:"#0f172a"
+
+background:
+"linear-gradient(90deg,#020617,#2563eb,#06b6d4)",
+
+
+WebkitBackgroundClip:"text",
+
+WebkitTextFillColor:"transparent"
+
 
 },
+
 
 
 
 subtitle:{
 
-color:"#64748b"
+
+color:"#64748b",
+
+fontSize:"16px",
+
+fontWeight:"600"
 
 },
+
 
 
 
 back:{
 
-padding:"12px 20px",
+
+padding:"14px 28px",
 
 border:"none",
 
-borderRadius:"10px",
+borderRadius:"18px",
 
-cursor:"pointer"
+background:"#ffffff",
+
+fontWeight:"800",
+
+cursor:"pointer",
+
+boxShadow:
+"0 15px 35px rgba(15,23,42,.12)",
+
+transition:".3s"
 
 },
 
 
 
+
+
+
+
+
+/* ================= HERO ================= */
 
 
 hero:{
 
-background:"white",
 
-padding:"35px",
+background:
+"linear-gradient(135deg,#ffffff,#f8fafc)",
 
-borderRadius:"25px",
+
+padding:"45px",
+
+borderRadius:"40px",
+
 
 display:"flex",
 
-gap:"35px",
+gap:"45px",
 
 alignItems:"center",
 
-boxShadow:"0 15px 40px rgba(0,0,0,.08)"
+flexWrap:"wrap",
+
+
+boxShadow:
+"0 35px 90px rgba(15,23,42,.15)",
+
+
+border:
+"1px solid #e2e8f0",
+
+position:"relative",
+
+overflow:"hidden"
+
 
 },
+
+
+
 
 
 
 imageBox:{
 
-width:"300px",
 
-height:"260px",
+width:"330px",
 
-borderRadius:"20px",
+height:"280px",
+
+borderRadius:"35px",
 
 overflow:"hidden",
 
-background:"#f1f5f9"
+background:
+"linear-gradient(145deg,#e2e8f0,#f8fafc)",
+
+
+boxShadow:
+"0 30px 70px rgba(15,23,42,.2)",
+
+
+transition:".4s"
+
 
 },
 
 
 
+
 image:{
+
 
 width:"100%",
 
@@ -862,7 +942,9 @@ objectFit:"cover"
 
 
 
+
 placeholder:{
+
 
 height:"100%",
 
@@ -872,9 +954,11 @@ alignItems:"center",
 
 justifyContent:"center",
 
-fontSize:"100px"
+fontSize:"120px"
+
 
 },
+
 
 
 
@@ -887,51 +971,97 @@ flex:1
 
 
 
+
 code:{
 
-color:"#64748b"
+
+color:"#64748b",
+
+fontWeight:"700",
+
+fontSize:"16px"
 
 },
+
+
+
+
+
+
+
+
+/* ================= STATUS ================= */
 
 
 
 available:{
 
-background:"#dcfce7",
 
-color:"#15803d",
+background:
+"linear-gradient(135deg,#22c55e,#16a34a)",
 
-padding:"10px 20px",
+color:"#fff",
 
-borderRadius:"30px"
+padding:"12px 25px",
+
+borderRadius:"999px",
+
+fontWeight:"900",
+
+display:"inline-block",
+
+boxShadow:
+"0 15px 35px rgba(22,163,74,.35)"
 
 },
+
 
 
 
 assigned:{
 
-background:"#dbeafe",
 
-color:"#1d4ed8",
+background:
+"linear-gradient(135deg,#2563eb,#06b6d4)",
 
-padding:"10px 20px",
+color:"#fff",
 
-borderRadius:"30px"
+padding:"12px 25px",
+
+borderRadius:"999px",
+
+fontWeight:"900",
+
+display:"inline-block",
+
+boxShadow:
+"0 15px 35px rgba(37,99,235,.35)"
+
 
 },
+
 
 
 
 maintenance:{
 
-background:"#fef3c7",
 
-color:"#b45309",
+background:
+"linear-gradient(135deg,#f59e0b,#f97316)",
 
-padding:"10px 20px",
+color:"#fff",
 
-borderRadius:"30px"
+padding:"12px 25px",
+
+borderRadius:"999px",
+
+fontWeight:"900",
+
+display:"inline-block",
+
+boxShadow:
+"0 15px 35px rgba(245,158,11,.35)"
+
 
 },
 
@@ -939,13 +1069,22 @@ borderRadius:"30px"
 
 
 
+
+
+/* ================= BUTTONS ================= */
+
+
+
 buttons:{
 
-marginTop:"25px",
+
+marginTop:"30px",
 
 display:"flex",
 
-gap:"15px"
+gap:"15px",
+
+flexWrap:"wrap"
 
 },
 
@@ -954,111 +1093,184 @@ gap:"15px"
 
 edit:{
 
-background:"#2563eb",
 
-color:"white",
+background:
+"linear-gradient(135deg,#2563eb,#1d4ed8)",
 
-padding:"12px 20px",
+color:"#fff",
 
-borderRadius:"10px",
+padding:"14px 30px",
 
-textDecoration:"none"
+borderRadius:"18px",
+
+fontWeight:"900",
+
+textDecoration:"none",
+
+boxShadow:
+"0 20px 45px rgba(37,99,235,.35)",
+
+transition:".3s"
 
 },
+
 
 
 
 assign:{
 
-background:"#16a34a",
 
-color:"white",
+background:
+"linear-gradient(135deg,#16a34a,#22c55e)",
+
+color:"#fff",
+
+padding:"14px 30px",
 
 border:"none",
 
-padding:"12px 20px",
+borderRadius:"18px",
 
-borderRadius:"10px",
+fontWeight:"900",
 
-cursor:"pointer"
+cursor:"pointer",
+
+boxShadow:
+"0 20px 45px rgba(22,163,74,.35)",
+
+transition:".3s"
+
 
 },
+
 
 
 
 return:{
 
-background:"#f59e0b",
 
-color:"white",
+background:
+"linear-gradient(135deg,#f59e0b,#ea580c)",
+
+color:"#fff",
+
+padding:"14px 30px",
 
 border:"none",
 
-padding:"12px 20px",
+borderRadius:"18px",
 
-borderRadius:"10px",
+fontWeight:"900",
 
-cursor:"pointer"
+cursor:"pointer",
+
+boxShadow:
+"0 20px 45px rgba(245,158,11,.35)",
+
+transition:".3s"
+
 
 },
 
 
+
+
+
+
+
+/* ================= CARDS ================= */
 
 
 
 grid:{
 
+
 display:"grid",
 
-gridTemplateColumns:"repeat(auto-fit,minmax(300px,1fr))",
+gridTemplateColumns:
+"repeat(auto-fit,minmax(350px,1fr))",
 
-gap:"25px",
+gap:"30px",
 
-marginTop:"30px"
+marginTop:"35px"
+
 
 },
+
 
 
 
 card:{
 
-background:"white",
 
-padding:"25px",
+background:
+"rgba(255,255,255,.85)",
 
-borderRadius:"22px",
 
-boxShadow:"0 10px 30px rgba(0,0,0,.08)",
+backdropFilter:
+"blur(20px)",
 
-marginTop:"30px"
+
+padding:"35px",
+
+borderRadius:"35px",
+
+boxShadow:
+"0 25px 70px rgba(15,23,42,.12)",
+
+
+border:
+"1px solid #e2e8f0",
+
+marginTop:"35px",
+
+transition:".35s"
+
 
 },
+
+
+
+
 
 
 
 employee:{
 
+
 display:"flex",
 
-gap:"20px",
+gap:"25px",
 
-alignItems:"center"
+alignItems:"center",
+
+background:
+"linear-gradient(145deg,#f8fafc,#ffffff)",
+
+padding:"25px",
+
+borderRadius:"25px"
+
 
 },
 
 
 
+
+
 avatar:{
 
-width:"70px",
 
-height:"70px",
+width:"85px",
+
+height:"85px",
 
 borderRadius:"50%",
 
-background:"#2563eb",
+background:
+"linear-gradient(135deg,#2563eb,#06b6d4)",
 
-color:"white",
+color:"#fff",
 
 display:"flex",
 
@@ -1066,55 +1278,103 @@ alignItems:"center",
 
 justifyContent:"center",
 
-fontSize:"30px",
+fontSize:"35px",
 
-fontWeight:"bold"
+fontWeight:"950",
+
+boxShadow:
+"0 20px 40px rgba(37,99,235,.3)"
 
 },
 
 
 
 
+
+
+
+/* ================= INFO ================= */
+
+
 infoRow:{
+
 
 display:"flex",
 
 justifyContent:"space-between",
 
-padding:"12px 0",
+alignItems:"center",
 
-borderBottom:"1px solid #e2e8f0"
+padding:"16px 0",
+
+borderBottom:
+"1px solid #e2e8f0",
+
+fontSize:"15px"
 
 },
+
 
 
 
 description:{
 
+
+background:
+"#f8fafc",
+
+padding:"25px",
+
+borderRadius:"25px",
+
 color:"#475569",
 
-lineHeight:"1.7"
+lineHeight:"1.8",
+
+fontSize:"16px"
 
 },
 
 
 
 
+
+
+
+/* ================= LOADING ================= */
+
+
 loading:{
 
-background:"white",
 
-padding:"50px",
+height:"400px",
 
-borderRadius:"20px",
+background:"#fff",
 
-textAlign:"center"
+borderRadius:"35px",
+
+display:"flex",
+
+alignItems:"center",
+
+justifyContent:"center",
+
+fontSize:"22px",
+
+fontWeight:"900",
+
+color:"#2563eb",
+
+boxShadow:
+"0 30px 80px rgba(15,23,42,.12)"
 
 }
 
 
 
 };
+
+
 
 
 

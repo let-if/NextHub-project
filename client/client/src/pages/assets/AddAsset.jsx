@@ -902,22 +902,29 @@ style={styles.input}
 
 
 
-
-
-
-
 const styles={
 
 
 page:{
 
-width:"100%"
+width:"100%",
+
+minHeight:"100vh",
+
+animation:"pageShow .7s ease"
 
 },
 
 
 
+
+
+
+/* ================= HEADER ================= */
+
+
 header:{
+
 
 display:"flex",
 
@@ -925,25 +932,52 @@ justifyContent:"space-between",
 
 alignItems:"center",
 
-marginBottom:"30px"
+marginBottom:"45px",
+
+flexWrap:"wrap",
+
+gap:"20px"
+
 
 },
+
 
 
 
 title:{
 
-fontSize:"32px",
+
+fontSize:"44px",
+
+fontWeight:"950",
 
 margin:0,
 
-color:"#0f172a"
+
+background:
+"linear-gradient(90deg,#020617,#2563eb,#06b6d4)",
+
+
+WebkitBackgroundClip:"text",
+
+WebkitTextFillColor:"transparent",
+
+letterSpacing:"-2px"
+
 
 },
 
 
 
+
 subtitle:{
+
+
+marginTop:"10px",
+
+fontSize:"16px",
+
+fontWeight:"600",
 
 color:"#64748b"
 
@@ -951,65 +985,151 @@ color:"#64748b"
 
 
 
+
+
+
 back:{
 
-background:"#e2e8f0",
 
-border:"none",
+background:
+"rgba(255,255,255,.8)",
 
-padding:"12px 20px",
 
-borderRadius:"10px",
+backdropFilter:
+"blur(20px)",
+
+
+border:"1px solid #e2e8f0",
+
+
+padding:"15px 30px",
+
+borderRadius:"20px",
+
+fontWeight:"900",
 
 cursor:"pointer",
 
-fontWeight:"600"
+boxShadow:
+"0 20px 45px rgba(15,23,42,.12)",
+
+transition:".3s"
+
 
 },
 
+
+
+
+
+
+
+
+/* ================= MAIN CARD ================= */
 
 
 card:{
 
-background:"white",
 
-borderRadius:"22px",
+background:
+"rgba(255,255,255,.78)",
 
-padding:"30px",
 
-boxShadow:"0 15px 40px rgba(0,0,0,.08)"
+backdropFilter:
+"blur(30px)",
+
+
+borderRadius:"45px",
+
+
+padding:"50px",
+
+
+border:
+"1px solid rgba(255,255,255,.8)",
+
+
+boxShadow:
+"0 50px 120px rgba(15,23,42,.18)",
+
+
+position:"relative",
+
+overflow:"hidden"
+
 
 },
 
+
+
+
+
+
+
+
+/* ================= SECTION ================= */
 
 
 section:{
 
-marginBottom:"35px"
+
+marginBottom:"45px",
+
+padding:"35px",
+
+borderRadius:"35px",
+
+background:
+"linear-gradient(145deg,#ffffff,#f8fafc)",
+
+
+border:
+"1px solid #e2e8f0",
+
+
+boxShadow:
+"0 20px 50px rgba(15,23,42,.06)"
 
 },
+
 
 
 
 sectionTitle:{
 
-fontSize:"20px",
 
-marginBottom:"20px",
+fontSize:"24px",
 
-color:"#0f172a"
+fontWeight:"900",
+
+color:"#0f172a",
+
+marginBottom:"25px"
+
 
 },
 
 
 
+
+
+
+
+
+
+/* ================= IMAGE UPLOAD ================= */
+
+
 uploadBox:{
 
-height:"220px",
 
-border:"2px dashed #cbd5e1",
+height:"280px",
 
-borderRadius:"18px",
+border:
+"3px dashed #93c5fd",
+
+
+borderRadius:"35px",
 
 display:"flex",
 
@@ -1023,13 +1143,48 @@ cursor:"pointer",
 
 overflow:"hidden",
 
-position:"relative"
+position:"relative",
+
+
+background:
+"linear-gradient(145deg,#eff6ff,#ffffff)",
+
+
+transition:".4s"
 
 },
 
 
 
+
+uploadIcon:{
+
+
+fontSize:"75px",
+
+marginBottom:"15px"
+
+},
+
+
+
+
+preview:{
+
+
+width:"100%",
+
+height:"100%",
+
+objectFit:"cover"
+
+},
+
+
+
+
 file:{
+
 
 position:"absolute",
 
@@ -1045,134 +1200,209 @@ cursor:"pointer"
 
 
 
-uploadIcon:{
-
-fontSize:"50px"
-
-},
 
 
 
-preview:{
 
-width:"100%",
-
-height:"100%",
-
-objectFit:"cover"
-
-},
-
+/* ================= FORM ================= */
 
 
 formGrid:{
 
+
 display:"grid",
 
 gridTemplateColumns:
+"repeat(auto-fit,minmax(300px,1fr))",
 
-"repeat(auto-fit,minmax(260px,1fr))",
 
-gap:"20px"
+gap:"30px"
+
 
 },
+
+
 
 
 
 field:{
 
+
 display:"flex",
 
 flexDirection:"column",
 
-gap:"8px"
+gap:"12px"
 
 },
+
+
 
 
 
 input:{
 
-padding:"13px",
 
-border:"1px solid #cbd5e1",
+padding:"17px 20px",
 
-borderRadius:"12px",
+
+borderRadius:"20px",
+
+
+border:
+"1px solid #cbd5e1",
+
+
+background:"#ffffff",
+
 
 fontSize:"15px",
 
-outline:"none"
+fontWeight:"600",
+
+
+outline:"none",
+
+
+transition:".3s"
 
 },
+
+
+
+
 
 
 
 textarea:{
 
+
 width:"100%",
 
-height:"120px",
 
-padding:"15px",
+height:"170px",
 
-borderRadius:"12px",
 
-border:"1px solid #cbd5e1",
+padding:"20px",
 
-resize:"none"
+
+borderRadius:"25px",
+
+
+border:
+"1px solid #cbd5e1",
+
+
+fontSize:"16px",
+
+fontWeight:"600",
+
+resize:"none",
+
+outline:"none"
+
 
 },
 
 
 
+
+
+
+
+/* ================= FOOTER ================= */
+
+
 footer:{
+
 
 display:"flex",
 
 justifyContent:"flex-end",
 
-gap:"15px"
+gap:"20px",
+
+marginTop:"20px",
+
+flexWrap:"wrap"
 
 },
+
+
 
 
 
 cancel:{
 
-padding:"13px 25px",
 
-borderRadius:"12px",
+padding:"16px 35px",
+
+
+borderRadius:"22px",
+
 
 border:"none",
 
-background:"#e2e8f0",
 
-cursor:"pointer"
+background:
+"#e2e8f0",
+
+
+fontWeight:"900",
+
+
+cursor:"pointer",
+
+
+transition:".3s"
 
 },
 
 
 
+
+
+
 submit:{
 
-padding:"13px 30px",
 
-borderRadius:"12px",
+padding:"17px 45px",
+
+
+borderRadius:"22px",
+
 
 border:"none",
 
-background:"#2563eb",
 
-color:"white",
+background:
+"linear-gradient(135deg,#2563eb,#06b6d4)",
 
-fontWeight:"600",
 
-cursor:"pointer"
+color:"#ffffff",
+
+
+fontSize:"16px",
+
+fontWeight:"950",
+
+
+cursor:"pointer",
+
+
+boxShadow:
+"0 25px 60px rgba(37,99,235,.4)",
+
+
+transition:".35s"
 
 }
 
 
 };
+
+
+
 
 
 

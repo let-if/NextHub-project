@@ -938,118 +938,99 @@ background:color
 
 }
 
+
 const styles = {
 
 
 container:{
-
-
 width:"100%",
-
-
-minHeight:"100vh"
-
-
+minHeight:"100vh",
+position:"relative",
+padding:"5px",
+animation:"dashboardEnter .7s ease"
 },
 
 
 
-
-
+/* ================= HEADER ================= */
 
 
 header:{
 
-
 display:"flex",
-
-
 justifyContent:"space-between",
-
-
 alignItems:"center",
-
-
-marginBottom:"35px",
-
-
+marginBottom:"45px",
 flexWrap:"wrap",
-
-
-gap:"20px"
-
+gap:"25px"
 
 },
-
-
-
-
 
 
 
 title:{
 
-
 margin:0,
 
+fontSize:"42px",
 
-fontSize:"34px",
+fontWeight:"950",
 
+letterSpacing:"-1.8px",
 
-fontWeight:"800",
+background:
+"linear-gradient(120deg,#020617,#2563eb,#38bdf8)",
 
+WebkitBackgroundClip:"text",
 
-color:"#0f172a"
-
+WebkitTextFillColor:"transparent"
 
 },
-
-
-
-
 
 
 
 subtitle:{
 
+marginTop:"12px",
 
-marginTop:"8px",
+fontSize:"16px",
 
+color:"#64748b",
 
-fontSize:"15px",
+fontWeight:"600",
 
-
-color:"#64748b"
-
+letterSpacing:"0.2px"
 
 },
-
-
-
-
 
 
 
 dateBadge:{
 
+padding:"15px 28px",
 
-background:"#dbeafe",
+borderRadius:"50px",
 
+background:
+"linear-gradient(135deg,#2563eb,#06b6d4)",
 
-color:"#1d4ed8",
+color:"#fff",
 
+fontWeight:"800",
 
-padding:"12px 22px",
+fontSize:"14px",
 
+boxShadow:
+"0 15px 35px rgba(37,99,235,.35)",
 
-borderRadius:"30px",
+display:"flex",
 
+alignItems:"center",
 
-fontWeight:"700",
+gap:"10px",
 
-
-fontSize:"14px"
-
+animation:
+"floating 3s ease-in-out infinite"
 
 },
 
@@ -1058,32 +1039,22 @@ fontSize:"14px"
 
 
 
+/* ================= KPI CARDS ================= */
 
-/* ================= SUMMARY ================= */
 
 
 summaryGrid:{
 
-
 display:"grid",
 
-
 gridTemplateColumns:
+"repeat(auto-fit,minmax(260px,1fr))",
 
+gap:"30px",
 
-"repeat(auto-fit,minmax(230px,1fr))",
-
-
-gap:"22px",
-
-
-marginBottom:"35px"
-
+marginBottom:"45px"
 
 },
-
-
-
 
 
 
@@ -1091,13 +1062,23 @@ marginBottom:"35px"
 summaryCard:{
 
 
-background:"#ffffff",
+position:"relative",
+
+overflow:"hidden",
 
 
-borderRadius:"22px",
+background:
+"linear-gradient(145deg,rgba(255,255,255,.95),rgba(248,250,252,.85))",
 
 
-padding:"22px",
+backdropFilter:
+"blur(20px)",
+
+
+borderRadius:"30px",
+
+
+padding:"30px",
 
 
 display:"flex",
@@ -1106,54 +1087,57 @@ display:"flex",
 alignItems:"center",
 
 
-gap:"18px",
+gap:"22px",
+
+
+border:
+"1px solid rgba(255,255,255,.8)",
 
 
 boxShadow:
+"0 25px 60px rgba(15,23,42,.12)",
 
-"0 15px 35px rgba(15,23,42,.08)",
+
+transition:
+"all .4s cubic-bezier(.4,0,.2,1)",
 
 
-transition:"transform .25s ease"
+cursor:"pointer"
 
 
 },
-
-
-
-
 
 
 
 summaryIcon:{
 
 
-width:"60px",
+width:"75px",
+
+height:"75px",
 
 
-height:"60px",
-
-
-borderRadius:"18px",
+borderRadius:"25px",
 
 
 display:"flex",
 
-
 alignItems:"center",
-
 
 justifyContent:"center",
 
 
-fontSize:"30px"
+fontSize:"38px",
 
+
+background:
+"linear-gradient(145deg,#ffffff,#e0f2fe)",
+
+
+boxShadow:
+"0 15px 30px rgba(37,99,235,.15)"
 
 },
-
-
-
-
 
 
 
@@ -1162,35 +1146,26 @@ summaryTitle:{
 
 margin:0,
 
+fontSize:"15px",
 
-fontSize:"14px",
-
+fontWeight:"700",
 
 color:"#64748b"
 
-
 },
-
-
-
-
 
 
 
 summaryValue:{
 
 
-margin:"6px 0 0",
+margin:"10px 0 0",
 
+fontSize:"40px",
 
-fontSize:"30px",
+fontWeight:"950",
 
-
-fontWeight:"800",
-
-
-color:"#0f172a"
-
+color:"#020617"
 
 },
 
@@ -1201,8 +1176,7 @@ color:"#0f172a"
 
 
 
-
-/* ================= ANALYTICS CARDS ================= */
+/* ================= ANALYTICS GRID ================= */
 
 
 grid:{
@@ -1210,15 +1184,10 @@ grid:{
 
 display:"grid",
 
-
 gridTemplateColumns:
+"repeat(auto-fit,minmax(400px,1fr))",
 
-
-"repeat(auto-fit,minmax(350px,1fr))",
-
-
-gap:"25px"
-
+gap:"35px"
 
 },
 
@@ -1227,35 +1196,44 @@ gap:"25px"
 
 
 
-
+/* ================= GLASS CARDS ================= */
 
 
 card:{
 
 
-background:"#ffffff",
+position:"relative",
+
+background:
+"rgba(255,255,255,.75)",
 
 
-borderRadius:"24px",
+backdropFilter:
+"blur(25px)",
 
 
-padding:"28px",
+borderRadius:"32px",
 
 
-boxShadow:
-
-"0 15px 40px rgba(15,23,42,.08)",
+padding:"35px",
 
 
 border:
+"1px solid rgba(226,232,240,.8)",
 
-"1px solid #e2e8f0"
+
+boxShadow:
+"0 30px 80px rgba(15,23,42,.10)",
+
+
+overflow:"hidden",
+
+
+transition:
+"all .45s ease"
 
 
 },
-
-
-
 
 
 
@@ -1265,20 +1243,14 @@ cardHeader:{
 
 display:"flex",
 
-
 alignItems:"center",
 
+gap:"18px",
 
-gap:"15px",
-
-
-marginBottom:"25px"
+marginBottom:"35px"
 
 
 },
-
-
-
 
 
 
@@ -1286,34 +1258,29 @@ marginBottom:"25px"
 analyticsIcon:{
 
 
-width:"48px",
+width:"60px",
 
+height:"60px",
 
-height:"48px",
-
-
-borderRadius:"15px",
-
-
-background:"#eff6ff",
-
+borderRadius:"22px",
 
 display:"flex",
 
-
 alignItems:"center",
-
 
 justifyContent:"center",
 
+fontSize:"32px",
 
-fontSize:"25px"
+background:
+"linear-gradient(135deg,#eff6ff,#bae6fd)",
+
+
+boxShadow:
+"0 15px 35px rgba(14,165,233,.25)"
 
 
 },
-
-
-
 
 
 
@@ -1323,12 +1290,9 @@ cardTitle:{
 
 margin:0,
 
+fontSize:"22px",
 
-fontSize:"19px",
-
-
-fontWeight:"700",
-
+fontWeight:"900",
 
 color:"#0f172a"
 
@@ -1348,14 +1312,11 @@ color:"#0f172a"
 progressContainer:{
 
 
-marginBottom:"22px"
+marginBottom:"28px",
 
+padding:"5px"
 
 },
-
-
-
-
 
 
 
@@ -1364,26 +1325,19 @@ progressHeader:{
 
 display:"flex",
 
-
 justifyContent:"space-between",
-
 
 alignItems:"center",
 
+marginBottom:"12px",
 
-marginBottom:"10px",
+fontSize:"15px",
 
-
-fontSize:"14px",
-
+fontWeight:"700",
 
 color:"#334155"
 
-
 },
-
-
-
 
 
 
@@ -1391,22 +1345,21 @@ color:"#334155"
 progressBackground:{
 
 
-height:"10px",
+height:"14px",
+
+background:
+"linear-gradient(90deg,#e2e8f0,#f8fafc)",
 
 
-background:"#e2e8f0",
+borderRadius:"50px",
 
+overflow:"hidden",
 
-borderRadius:"20px",
-
-
-overflow:"hidden"
+boxShadow:
+"inset 0 4px 8px rgba(0,0,0,.08)"
 
 
 },
-
-
-
 
 
 
@@ -1416,11 +1369,14 @@ progressBar:{
 
 height:"100%",
 
+borderRadius:"50px",
 
-borderRadius:"20px",
+transition:
+"width 1.5s cubic-bezier(.16,1,.3,1)",
 
 
-transition:"width .5s ease"
+boxShadow:
+"0 0 25px currentColor"
 
 
 },
@@ -1428,20 +1384,16 @@ transition:"width .5s ease"
 
 
 
-
-
-
 percentText:{
 
 
-marginTop:"6px",
+marginTop:"10px",
 
+fontSize:"13px",
 
-fontSize:"12px",
-
+fontWeight:"800",
 
 color:"#64748b",
-
 
 textAlign:"right"
 
@@ -1453,20 +1405,21 @@ textAlign:"right"
 
 
 
-
 noData:{
 
 
-color:"#94a3b8",
+textAlign:"center",
 
+padding:"30px",
 
-fontSize:"14px",
+fontSize:"15px",
 
+fontWeight:"600",
 
-padding:"20px 0"
-
+color:"#94a3b8"
 
 },
+
 
 
 
@@ -1481,28 +1434,31 @@ padding:"20px 0"
 loadingBox:{
 
 
-height:"350px",
-
+height:"450px",
 
 display:"flex",
 
-
 flexDirection:"column",
 
-
 alignItems:"center",
-
 
 justifyContent:"center",
 
 
-color:"#475569"
+background:
+"rgba(255,255,255,.75)",
 
+
+backdropFilter:
+"blur(20px)",
+
+
+borderRadius:"35px",
+
+boxShadow:
+"0 30px 80px rgba(15,23,42,.12)"
 
 },
-
-
-
 
 
 
@@ -1510,32 +1466,25 @@ color:"#475569"
 spinner:{
 
 
-width:"45px",
+width:"70px",
 
-
-height:"45px",
-
+height:"70px",
 
 borderRadius:"50%",
 
 
 border:
-
-"5px solid #e2e8f0",
+"8px solid #e0f2fe",
 
 
 borderTop:
-
-"5px solid #2563eb",
-
-
-marginBottom:"20px",
+"8px solid #2563eb",
 
 
 animation:
+"spin 1s linear infinite",
 
-"spin 1s linear infinite"
-
+marginBottom:"30px"
 
 },
 
@@ -1552,51 +1501,45 @@ animation:
 emptyBox:{
 
 
-background:"#ffffff",
+padding:"90px 50px",
+
+background:
+"rgba(255,255,255,.8)",
+
+backdropFilter:
+"blur(20px)",
 
 
-padding:"60px 30px",
-
-
-borderRadius:"25px",
-
+borderRadius:"35px",
 
 textAlign:"center",
 
+border:
+"1px solid #e2e8f0",
+
 
 boxShadow:
-
-"0 15px 35px rgba(15,23,42,.08)",
-
-
-color:"#64748b"
-
+"0 30px 80px rgba(15,23,42,.12)"
 
 },
-
-
-
-
 
 
 
 emptyIcon:{
 
 
-fontSize:"70px",
+fontSize:"100px",
 
+marginBottom:"30px",
 
-marginBottom:"20px"
-
+animation:
+"floating 3s infinite"
 
 }
 
 
 
-
 };
-
-
 
 
 

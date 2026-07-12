@@ -8,81 +8,104 @@ import {
   deleteDepartment,
 } from "../../services/departmentService";
 
+
 function Departments() {
 
-  const [departments, setDepartments] = useState([]);
 
-  const [filteredDepartments, setFilteredDepartments] = useState([]);
+  const [departments,setDepartments] = useState([]);
 
-  const [loading, setLoading] = useState(true);
+  const [filteredDepartments,setFilteredDepartments] = useState([]);
 
-  const [search, setSearch] = useState("");
+  const [loading,setLoading] = useState(true);
+
+  const [search,setSearch] = useState("");
 
 
 
-  useEffect(() => {
+
+
+  useEffect(()=>{
 
     loadDepartments();
 
-  }, []);
+  },[]);
 
 
 
 
-  useEffect(() => {
+
+
+  useEffect(()=>{
+
 
     const keyword = search.toLowerCase();
 
+
     setFilteredDepartments(
 
-      departments.filter((department) =>
+      departments.filter((department)=>
 
         department.department_name
-          ?.toLowerCase()
-          .includes(keyword)
+        ?.toLowerCase()
+        .includes(keyword)
 
         ||
 
         department.description
-          ?.toLowerCase()
-          .includes(keyword)
+        ?.toLowerCase()
+        .includes(keyword)
 
       )
 
     );
 
-  }, [search, departments]);
+
+  },[search,departments]);
 
 
 
 
 
 
-  const loadDepartments = async () => {
 
-    try {
+
+  const loadDepartments = async()=>{
+
+
+    try{
+
 
       setLoading(true);
 
+
       const data = await getDepartments();
+
 
       setDepartments(data.departments || []);
 
+
       setFilteredDepartments(data.departments || []);
+
+
 
     }
 
-    catch (error) {
+    catch(error){
+
 
       console.log(error);
 
+
     }
 
-    finally {
+    finally{
+
 
       setLoading(false);
 
+
     }
+
 
   };
 
@@ -92,7 +115,10 @@ function Departments() {
 
 
 
-  const handleDelete = async (id) => {
+
+
+  const handleDelete = async(id)=>{
+
 
     const confirmDelete = window.confirm(
 
@@ -100,24 +126,42 @@ function Departments() {
 
     );
 
-    if (!confirmDelete) return;
 
-    try {
+    if(!confirmDelete) return;
+
+
+
+    try{
+
 
       await deleteDepartment(id);
 
+
       loadDepartments();
+
+
 
     }
 
-    catch (error) {
+    catch(error){
+
 
       console.log(error);
 
+
     }
 
+
   };
-  
+
+
+
+
+
+
+
+
+
 return (
 
 <DashboardLayout>
@@ -126,15 +170,21 @@ return (
 <div style={styles.page}>
 
 
-
-
-{/* ================= HEADER ================= */}
+{/* ================= PREMIUM HEADER ================= */}
 
 
 <div style={styles.header}>
 
 
 <div>
+
+
+<div style={styles.pageLabel}>
+
+ADMINISTRATION
+
+</div>
+
 
 
 <h1 style={styles.title}>
@@ -145,14 +195,19 @@ return (
 
 
 
+
 <p style={styles.subtitle}>
 
-Manage organizational departments, teams and company units
+Create, organize and monitor company departments and organizational units
 
 </p>
 
 
+
 </div>
+
+
+
 
 
 
@@ -165,13 +220,21 @@ style={styles.addButton}
 
 >
 
-＋ Add Department
+<span style={styles.addIcon}>
+
+＋
+
+</span>
+
+Add Department
 
 </Link>
 
 
 
+
 </div>
+
 
 
 
@@ -196,19 +259,30 @@ title="Total Departments"
 
 value={departments.length}
 
+description="Registered departments"
+
 />
+
+
+
 
 
 
 <StatCard
 
-icon="🟢"
+icon="✓"
 
 title="Active Departments"
 
 value={departments.length}
 
+description="Currently operating"
+
 />
+
+
+
+
 
 
 
@@ -220,19 +294,28 @@ title="Organization Units"
 
 value={departments.length}
 
+description="Business sections"
+
 />
+
+
+
+
 
 
 
 <StatCard
 
-icon="📊"
+icon="📈"
 
 title="Coverage"
 
 value="100%"
 
+description="Organization structure"
+
 />
+
 
 
 
@@ -241,41 +324,32 @@ value="100%"
 
 
 
-
-
-
-
-
-{/* ================= SEARCH ================= */}
-
+// ================= SEARCH SECTION =================
 
 
 <div style={styles.searchCard}>
 
 
-<div style={styles.searchHeader}>
+<div style={styles.searchContainer}>
 
 
-<span>
+<div style={styles.searchIcon}>
 
 🔍
 
-</span>
+</div>
+
 
 
 <input
 
 type="text"
 
-placeholder="Search departments..."
+placeholder="Search departments by name or description..."
 
 value={search}
 
-onChange={(e)=>
-
-setSearch(e.target.value)
-
-}
+onChange={(e)=>setSearch(e.target.value)}
 
 style={styles.searchInput}
 
@@ -296,7 +370,9 @@ style={styles.searchInput}
 
 
 
-{/* ================= CONTENT ================= */}
+
+
+// ================= CONTENT =================
 
 
 
@@ -307,38 +383,49 @@ loading ?
 
 (
 
+
 <div style={styles.loadingCard}>
 
 
 <div style={styles.loader}></div>
 
 
-<h3>
+
+<h2 style={styles.loadingTitle}>
 
 Loading Departments
 
-</h3>
+</h2>
 
 
-<p>
 
-Please wait while departments are loaded...
+<p style={styles.loadingText}>
+
+Please wait while department information is being retrieved...
 
 </p>
 
 
+
 </div>
 
+
 )
+
+
 
 :
 
 
 
-filteredDepartments.length===0 ?
+
+
+filteredDepartments.length === 0 ?
+
 
 
 (
+
 
 
 <div style={styles.emptyCard}>
@@ -351,7 +438,8 @@ filteredDepartments.length===0 ?
 </div>
 
 
-<h2>
+
+<h2 style={styles.emptyTitle}>
 
 No Departments Found
 
@@ -359,11 +447,13 @@ No Departments Found
 
 
 
-<p>
+<p style={styles.emptyText}>
 
-Create a department to organize your company structure.
+There are no departments available. Create your first department to organize your company structure.
 
 </p>
+
+
 
 
 
@@ -375,7 +465,7 @@ style={styles.addButton}
 
 >
 
-Create Department
+＋ Create Department
 
 </Link>
 
@@ -384,13 +474,21 @@ Create Department
 </div>
 
 
+
+
 )
+
+
+
+
 
 :
 
 
 
+
 (
+
 
 
 <div style={styles.departmentGrid}>
@@ -402,6 +500,7 @@ Create Department
 filteredDepartments.map((department)=>(
 
 
+
 <div
 
 key={department.id}
@@ -411,6 +510,9 @@ style={styles.departmentCard}
 >
 
 
+
+
+{/* CARD HEADER */}
 
 
 
@@ -425,7 +527,8 @@ style={styles.departmentCard}
 
 
 
-<div>
+
+<div style={styles.departmentHeading}>
 
 
 <h2 style={styles.departmentName}>
@@ -438,7 +541,7 @@ style={styles.departmentCard}
 
 <span style={styles.departmentBadge}>
 
-Department
+Department Unit
 
 </span>
 
@@ -457,6 +560,10 @@ Department
 
 
 
+{/* CARD BODY */}
+
+
+
 <div style={styles.cardBody}>
 
 
@@ -465,7 +572,13 @@ Department
 
 {
 
-department.description ||
+department.description
+
+?
+
+department.description
+
+:
 
 "No description available"
 
@@ -479,7 +592,13 @@ department.description ||
 
 
 
-<div style={styles.infoRow}>
+
+
+
+<div style={styles.infoBox}>
+
+
+<div style={styles.infoItem}>
 
 
 <span>
@@ -509,8 +628,13 @@ department.created_at.slice(0,10)
 </strong>
 
 
+</div>
+
+
 
 </div>
+
+
 
 
 
@@ -523,6 +647,11 @@ department.created_at.slice(0,10)
 
 
 
+
+
+
+
+{/* ACTION BUTTONS */}
 
 
 
@@ -563,7 +692,6 @@ style={styles.editButton}
 
 
 
-
 <button
 
 onClick={()=>handleDelete(department.id)}
@@ -584,15 +712,17 @@ style={styles.deleteButton}
 
 
 
-</div>
-
-
-
-
-
 
 
 </div>
+
+
+
+
+
+
+</div>
+
 
 
 ))
@@ -605,15 +735,17 @@ style={styles.deleteButton}
 </div>
 
 
+
 )
+
 
 }
 
 
 
 
-</div>
 
+</div>
 
 
 </DashboardLayout>
@@ -625,18 +757,25 @@ style={styles.deleteButton}
 
 
 
+
+
+
+
 function StatCard({
 
 icon,
 
 title,
 
-value
+value,
+
+description
 
 }){
 
 
 return(
+
 
 <div style={styles.statCard}>
 
@@ -649,7 +788,8 @@ return(
 
 
 
-<div>
+
+<div style={styles.statContent}>
 
 
 <p style={styles.statTitle}>
@@ -667,11 +807,20 @@ return(
 </h2>
 
 
+
+<span style={styles.statDescription}>
+
+{description}
+
+</span>
+
+
 </div>
 
 
 
 </div>
+
 
 );
 
@@ -682,12 +831,7 @@ return(
 
 
 
-
-
-const styles={
-
-
-
+const styles = {
 
 
 page:{
@@ -697,9 +841,11 @@ width:"100%",
 
 minHeight:"100vh",
 
-padding:"30px",
+padding:"35px",
 
-background:"#f8fafc"
+background:"#f8fafc",
+
+fontFamily:"Inter, Arial, sans-serif"
 
 
 },
@@ -707,6 +853,9 @@ background:"#f8fafc"
 
 
 
+
+
+/* ================= HEADER ================= */
 
 
 header:{
@@ -718,9 +867,9 @@ justifyContent:"space-between",
 
 alignItems:"center",
 
-flexWrap:"wrap",
+gap:"25px",
 
-gap:"20px",
+flexWrap:"wrap",
 
 marginBottom:"35px"
 
@@ -729,6 +878,21 @@ marginBottom:"35px"
 
 
 
+pageLabel:{
+
+
+fontSize:"12px",
+
+fontWeight:"800",
+
+letterSpacing:"1.5px",
+
+color:"#2563eb",
+
+marginBottom:"10px"
+
+
+},
 
 
 
@@ -737,16 +901,16 @@ title:{
 
 margin:0,
 
-fontSize:"34px",
+fontSize:"36px",
 
-fontWeight:"800",
+fontWeight:"850",
 
-color:"#0f172a"
+color:"#0f172a",
+
+letterSpacing:"-0.8px"
 
 
 },
-
-
 
 
 
@@ -754,15 +918,16 @@ color:"#0f172a"
 subtitle:{
 
 
-marginTop:"8px",
+marginTop:"10px",
 
 fontSize:"16px",
 
-color:"#64748b"
+color:"#64748b",
+
+lineHeight:"1.6"
 
 
 },
-
 
 
 
@@ -771,25 +936,45 @@ color:"#64748b"
 addButton:{
 
 
+display:"inline-flex",
+
+alignItems:"center",
+
+gap:"8px",
+
 background:
-"linear-gradient(135deg,#2563eb,#1d4ed8)",
+
+"linear-gradient(135deg,#2563eb,#1e40af)",
 
 color:"#ffffff",
 
-textDecoration:"none",
-
-padding:"14px 25px",
+padding:"15px 28px",
 
 borderRadius:"14px",
 
-fontWeight:"700",
-
 fontSize:"15px",
 
-boxShadow:
-"0 10px 25px rgba(37,99,235,.25)",
+fontWeight:"700",
 
-display:"inline-block"
+textDecoration:"none",
+
+boxShadow:
+
+"0 15px 30px rgba(37,99,235,.25)",
+
+transition:"all .3s ease"
+
+
+},
+
+
+
+addIcon:{
+
+
+fontSize:"22px",
+
+fontWeight:"600"
 
 
 },
@@ -798,6 +983,9 @@ display:"inline-block"
 
 
 
+
+
+/* ================= STATISTICS ================= */
 
 
 
@@ -807,16 +995,15 @@ statGrid:{
 display:"grid",
 
 gridTemplateColumns:
-"repeat(auto-fit,minmax(230px,1fr))",
 
-gap:"22px",
+"repeat(auto-fit,minmax(240px,1fr))",
 
-marginBottom:"30px"
+gap:"24px",
+
+marginBottom:"35px"
 
 
 },
-
-
 
 
 
@@ -834,13 +1021,17 @@ display:"flex",
 
 alignItems:"center",
 
-gap:"18px",
-
-boxShadow:
-"0 15px 35px rgba(15,23,42,.08)",
+gap:"20px",
 
 border:
-"1px solid #f1f5f9"
+
+"1px solid #e2e8f0",
+
+boxShadow:
+
+"0 15px 40px rgba(15,23,42,.06)",
+
+transition:"transform .3s ease"
 
 
 },
@@ -849,17 +1040,18 @@ border:
 
 
 
-
 statIcon:{
 
 
-width:"65px",
+width:"68px",
 
-height:"65px",
+height:"68px",
 
-borderRadius:"18px",
+borderRadius:"20px",
 
-background:"#eff6ff",
+background:
+
+"linear-gradient(135deg,#eff6ff,#dbeafe)",
 
 display:"flex",
 
@@ -876,6 +1068,19 @@ fontSize:"32px"
 
 
 
+statContent:{
+
+
+display:"flex",
+
+flexDirection:"column"
+
+
+},
+
+
+
+
 
 statTitle:{
 
@@ -884,13 +1089,12 @@ margin:0,
 
 fontSize:"14px",
 
-color:"#64748b",
+fontWeight:"700",
 
-fontWeight:"600"
+color:"#64748b"
 
 
 },
-
 
 
 
@@ -899,13 +1103,27 @@ fontWeight:"600"
 statValue:{
 
 
-margin:"8px 0 0",
+margin:"8px 0 5px",
 
-fontSize:"30px",
+fontSize:"32px",
 
-color:"#0f172a",
+fontWeight:"850",
 
-fontWeight:"800"
+color:"#0f172a"
+
+
+},
+
+
+
+
+
+statDescription:{
+
+
+fontSize:"13px",
+
+color:"#94a3b8"
 
 
 },
@@ -915,6 +1133,8 @@ fontWeight:"800"
 
 
 
+
+/* ================= SEARCH ================= */
 
 
 searchCard:{
@@ -922,14 +1142,19 @@ searchCard:{
 
 background:"#ffffff",
 
+borderRadius:"22px",
+
 padding:"22px",
 
-borderRadius:"20px",
+marginBottom:"35px",
 
-marginBottom:"30px",
+border:
+
+"1px solid #e2e8f0",
 
 boxShadow:
-"0 10px 30px rgba(15,23,42,.08)"
+
+"0 12px 35px rgba(15,23,42,.06)"
 
 
 },
@@ -937,21 +1162,42 @@ boxShadow:
 
 
 
-
-
-searchHeader:{
+searchContainer:{
 
 
 display:"flex",
 
 alignItems:"center",
 
-gap:"12px"
+gap:"15px"
 
 
 },
 
 
+
+
+searchIcon:{
+
+
+width:"45px",
+
+height:"45px",
+
+borderRadius:"14px",
+
+background:"#eff6ff",
+
+display:"flex",
+
+alignItems:"center",
+
+justifyContent:"center",
+
+fontSize:"20px"
+
+
+},
 
 
 
@@ -959,7 +1205,7 @@ gap:"12px"
 searchInput:{
 
 
-width:"100%",
+flex:1,
 
 padding:"15px 18px",
 
@@ -969,7 +1215,9 @@ border:"1px solid #cbd5e1",
 
 fontSize:"15px",
 
-outline:"none"
+outline:"none",
+
+background:"#f8fafc"
 
 
 },
@@ -978,59 +1226,12 @@ outline:"none"
 
 
 
+
+
+/* ================= LOADING ================= */
 
 
 loadingCard:{
-
-
-background:"#ffffff",
-
-padding:"70px",
-
-borderRadius:"25px",
-
-textAlign:"center",
-
-boxShadow:
-"0 15px 35px rgba(0,0,0,.08)"
-
-
-},
-
-
-
-
-
-
-loader:{
-
-
-width:"50px",
-
-height:"50px",
-
-borderRadius:"50%",
-
-border:
-"5px solid #e2e8f0",
-
-borderTop:
-"5px solid #2563eb",
-
-margin:"auto",
-
-animation:
-"spin 1s linear infinite"
-
-
-},
-
-
-
-
-
-
-emptyCard:{
 
 
 background:"#ffffff",
@@ -1042,12 +1243,95 @@ borderRadius:"25px",
 textAlign:"center",
 
 boxShadow:
-"0 15px 35px rgba(0,0,0,.08)"
+
+"0 15px 40px rgba(15,23,42,.08)"
 
 
 },
 
 
+
+
+loader:{
+
+
+width:"55px",
+
+height:"55px",
+
+borderRadius:"50%",
+
+border:
+
+"5px solid #e2e8f0",
+
+borderTop:
+
+"5px solid #2563eb",
+
+margin:"0 auto 25px",
+
+animation:
+
+"spin 1s linear infinite"
+
+
+},
+
+
+
+
+loadingTitle:{
+
+
+margin:0,
+
+fontSize:"22px",
+
+color:"#0f172a"
+
+
+},
+
+
+
+
+loadingText:{
+
+
+color:"#64748b",
+
+marginTop:"10px"
+
+
+},
+
+
+
+
+
+
+
+/* ================= EMPTY ================= */
+
+
+emptyCard:{
+
+
+background:"#ffffff",
+
+padding:"90px 30px",
+
+borderRadius:"25px",
+
+textAlign:"center",
+
+boxShadow:
+
+"0 15px 40px rgba(15,23,42,.08)"
+
+
+},
 
 
 
@@ -1055,9 +1339,21 @@ boxShadow:
 emptyIcon:{
 
 
-fontSize:"70px",
+fontSize:"75px",
 
-marginBottom:"15px"
+marginBottom:"20px"
+
+
+},
+
+
+
+emptyTitle:{
+
+
+fontSize:"26px",
+
+color:"#0f172a"
 
 
 },
@@ -1065,6 +1361,28 @@ marginBottom:"15px"
 
 
 
+emptyText:{
+
+
+maxWidth:"500px",
+
+margin:"15px auto 30px",
+
+color:"#64748b",
+
+lineHeight:"1.7"
+
+
+},
+
+
+
+
+
+
+
+
+/* ================= DEPARTMENT CARDS ================= */
 
 
 departmentGrid:{
@@ -1073,13 +1391,13 @@ departmentGrid:{
 display:"grid",
 
 gridTemplateColumns:
-"repeat(auto-fit,minmax(330px,1fr))",
 
-gap:"25px"
+"repeat(auto-fit,minmax(340px,1fr))",
+
+gap:"28px"
 
 
 },
-
 
 
 
@@ -1090,21 +1408,22 @@ departmentCard:{
 
 background:"#ffffff",
 
-borderRadius:"24px",
+borderRadius:"25px",
 
-padding:"25px",
-
-boxShadow:
-"0 15px 35px rgba(15,23,42,.08)",
+padding:"28px",
 
 border:
-"1px solid #f1f5f9",
 
-transition:"0.3s"
+"1px solid #e2e8f0",
+
+boxShadow:
+
+"0 15px 45px rgba(15,23,42,.07)",
+
+transition:"all .3s ease"
 
 
 },
-
 
 
 
@@ -1128,17 +1447,17 @@ marginBottom:"25px"
 
 
 
-
 departmentIcon:{
 
 
-width:"65px",
+width:"70px",
 
-height:"65px",
+height:"70px",
 
-borderRadius:"18px",
+borderRadius:"22px",
 
 background:
+
 "linear-gradient(135deg,#2563eb,#1d4ed8)",
 
 display:"flex",
@@ -1147,7 +1466,7 @@ alignItems:"center",
 
 justifyContent:"center",
 
-fontSize:"32px",
+fontSize:"34px",
 
 color:"#ffffff"
 
@@ -1158,21 +1477,31 @@ color:"#ffffff"
 
 
 
+departmentHeading:{
+
+
+flex:1
+
+
+},
+
+
+
+
 
 departmentName:{
 
 
 margin:0,
 
-fontSize:"22px",
+fontSize:"23px",
 
-fontWeight:"750",
+fontWeight:"800",
 
 color:"#0f172a"
 
 
 },
-
 
 
 
@@ -1185,9 +1514,9 @@ display:"inline-block",
 
 marginTop:"8px",
 
-padding:"5px 14px",
+padding:"6px 14px",
 
-borderRadius:"20px",
+borderRadius:"30px",
 
 background:"#dbeafe",
 
@@ -1210,11 +1539,10 @@ display:"flex",
 
 flexDirection:"column",
 
-gap:"15px"
+gap:"18px"
 
 
 },
-
 
 
 
@@ -1223,15 +1551,15 @@ gap:"15px"
 description:{
 
 
-color:"#475569",
+margin:0,
 
-lineHeight:"1.7",
+color:"#475569",
 
 fontSize:"15px",
 
-minHeight:"55px",
+lineHeight:"1.7",
 
-margin:0
+minHeight:"55px"
 
 
 },
@@ -1239,27 +1567,34 @@ margin:0
 
 
 
+infoBox:{
 
 
-infoRow:{
+background:"#f8fafc",
+
+padding:"14px",
+
+borderRadius:"14px"
+
+
+},
+
+
+
+
+infoItem:{
 
 
 display:"flex",
 
 justifyContent:"space-between",
 
-alignItems:"center",
+fontSize:"14px",
 
-padding:"14px 0",
-
-color:"#64748b",
-
-fontSize:"14px"
+color:"#64748b"
 
 
 },
-
-
 
 
 
@@ -1269,9 +1604,7 @@ divider:{
 
 height:"1px",
 
-background:"#e2e8f0",
-
-margin:"5px 0"
+background:"#e2e8f0"
 
 
 },
@@ -1281,14 +1614,16 @@ margin:"5px 0"
 
 
 
+
+/* ================= BUTTONS ================= */
+
+
 actions:{
 
 
 display:"flex",
 
-gap:"10px",
-
-marginTop:"10px",
+gap:"12px",
 
 flexWrap:"wrap"
 
@@ -1298,18 +1633,10 @@ flexWrap:"wrap"
 
 
 
-
-
 viewButton:{
 
 
 flex:1,
-
-background:"#0ea5e9",
-
-color:"#ffffff",
-
-textDecoration:"none",
 
 textAlign:"center",
 
@@ -1317,14 +1644,16 @@ padding:"12px",
 
 borderRadius:"12px",
 
-fontWeight:"700",
+background:"#0284c7",
 
-fontSize:"14px"
+color:"#fff",
+
+textDecoration:"none",
+
+fontWeight:"700"
 
 
 },
-
-
 
 
 
@@ -1334,26 +1663,22 @@ editButton:{
 
 flex:1,
 
-background:"#2563eb",
-
-color:"#ffffff",
-
-textDecoration:"none",
-
 textAlign:"center",
 
 padding:"12px",
 
 borderRadius:"12px",
 
-fontWeight:"700",
+background:"#2563eb",
 
-fontSize:"14px"
+color:"#fff",
+
+textDecoration:"none",
+
+fontWeight:"700"
 
 
 },
-
-
 
 
 
@@ -1363,34 +1688,23 @@ deleteButton:{
 
 flex:1,
 
-background:"#dc2626",
-
-color:"#ffffff",
-
-border:"none",
-
 padding:"12px",
 
 borderRadius:"12px",
 
-fontWeight:"700",
+background:"#dc2626",
 
-fontSize:"14px",
+color:"#fff",
+
+border:"none",
+
+fontWeight:"700",
 
 cursor:"pointer"
 
 
-},
-
-
-
-
+}
 
 
 };
-
-
-
-
-
 export default Departments;

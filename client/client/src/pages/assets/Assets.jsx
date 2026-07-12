@@ -683,24 +683,41 @@ return(
 
 }
 
+const styles = {
 
 
-
-
-
-const styles={
+/* ================= PAGE ================= */
 
 
 page:{
 
 
-width:"100%"
+width:"100%",
+
+minHeight:"100vh",
+
+padding:"24px",
+
+background:
+"linear-gradient(135deg,#f8fafc,#eef2ff)",
+
+
+boxSizing:"border-box"
+
 
 },
 
 
 
+
+
+
+
+/* ================= HEADER ================= */
+
+
 header:{
+
 
 display:"flex",
 
@@ -708,402 +725,1344 @@ justifyContent:"space-between",
 
 alignItems:"center",
 
-marginBottom:"30px",
+gap:"25px",
 
-flexWrap:"wrap"
+flexWrap:"wrap",
+
+marginBottom:"45px"
+
 
 },
+
+
+
+
+
+pageLabel:{
+
+
+fontSize:"13px",
+
+fontWeight:"800",
+
+letterSpacing:"1.5px",
+
+textTransform:"uppercase",
+
+color:"#4f46e5",
+
+marginBottom:"12px"
+
+
+},
+
+
 
 
 
 title:{
 
-fontSize:"32px",
 
 margin:0,
 
+fontSize:"42px",
+
+fontWeight:"900",
+
+letterSpacing:"-1.5px",
+
 color:"#0f172a"
 
+
 },
+
+
 
 
 
 subtitle:{
 
+
+marginTop:"12px",
+
+maxWidth:"720px",
+
+fontSize:"16px",
+
+lineHeight:"1.8",
+
 color:"#64748b"
 
+
 },
+
+
+
 
 
 
 addButton:{
 
-background:"#2563eb",
 
-color:"white",
+display:"inline-flex",
 
-padding:"14px 22px",
+alignItems:"center",
 
-borderRadius:"12px",
+justifyContent:"center",
+
+gap:"10px",
+
+padding:"16px 32px",
+
+borderRadius:"18px",
+
+background:
+"linear-gradient(135deg,#4f46e5,#2563eb)",
+
+
+color:"#ffffff",
+
+fontWeight:"800",
+
+fontSize:"15px",
 
 textDecoration:"none",
 
-fontWeight:"600"
+boxShadow:
+"0 20px 40px rgba(79,70,229,.35)",
+
+
+transition:"all .3s ease"
+
 
 },
 
 
+
+
+
+buttonIcon:{
+
+
+fontSize:"24px",
+
+fontWeight:"900"
+
+
+},
+
+
+
+
+
+
+
+
+
+
+/* ================= STAT CARDS ================= */
 
 
 cards:{
 
+
 display:"grid",
 
-gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",
+gridTemplateColumns:
+"repeat(auto-fit,minmax(260px,1fr))",
 
-gap:"20px",
 
-marginBottom:"30px"
+gap:"28px",
+
+marginBottom:"45px"
+
 
 },
+
 
 
 
 
 statCard:{
 
-background:"white",
 
-padding:"22px",
+background:
+"rgba(255,255,255,.85)",
 
-borderRadius:"20px",
+
+backdropFilter:
+"blur(15px)",
+
+
+borderRadius:"30px",
+
+padding:"30px",
+
 
 display:"flex",
 
 alignItems:"center",
 
-gap:"20px",
+gap:"22px",
 
-boxShadow:"0 10px 25px rgba(0,0,0,.08)"
+
+border:
+"1px solid rgba(226,232,240,.8)",
+
+
+boxShadow:
+"0 25px 60px rgba(15,23,42,.10)",
+
+
+transition:
+"all .35s ease"
+
 
 },
+
+
 
 
 
 statIcon:{
 
-fontSize:"35px"
+
+width:"75px",
+
+height:"75px",
+
+borderRadius:"24px",
+
+display:"flex",
+
+alignItems:"center",
+
+justifyContent:"center",
+
+fontSize:"38px",
+
+background:
+"linear-gradient(135deg,#eef2ff,#dbeafe)",
+
+
+boxShadow:
+"0 15px 30px rgba(79,70,229,.20)"
+
 
 },
+
+
+
+
+
+statContent:{
+
+
+flex:1
+
+
+},
+
+
 
 
 
 statTitle:{
 
+
 margin:0,
 
-color:"#64748b"
+fontSize:"14px",
+
+fontWeight:"700",
+
+color:"#64748b",
+
+textTransform:"uppercase",
+
+letterSpacing:"0.5px"
+
 
 },
+
+
 
 
 
 statValue:{
 
-margin:"5px 0",
 
-fontSize:"28px",
+margin:"8px 0",
+
+fontSize:"36px",
+
+fontWeight:"900",
 
 color:"#0f172a"
+
 
 },
 
 
+
+
+
+statDescription:{
+
+
+fontSize:"14px",
+
+fontWeight:"500",
+
+color:"#94a3b8"
+
+
+},
+
+/* ================= FILTER SECTION ================= */
 
 
 filterCard:{
 
-background:"white",
 
-padding:"20px",
+background:
+"rgba(255,255,255,.90)",
 
-borderRadius:"18px",
 
-display:"flex",
+backdropFilter:
+"blur(18px)",
 
-gap:"15px",
 
-flexWrap:"wrap",
+borderRadius:"30px",
 
-marginBottom:"30px",
 
-boxShadow:"0 10px 25px rgba(0,0,0,.08)"
+padding:"32px",
+
+
+marginBottom:"45px",
+
+
+border:
+"1px solid rgba(226,232,240,.9)",
+
+
+boxShadow:
+"0 25px 60px rgba(15,23,42,.08)",
+
+
+transition:
+"all .3s ease"
+
 
 },
+
+
+
+
+
+filterHeader:{
+
+
+marginBottom:"25px"
+
+
+},
+
+
+
+
+
+filterHeader_h3:{
+
+
+margin:0,
+
+fontSize:"22px",
+
+fontWeight:"850",
+
+color:"#0f172a",
+
+letterSpacing:"-.3px"
+
+
+},
+
+
+
+
+
+filterGrid:{
+
+
+display:"grid",
+
+gridTemplateColumns:
+"repeat(auto-fit,minmax(250px,1fr))",
+
+
+gap:"20px"
+
+
+},
+
+
 
 
 
 input:{
 
-padding:"12px",
 
-borderRadius:"10px",
+width:"100%",
 
-border:"1px solid #ddd",
+padding:"16px 18px",
 
-minWidth:"220px"
+borderRadius:"16px",
+
+border:
+"1px solid #cbd5e1",
+
+
+background:
+"#ffffff",
+
+
+fontSize:"15px",
+
+fontWeight:"600",
+
+color:"#0f172a",
+
+outline:"none",
+
+boxSizing:"border-box",
+
+transition:
+"all .3s ease"
+
 
 },
 
+
+
+
+
+
+
+
+
+
+
+/* ================= ASSET GRID ================= */
 
 
 
 grid:{
 
+
 display:"grid",
 
 gridTemplateColumns:
+"repeat(auto-fit,minmax(350px,1fr))",
 
-"repeat(auto-fit,minmax(280px,1fr))",
 
-gap:"25px"
+gap:"32px"
+
 
 },
 
 
+
+
+
+
+
+/* ================= ASSET CARD ================= */
 
 
 assetCard:{
 
-background:"white",
 
-borderRadius:"22px",
+background:
+"rgba(255,255,255,.95)",
+
+
+backdropFilter:
+"blur(20px)",
+
+
+borderRadius:"32px",
+
 
 overflow:"hidden",
 
-boxShadow:"0 15px 35px rgba(0,0,0,.08)"
+
+border:
+"1px solid rgba(226,232,240,.8)",
+
+
+boxShadow:
+"0 25px 70px rgba(15,23,42,.12)",
+
+
+transition:
+"all .35s ease",
+
+
+position:"relative"
+
 
 },
+
 
 
 
 
 imageBox:{
 
-height:"190px",
 
-background:"#f1f5f9",
+height:"250px",
+
+background:
+"linear-gradient(135deg,#e0e7ff,#f8fafc)",
+
 
 display:"flex",
 
+alignItems:"center",
+
 justifyContent:"center",
 
-alignItems:"center"
+overflow:"hidden",
+
+position:"relative"
+
 
 },
+
+
 
 
 
 assetImage:{
 
+
 width:"100%",
 
 height:"100%",
 
-objectFit:"cover"
+objectFit:"cover",
+
+transition:
+"transform .5s ease"
+
 
 },
+
+
 
 
 
 placeholder:{
 
-fontSize:"70px"
+
+fontSize:"90px",
+
+opacity:"0.7"
+
 
 },
 
 
+
+
+/* ================= ASSET BODY ================= */
 
 
 assetBody:{
 
-padding:"20px"
+
+padding:"32px"
+
 
 },
 
 
 
-assetName:{
-
-margin:"0",
-
-fontSize:"20px",
-
-color:"#0f172a"
-
-},
 
 
+assetTop:{
 
-code:{
-
-color:"#64748b"
-
-},
-
-
-
-info:{
 
 display:"flex",
 
 justifyContent:"space-between",
 
+alignItems:"flex-start",
+
+gap:"18px",
+
+marginBottom:"25px"
+
+
+},
+
+
+
+
+
+assetName:{
+
+
+margin:0,
+
+fontSize:"25px",
+
+fontWeight:"900",
+
+letterSpacing:"-.5px",
+
+color:"#0f172a"
+
+
+},
+
+
+
+
+
+code:{
+
+
+marginTop:"8px",
+
 fontSize:"14px",
 
-color:"#475569"
+fontWeight:"700",
+
+color:"#64748b",
+
+display:"flex",
+
+alignItems:"center",
+
+gap:"6px"
+
 
 },
 
 
 
 
-statusRow:{
 
-marginTop:"18px"
+
+
+/* ================= DETAILS ================= */
+
+
+details:{
+
+
+display:"flex",
+
+flexDirection:"column",
+
+gap:"15px"
+
 
 },
 
 
+
+
+
+detailItem:{
+
+
+display:"flex",
+
+justifyContent:"space-between",
+
+alignItems:"center",
+
+padding:"16px 18px",
+
+
+borderRadius:"18px",
+
+
+background:
+"linear-gradient(135deg,#f8fafc,#ffffff)",
+
+
+border:
+"1px solid #e2e8f0",
+
+
+fontSize:"14px",
+
+fontWeight:"700",
+
+color:"#475569",
+
+
+transition:
+"all .25s ease"
+
+
+},
+
+
+
+
+
+
+
+/* ================= CONDITION ================= */
+
+
+condition:{
+
+
+marginTop:"22px",
+
+padding:"18px",
+
+borderRadius:"20px",
+
+background:
+"linear-gradient(135deg,#eef2ff,#f8fafc)",
+
+
+border:
+"1px solid #e0e7ff",
+
+
+color:"#475569",
+
+fontSize:"14px",
+
+fontWeight:"700",
+
+lineHeight:"1.6"
+
+
+},
+
+
+
+
+
+
+
+/* ================= CARD META ================= */
+
+
+metaBox:{
+
+
+display:"flex",
+
+alignItems:"center",
+
+justifyContent:"space-between",
+
+marginTop:"20px",
+
+padding:"15px",
+
+borderRadius:"18px",
+
+background:"#f8fafc"
+
+
+},
+
+
+
+
+
+metaLabel:{
+
+
+fontSize:"13px",
+
+color:"#64748b",
+
+fontWeight:"700"
+
+
+},
+
+
+
+
+
+metaValue:{
+
+
+fontSize:"14px",
+
+color:"#0f172a",
+
+fontWeight:"800"
+
+
+},
+
+
+
+/* ================= STATUS BADGES ================= */
 
 
 available:{
 
-background:"#dcfce7",
+
+background:
+"linear-gradient(135deg,#dcfce7,#bbf7d0)",
+
 
 color:"#15803d",
 
-padding:"8px 15px",
+padding:"9px 18px",
 
-borderRadius:"20px",
+borderRadius:"999px",
 
-fontWeight:"600"
+fontSize:"13px",
+
+fontWeight:"900",
+
+display:"inline-flex",
+
+alignItems:"center",
+
+gap:"6px",
+
+boxShadow:
+"0 8px 20px rgba(22,163,74,.15)"
+
 
 },
+
+
+
 
 
 
 assigned:{
 
-background:"#dbeafe",
+
+background:
+"linear-gradient(135deg,#dbeafe,#bfdbfe)",
+
 
 color:"#1d4ed8",
 
-padding:"8px 15px",
+padding:"9px 18px",
 
-borderRadius:"20px",
+borderRadius:"999px",
 
-fontWeight:"600"
+fontSize:"13px",
+
+fontWeight:"900",
+
+display:"inline-flex",
+
+alignItems:"center",
+
+gap:"6px",
+
+boxShadow:
+"0 8px 20px rgba(37,99,235,.15)"
+
 
 },
+
+
+
 
 
 
 maintenance:{
 
-background:"#fef3c7",
+
+background:
+"linear-gradient(135deg,#fef3c7,#fde68a)",
+
 
 color:"#b45309",
 
-padding:"8px 15px",
+padding:"9px 18px",
 
-borderRadius:"20px",
+borderRadius:"999px",
 
-fontWeight:"600"
+fontSize:"13px",
+
+fontWeight:"900",
+
+display:"inline-flex",
+
+alignItems:"center",
+
+gap:"6px",
+
+boxShadow:
+"0 8px 20px rgba(180,83,9,.15)"
+
 
 },
+
+
+
+
+
+
+disposed:{
+
+
+background:
+"linear-gradient(135deg,#fee2e2,#fecaca)",
+
+
+color:"#b91c1c",
+
+padding:"9px 18px",
+
+borderRadius:"999px",
+
+fontSize:"13px",
+
+fontWeight:"900",
+
+display:"inline-flex",
+
+alignItems:"center",
+
+gap:"6px",
+
+boxShadow:
+"0 8px 20px rgba(185,28,28,.15)"
+
+
+},
+
+
+
+
+
+
+
+
+
+
+/* ================= ACTION BUTTONS ================= */
 
 
 
 actions:{
 
-marginTop:"20px",
 
 display:"flex",
 
-gap:"15px"
+gap:"14px",
+
+marginTop:"28px"
+
 
 },
+
+
+
 
 
 
 view:{
 
-fontSize:"22px",
 
-textDecoration:"none"
+flex:1,
+
+display:"flex",
+
+alignItems:"center",
+
+justifyContent:"center",
+
+padding:"14px",
+
+borderRadius:"16px",
+
+background:
+"linear-gradient(135deg,#eff6ff,#dbeafe)",
+
+
+color:"#2563eb",
+
+textDecoration:"none",
+
+fontWeight:"900",
+
+fontSize:"14px",
+
+transition:
+"all .3s ease",
+
+border:
+"1px solid #bfdbfe"
+
 
 },
+
+
+
 
 
 
 edit:{
 
-fontSize:"22px",
 
-textDecoration:"none"
+flex:1,
+
+
+display:"flex",
+
+alignItems:"center",
+
+justifyContent:"center",
+
+
+padding:"14px",
+
+borderRadius:"16px",
+
+
+background:
+"linear-gradient(135deg,#4f46e5,#2563eb)",
+
+
+color:"#ffffff",
+
+textDecoration:"none",
+
+fontWeight:"900",
+
+fontSize:"14px",
+
+transition:
+"all .3s ease",
+
+
+boxShadow:
+"0 15px 30px rgba(79,70,229,.30)"
+
 
 },
+
+
+
 
 
 
 delete:{
 
+
+flex:1,
+
+padding:"14px",
+
+borderRadius:"16px",
+
 border:"none",
 
-background:"transparent",
+background:
+"linear-gradient(135deg,#fee2e2,#fecaca)",
 
-fontSize:"22px",
 
-cursor:"pointer"
+color:"#dc2626",
+
+fontWeight:"900",
+
+fontSize:"14px",
+
+cursor:"pointer",
+
+transition:
+"all .3s ease"
+
 
 },
 
+
+
+
+
+
+
+/* ================= HOVER SUPPORT ================= */
+
+
+hoverCard:{
+
+
+transform:
+"translateY(-10px)",
+
+
+boxShadow:
+"0 35px 80px rgba(15,23,42,.20)"
+
+
+},
+
+
+
+
+
+hoverButton:{
+
+
+transform:
+"translateY(-4px)"
+
+
+},
+
+
+
+
+/* ================= LOADING STATE ================= */
 
 
 loading:{
 
-background:"white",
 
-padding:"40px",
+background:
+"rgba(255,255,255,.95)",
 
-borderRadius:"20px",
 
-textAlign:"center"
+backdropFilter:
+"blur(20px)",
+
+
+borderRadius:"32px",
+
+padding:"100px 40px",
+
+textAlign:"center",
+
+
+border:
+"1px solid #e2e8f0",
+
+
+boxShadow:
+"0 25px 70px rgba(15,23,42,.10)"
+
 
 },
 
+
+
+
+
+loadingIcon:{
+
+
+fontSize:"70px",
+
+marginBottom:"20px",
+
+animation:
+"pulse 1.5s infinite"
+
+
+},
+
+
+
+
+
+
+
+/* ================= EMPTY STATE ================= */
 
 
 empty:{
 
-background:"white",
 
-padding:"60px",
+background:
+"rgba(255,255,255,.95)",
 
-borderRadius:"20px",
 
-textAlign:"center"
+backdropFilter:
+"blur(20px)",
+
+
+padding:"100px 40px",
+
+borderRadius:"32px",
+
+textAlign:"center",
+
+
+border:
+"1px solid #e2e8f0",
+
+
+boxShadow:
+"0 25px 70px rgba(15,23,42,.10)"
+
 
 },
+
+
 
 
 
 emptyIcon:{
 
-fontSize:"70px"
+
+fontSize:"100px",
+
+marginBottom:"25px",
+
+opacity:"0.75"
+
+
+},
+
+
+
+
+
+
+
+/* ================= RESPONSIVE ================= */
+
+
+responsiveContainer:{
+
+
+width:"100%",
+
+
+maxWidth:"1600px",
+
+
+margin:"0 auto"
+
+
+},
+
+
+
+
+
+mobileTitle:{
+
+
+fontSize:"30px"
+
+
+},
+
+
+
+
+
+mobilePadding:{
+
+
+padding:"16px"
+
+
+},
+
+
+
+
+
+mobileGrid:{
+
+
+gridTemplateColumns:
+"1fr"
+
+
+},
+
+
+
+
+
+
+
+/* ================= EXTRA UI HELPERS ================= */
+
+
+glass:{
+
+
+background:
+"rgba(255,255,255,.75)",
+
+
+backdropFilter:
+"blur(20px)",
+
+
+border:
+"1px solid rgba(255,255,255,.4)"
+
+
+},
+
+
+
+
+
+smallText:{
+
+
+fontSize:"13px",
+
+color:"#64748b",
+
+fontWeight:"600"
+
+
+},
+
+
+
+
+
+primaryText:{
+
+
+color:"#4f46e5",
+
+fontWeight:"900"
+
+
+},
+
+
+
+
+
+divider:{
+
+
+height:"1px",
+
+background:"#e2e8f0",
+
+margin:"25px 0"
+
 
 }
+
+
 
 
 
@@ -1111,4 +2070,9 @@ fontSize:"70px"
 
 
 
+
+
 export default Assets;
+
+
+

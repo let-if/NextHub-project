@@ -845,77 +845,191 @@ options.map(item=>(
 
 
 
-
-
-
 const styles={
 
 
 page:{
 
-width:"100%"
+width:"100%",
+
+minHeight:"100vh",
+
+animation:"pageEnter .6s ease"
 
 },
 
 
 
+
+
+
+/* ================= HEADER ================= */
+
+
 header:{
+
 
 display:"flex",
 
 justifyContent:"space-between",
 
-marginBottom:"30px"
+alignItems:"center",
+
+marginBottom:"40px",
+
+flexWrap:"wrap",
+
+gap:"20px"
+
 
 },
 
+
+
+headerTitle:{
+
+
+fontSize:"42px",
+
+fontWeight:"950",
+
+letterSpacing:"-1.5px",
+
+background:
+"linear-gradient(90deg,#020617,#2563eb,#06b6d4)",
+
+
+WebkitBackgroundClip:"text",
+
+WebkitTextFillColor:"transparent"
+
+
+},
+
+
+
+headerSubtitle:{
+
+
+color:"#64748b",
+
+fontSize:"16px",
+
+fontWeight:"600"
+
+},
+
+
+
+
+/* ================= MAIN CARD ================= */
 
 
 card:{
 
-background:"white",
 
-padding:"35px",
+background:
+"rgba(255,255,255,.75)",
 
-borderRadius:"25px",
 
-boxShadow:"0 15px 40px rgba(0,0,0,.08)"
+backdropFilter:
+"blur(30px)",
+
+
+padding:"45px",
+
+
+borderRadius:"40px",
+
+
+border:
+"1px solid rgba(255,255,255,.8)",
+
+
+boxShadow:
+"0 40px 100px rgba(15,23,42,.15)",
+
+
+position:"relative",
+
+overflow:"hidden"
+
 
 },
+
+
+
+
+
+
+
+
+/* ================= IMAGE SECTION ================= */
 
 
 
 imageSection:{
 
+
 display:"flex",
 
 alignItems:"center",
 
-gap:"25px",
+gap:"35px",
 
-marginBottom:"30px"
+marginBottom:"45px",
+
+paddingBottom:"35px",
+
+borderBottom:
+"1px solid #e2e8f0",
+
+flexWrap:"wrap"
+
 
 },
+
+
 
 
 
 previewBox:{
 
-width:"180px",
 
-height:"150px",
+width:"220px",
 
-borderRadius:"20px",
+height:"180px",
+
+
+borderRadius:"35px",
+
 
 overflow:"hidden",
 
-background:"#f1f5f9"
+
+background:
+"linear-gradient(145deg,#f8fafc,#e2e8f0)",
+
+
+border:
+"3px solid #ffffff",
+
+
+boxShadow:
+"0 25px 60px rgba(15,23,42,.15)",
+
+
+transition:
+".4s"
+
 
 },
 
 
 
+
 image:{
+
 
 width:"100%",
 
@@ -923,13 +1037,17 @@ height:"100%",
 
 objectFit:"cover"
 
+
 },
+
 
 
 
 placeholder:{
 
+
 height:"100%",
+
 
 display:"flex",
 
@@ -937,774 +1055,309 @@ alignItems:"center",
 
 justifyContent:"center",
 
-fontSize:"60px"
+fontSize:"80px"
 
 },
+
+
 
 
 
 upload:{
 
-background:"#2563eb",
 
-color:"white",
+background:
+"linear-gradient(135deg,#2563eb,#06b6d4)",
 
-padding:"12px 20px",
 
-borderRadius:"10px",
+color:"#fff",
 
-cursor:"pointer"
+
+padding:"15px 30px",
+
+
+borderRadius:"20px",
+
+
+fontWeight:"900",
+
+
+cursor:"pointer",
+
+
+boxShadow:
+"0 20px 45px rgba(37,99,235,.35)",
+
+
+transition:".3s"
+
 
 },
+
+
+
+
+
+
+
+/* ================= FORM GRID ================= */
 
 
 
 grid:{
 
+
 display:"grid",
 
-gridTemplateColumns:"repeat(auto-fit,minmax(250px,1fr))",
+gridTemplateColumns:
+"repeat(auto-fit,minmax(280px,1fr))",
 
-gap:"20px"
+
+gap:"28px"
+
 
 },
+
+
 
 
 
 field:{
 
+
 display:"flex",
+
 
 flexDirection:"column",
 
-gap:"8px"
+
+gap:"10px"
+
 
 },
+
+
 
 
 
 input:{
 
-padding:"12px",
 
-borderRadius:"10px",
+padding:"16px 18px",
 
-border:"1px solid #ddd"
+
+borderRadius:"18px",
+
+
+border:
+"1px solid #cbd5e1",
+
+
+background:"#ffffff",
+
+
+fontSize:"15px",
+
+
+fontWeight:"600",
+
+
+outline:"none",
+
+
+transition:".3s"
+
 
 },
+
+
+
+
 
 
 
 textarea:{
 
+
 width:"100%",
 
-height:"120px",
 
-marginTop:"15px",
+height:"160px",
 
-padding:"15px",
 
-borderRadius:"12px",
+marginTop:"25px",
 
-border:"1px solid #ddd"
+
+padding:"18px",
+
+
+borderRadius:"22px",
+
+
+border:
+"1px solid #cbd5e1",
+
+
+fontSize:"15px",
+
+
+resize:"vertical",
+
+
+outline:"none"
+
 
 },
+
+
+
+
+
+
+
+/* ================= SAVE BUTTON ================= */
 
 
 
 save:{
 
-marginTop:"25px",
 
-background:"#16a34a",
+marginTop:"35px",
 
-color:"white",
 
-padding:"14px 30px",
+width:"100%",
+
+
+padding:"18px",
+
+
+borderRadius:"22px",
+
 
 border:"none",
 
-borderRadius:"12px",
 
-fontWeight:"600",
+background:
+"linear-gradient(135deg,#16a34a,#22c55e)",
 
-cursor:"pointer"
+
+color:"#ffffff",
+
+
+fontSize:"17px",
+
+
+fontWeight:"950",
+
+
+cursor:"pointer",
+
+
+boxShadow:
+"0 25px 60px rgba(22,163,74,.35)",
+
+
+transition:".35s"
+
 
 },
 
+
+
+
+
+
+
+/* ================= BACK BUTTON ================= */
 
 
 back:{
 
-padding:"12px 20px",
+
+padding:"14px 25px",
+
+
+borderRadius:"18px",
+
 
 border:"none",
 
-borderRadius:"10px",
 
-cursor:"pointer"
+background:
+"rgba(255,255,255,.8)",
+
+
+fontWeight:"800",
+
+
+cursor:"pointer",
+
+
+boxShadow:
+"0 15px 30px rgba(15,23,42,.08)",
+
+
+transition:".3s"
+
 
 },
 
 
 
+
+
+
+
+/* ================= LOADING ================= */
+
+
 loading:{
 
-padding:"50px",
 
-background:"white",
+height:"400px",
 
-borderRadius:"20px",
 
-textAlign:"center"
+background:
+"rgba(255,255,255,.8)",
+
+
+backdropFilter:
+"blur(25px)",
+
+
+borderRadius:"35px",
+
+
+display:"flex",
+
+
+alignItems:"center",
+
+
+justifyContent:"center",
+
+
+fontSize:"22px",
+
+
+fontWeight:"800",
+
+
+color:"#2563eb",
+
+
+boxShadow:
+"0 30px 80px rgba(15,23,42,.12)"
+
 
 }
+
 
 
 };
 
 
 
+
+
 export default EditAsset;
-// import {useEffect,useState} from "react";
-
-// import DashboardLayout from "../../layouts/DashboardLayout";
-
-// import {useNavigate,useParams} from "react-router-dom";
-
-// import {
-// getAssetById,
-// updateAsset
-// } from "../../services/assetService";
-
-
-
-// function EditAsset(){
-
-
-// const {id}=useParams();
-
-// const navigate=useNavigate();
-
-
-// const [loading,setLoading]=useState(true);
-
-// const [image,setImage]=useState(null);
-
-
-
-// const [form,setForm]=useState({
-
-// asset_name:"",
-// category:"",
-// brand:"",
-// model:"",
-// serial_number:"",
-// purchase_date:"",
-// purchase_price:"",
-// condition_status:"",
-// status:"",
-// description:""
-
-// });
-
-
-
-
-
-// useEffect(()=>{
-
-// loadAsset();
-
-// },[]);
-
-
-
-
-
-// const loadAsset=async()=>{
-
-
-// try{
-
-
-// const data =
-// await getAssetById(id);
-
-
-// const a=data.asset;
-
-
-
-// setForm({
-
-// asset_name:a.asset_name || "",
-// category:a.category || "",
-// brand:a.brand || "",
-// model:a.model || "",
-// serial_number:a.serial_number || "",
-// purchase_date:a.purchase_date || "",
-// purchase_price:a.purchase_price || "",
-// condition_status:a.condition_status || "",
-// status:a.status || "",
-// description:a.description || ""
-
-// });
-
-
-// }
-// catch(error){
-
-// console.log(error);
-
-// }
-// finally{
-
-// setLoading(false);
-
-// }
-
-
-// };
-
-
-
-
-
-
-
-// const handleChange=(e)=>{
-
-
-// setForm({
-
-// ...form,
-
-// [e.target.name]:e.target.value
-
-// });
-
-
-// };
-
-
-
-
-
-
-
-// const handleSubmit=async(e)=>{
-
-
-// e.preventDefault();
-
-
-
-// try{
-
-
-// const data=new FormData();
-
-
-
-// Object.keys(form).forEach(key=>{
-
-
-// data.append(
-// key,
-// form[key]
-// );
-
-
-// });
-
-
-
-// if(image){
-
-// data.append(
-// "asset_image",
-// image
-// );
-
-// }
-
-
-
-// await updateAsset(
-// id,
-// data
-// );
-
-
-
-// alert(
-// "Asset updated successfully"
-// );
-
-
-
-// navigate(
-// `/assets/${id}`
-// );
-
-
-
-// }
-// catch(error){
-
-// console.log(error);
-
-
-// alert(
-// "Update failed"
-// );
-
-
-// }
-
-
-
-// };
-
-
-
-
-
-
-// if(loading)
-
-// return(
-
-// <DashboardLayout>
-
-// <div style={styles.loading}>
-// Loading asset...
-// </div>
-
-// </DashboardLayout>
-
-// );
-
-
-
-
-
-
-// return(
-
-
-// <DashboardLayout>
-
-
-// <div style={styles.page}>
-
-
-// <h1>
-// Edit Asset
-// </h1>
-
-
-
-// <form
-
-// onSubmit={handleSubmit}
-
-// style={styles.card}
-
-// >
-
-
-
-
-// <input
-
-// name="asset_name"
-
-// value={form.asset_name}
-
-// onChange={handleChange}
-
-// placeholder="Asset Name"
-
-// style={styles.input}
-
-// />
-
-
-
-
-
-// <input
-
-// name="category"
-
-// value={form.category}
-
-// onChange={handleChange}
-
-// placeholder="Category"
-
-// style={styles.input}
-
-// />
-
-
-
-
-
-
-// <input
-
-// name="brand"
-
-// value={form.brand}
-
-// onChange={handleChange}
-
-// placeholder="Brand"
-
-// style={styles.input}
-
-// />
-
-
-
-
-
-
-
-// <input
-
-// name="model"
-
-// value={form.model}
-
-// onChange={handleChange}
-
-// placeholder="Model"
-
-// style={styles.input}
-
-// />
-
-
-
-
-
-
-// <input
-
-// name="serial_number"
-
-// value={form.serial_number}
-
-// onChange={handleChange}
-
-// placeholder="Serial Number"
-
-// style={styles.input}
-
-// />
-
-
-
-
-
-
-
-// <input
-
-// type="date"
-
-// name="purchase_date"
-
-// value={form.purchase_date?.slice(0,10)}
-
-// onChange={handleChange}
-
-// style={styles.input}
-
-// />
-
-
-
-
-
-
-
-// <input
-
-// name="purchase_price"
-
-// value={form.purchase_price}
-
-// onChange={handleChange}
-
-// placeholder="Purchase Price"
-
-// style={styles.input}
-
-// />
-
-
-
-
-
-
-
-
-// <select
-
-// name="condition_status"
-
-// value={form.condition_status}
-
-// onChange={handleChange}
-
-// style={styles.input}
-
-// >
-
-
-// <option>
-// Good
-// </option>
-
-// <option>
-// Damaged
-// </option>
-
-
-// <option>
-// Repair
-// </option>
-
-
-// </select>
-
-
-
-
-
-
-
-// <select
-
-// name="status"
-
-// value={form.status}
-
-// onChange={handleChange}
-
-// style={styles.input}
-
-// >
-
-
-// <option>
-// Available
-// </option>
-
-// <option>
-// Assigned
-// </option>
-
-// <option>
-// Maintenance
-// </option>
-
-
-// <option>
-// Disposed
-// </option>
-
-
-// </select>
-
-
-
-
-
-
-
-// <textarea
-
-// name="description"
-
-// value={form.description}
-
-// onChange={handleChange}
-
-// placeholder="Description"
-
-// style={styles.textarea}
-
-// />
-
-
-
-
-
-
-// <input
-
-// type="file"
-
-// accept="image/*"
-
-// onChange={(e)=>
-
-// setImage(
-// e.target.files[0]
-// )
-
-// }
-
-// />
-
-
-
-
-
-
-
-// <button
-
-// style={styles.button}
-
-// >
-
-// Update Asset
-
-// </button>
-
-
-
-
-
-
-// </form>
-
-
-
-// </div>
-
-
-// </DashboardLayout>
-
-
-// );
-
-
-// }
-
-
-
-
-
-
-
-
-// const styles={
-
-
-// page:{
-// width:"100%"
-// },
-
-
-// card:{
-
-// background:"white",
-
-// padding:"35px",
-
-// borderRadius:"25px",
-
-// boxShadow:"0 15px 35px rgba(0,0,0,.08)",
-
-// display:"flex",
-
-// flexDirection:"column",
-
-// gap:"18px"
-
-// },
-
-
-
-// input:{
-
-
-// padding:"14px",
-
-// borderRadius:"12px",
-
-// border:"1px solid #ddd",
-
-// fontSize:"15px"
-
-// },
-
-
-
-// textarea:{
-
-
-// padding:"14px",
-
-// height:"120px",
-
-// borderRadius:"12px",
-
-// border:"1px solid #ddd"
-
-// },
-
-
-
-
-// button:{
-
-
-// background:"#2563eb",
-
-// color:"white",
-
-// padding:"15px",
-
-// border:"none",
-
-// borderRadius:"12px",
-
-// fontSize:"16px",
-
-// fontWeight:"700",
-
-// cursor:"pointer"
-
-
-// },
-
-
-
-// loading:{
-
-// background:"white",
-
-// padding:"50px",
-
-// borderRadius:"20px",
-
-// textAlign:"center"
-
-// }
-
-
-
-// };
-
-
-// export default EditAsset;

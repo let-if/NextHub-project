@@ -249,25 +249,27 @@ loading
 
 }
 
-
-
-
 const styles={
+
+
+/* ================= OVERLAY ================= */
 
 
 overlay:{
 
+
 position:"fixed",
 
-top:0,
+inset:0,
 
-left:0,
 
-right:0,
+background:
+"rgba(15,23,42,.65)",
 
-bottom:0,
 
-background:"rgba(0,0,0,.5)",
+backdropFilter:
+"blur(10px)",
+
 
 display:"flex",
 
@@ -275,88 +277,217 @@ alignItems:"center",
 
 justifyContent:"center",
 
-zIndex:1000
+
+zIndex:2000,
+
+
+padding:"20px",
+
+
+animation:
+"modalFade .35s ease"
+
 
 },
+
+
+
+
+
+
+
+/* ================= MODAL ================= */
 
 
 modal:{
 
-background:"white",
 
-width:"420px",
+width:"480px",
 
-padding:"30px",
+maxWidth:"100%",
 
-borderRadius:"20px",
 
-boxShadow:"0 20px 50px rgba(0,0,0,.2)"
+background:
+"rgba(255,255,255,.9)",
+
+
+backdropFilter:
+"blur(30px)",
+
+
+borderRadius:"35px",
+
+
+padding:"40px",
+
+
+border:
+"1px solid rgba(255,255,255,.8)",
+
+
+boxShadow:
+"0 40px 120px rgba(0,0,0,.35)",
+
+
+animation:
+"modalShow .35s ease"
+
 
 },
 
+
+
+
+
+
+
+
+/* ================= INPUT ================= */
 
 
 input:{
 
+
 width:"100%",
 
-padding:"12px",
 
-marginTop:"10px",
+padding:"17px 20px",
 
-marginBottom:"15px",
 
-borderRadius:"10px",
+marginTop:"12px",
 
-border:"1px solid #ddd"
+
+marginBottom:"22px",
+
+
+borderRadius:"20px",
+
+
+border:
+"1px solid #cbd5e1",
+
+
+background:"#ffffff",
+
+
+fontSize:"15px",
+
+
+fontWeight:"600",
+
+
+outline:"none",
+
+
+transition:".3s"
+
 
 },
 
+
+
+
+
+
+
+/* ================= BUTTON AREA ================= */
 
 
 buttons:{
 
+
 display:"flex",
+
 
 justifyContent:"flex-end",
 
-gap:"10px"
+
+gap:"15px",
+
+
+marginTop:"25px"
+
 
 },
+
+
+
+
 
 
 
 cancel:{
 
-padding:"12px 20px",
+
+padding:"15px 28px",
+
+
+borderRadius:"18px",
+
 
 border:"none",
 
-borderRadius:"10px"
+
+background:"#e2e8f0",
+
+
+color:"#334155",
+
+
+fontWeight:"900",
+
+
+cursor:"pointer",
+
+
+transition:".3s"
+
 
 },
 
 
+
+
+
+
+
 save:{
 
-background:"#16a34a",
 
-color:"white",
+background:
+"linear-gradient(135deg,#16a34a,#22c55e)",
 
-padding:"12px 20px",
+
+color:"#ffffff",
+
+
+padding:"15px 32px",
+
 
 border:"none",
 
-borderRadius:"10px",
 
-cursor:"pointer"
+borderRadius:"18px",
+
+
+fontWeight:"950",
+
+
+cursor:"pointer",
+
+
+boxShadow:
+"0 20px 45px rgba(22,163,74,.35)",
+
+
+transition:".35s"
+
 
 }
 
 
 
 };
-
 
 
 export default AssignAssetModal;
