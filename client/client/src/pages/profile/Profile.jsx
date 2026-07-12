@@ -824,469 +824,364 @@ return(
 
 
 
-
-
-const styles={
-
+const styles = {
 
 page:{
 
-width:"100%"
+    width:"100%",
+    minHeight:"100vh",
+    padding:"0",
+    background:"transparent"
 
 },
-
-
 
 header:{
 
-marginBottom:"30px"
+    marginBottom:"35px",
+    padding:"0 5px"
 
 },
-
 
 profileCard:{
 
-background:"white",
-
-borderRadius:"25px",
-
-padding:"35px",
-
-display:"flex",
-
-gap:"40px",
-
-boxShadow:"0 15px 40px rgba(0,0,0,.08)",
-
-flexWrap:"wrap"
+    background:"#ffffff",
+    borderRadius:"32px",
+    padding:"40px",
+    display:"flex",
+    alignItems:"center",
+    gap:"45px",
+    flexWrap:"wrap",
+    border:"1px solid #e2e8f0",
+    boxShadow:
+        "0 20px 60px rgba(15,23,42,.08)",
+    transition:"all .3s ease"
 
 },
 
+left:{
 
+    width:"220px",
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center"
+
+},
 
 avatarBox:{
 
-display:"flex",
-
-flexDirection:"column",
-
-alignItems:"center",
-
-gap:"20px"
+    display:"flex",
+    flexDirection:"column",
+    alignItems:"center",
+    gap:"22px"
 
 },
-
-
 
 avatar:{
 
-width:"180px",
-
-height:"180px",
-
-borderRadius:"50%",
-
-objectFit:"cover",
-
-border:"5px solid #2563eb"
+    width:"190px",
+    height:"190px",
+    borderRadius:"50%",
+    objectFit:"cover",
+    border:"6px solid #ffffff",
+    boxShadow:
+        "0 15px 40px rgba(37,99,235,.25)",
+    background:"#f8fafc"
 
 },
-
-
 
 placeholder:{
 
-width:"180px",
-
-height:"180px",
-
-borderRadius:"50%",
-
-background:"#2563eb",
-
-color:"white",
-
-fontSize:"60px",
-
-fontWeight:"700",
-
-display:"flex",
-
-alignItems:"center",
-
-justifyContent:"center"
+    width:"190px",
+    height:"190px",
+    borderRadius:"50%",
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"center",
+    background:
+        "linear-gradient(135deg,#2563eb,#1d4ed8)",
+    color:"#ffffff",
+    fontSize:"64px",
+    fontWeight:"800",
+    letterSpacing:"2px",
+    boxShadow:
+        "0 18px 45px rgba(37,99,235,.35)"
 
 },
-
-
 
 upload:{
 
-background:"#2563eb",
-
-color:"white",
-
-padding:"12px 20px",
-
-borderRadius:"12px",
-
-cursor:"pointer"
+    padding:"13px 26px",
+    borderRadius:"16px",
+    background:
+        "linear-gradient(135deg,#2563eb,#1d4ed8)",
+    color:"#ffffff",
+    fontWeight:"700",
+    fontSize:"14px",
+    cursor:"pointer",
+    boxShadow:
+        "0 12px 30px rgba(37,99,235,.25)",
+    transition:"all .25s ease"
 
 },
-
-
-
 
 info:{
 
-flex:1
+    flex:1,
+    minWidth:"320px"
 
 },
-
-
 
 role:{
 
-display:"inline-block",
-
-background:"#dbeafe",
-
-color:"#1d4ed8",
-
-padding:"8px 18px",
-
-borderRadius:"20px",
-
-fontWeight:"600"
+    display:"inline-flex",
+    alignItems:"center",
+    justifyContent:"center",
+    marginTop:"10px",
+    padding:"9px 20px",
+    borderRadius:"999px",
+    background:"#dbeafe",
+    color:"#1d4ed8",
+    fontWeight:"700",
+    fontSize:"13px",
+    letterSpacing:".3px"
 
 },
-
-
 
 grid:{
 
-display:"grid",
-
-gridTemplateColumns:
-"repeat(auto-fit,minmax(250px,1fr))",
-
-gap:"20px",
-
-marginTop:"30px"
+    display:"grid",
+    gridTemplateColumns:
+        "repeat(auto-fit,minmax(240px,1fr))",
+    gap:"22px",
+    marginTop:"35px"
 
 },
-
-
-
 infoItem:{
 
-background:"#f8fafc",
-
-padding:"18px",
-
-borderRadius:"15px",
-
-display:"flex",
-
-flexDirection:"column",
-
-gap:"8px"
+    background:"#ffffff",
+    border:"1px solid #e2e8f0",
+    borderRadius:"20px",
+    padding:"22px",
+    display:"flex",
+    flexDirection:"column",
+    gap:"10px",
+    transition:"all .25s ease",
+    boxShadow:"0 8px 25px rgba(15,23,42,.05)"
 
 },
-
-
-
 
 passwordCard:{
 
-marginTop:"30px",
-
-background:"white",
-
-padding:"30px",
-
-borderRadius:"25px",
-
-boxShadow:"0 10px 30px rgba(0,0,0,.08)"
+    marginTop:"35px",
+    background:"#ffffff",
+    borderRadius:"32px",
+    padding:"35px 40px",
+    border:"1px solid #e2e8f0",
+    boxShadow:"0 20px 60px rgba(15,23,42,.08)",
+    display:"flex",
+    justifyContent:"space-between",
+    alignItems:"center",
+    gap:"30px",
+    flexWrap:"wrap"
 
 },
-
-
 
 button:{
 
-background:"#2563eb",
-
-color:"white",
-
-border:"none",
-
-padding:"12px 25px",
-
-borderRadius:"10px",
-
-cursor:"pointer"
+    background:"linear-gradient(135deg,#2563eb,#1d4ed8)",
+    color:"#ffffff",
+    border:"none",
+    borderRadius:"16px",
+    padding:"15px 32px",
+    fontSize:"15px",
+    fontWeight:"700",
+    cursor:"pointer",
+    transition:"all .25s ease",
+    boxShadow:"0 12px 30px rgba(37,99,235,.28)"
 
 },
-
-
 
 loading:{
 
-background:"white",
-
-padding:"50px",
-
-borderRadius:"20px",
-
-textAlign:"center"
+    background:"#ffffff",
+    borderRadius:"28px",
+    padding:"80px 40px",
+    textAlign:"center",
+    fontSize:"18px",
+    fontWeight:"600",
+    color:"#475569",
+    border:"1px solid #e2e8f0",
+    boxShadow:"0 20px 60px rgba(15,23,42,.08)"
 
 },
+
 modalOverlay:{
 
-position:"fixed",
-
-top:0,
-
-left:0,
-
-right:0,
-
-bottom:0,
-
-background:"rgba(15,23,42,0.55)",
-
-display:"flex",
-
-alignItems:"center",
-
-justifyContent:"center",
-
-zIndex:9999,
-
-backdropFilter:"blur(5px)"
+    position:"fixed",
+    top:0,
+    left:0,
+    right:0,
+    bottom:0,
+    background:"rgba(15,23,42,.65)",
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center",
+    padding:"25px",
+    backdropFilter:"blur(10px)",
+    zIndex:9999
 
 },
-
-
-
 
 passwordModal:{
 
-width:"480px",
-
-maxWidth:"95%",
-
-background:"#ffffff",
-
-borderRadius:"28px",
-
-padding:"40px",
-
-boxShadow:
-"0 30px 80px rgba(15,23,42,.35)",
-
-animation:
-"fadeIn .25s ease",
-
-position:"relative"
+    width:"560px",
+    maxWidth:"100%",
+    background:"#ffffff",
+    borderRadius:"30px",
+    overflow:"hidden",
+    border:"1px solid #e2e8f0",
+    boxShadow:"0 35px 90px rgba(15,23,42,.30)",
+    animation:"fadeIn .3s ease",
+    position:"relative"
 
 },
-
-
 
 modalHeader:{
 
-display:"flex",
-
-justifyContent:"space-between",
-
-alignItems:"flex-start",
-
-marginBottom:"35px",
-
-paddingBottom:"20px",
-
-borderBottom:
-"1px solid #e2e8f0"
+    display:"flex",
+    justifyContent:"space-between",
+    alignItems:"flex-start",
+    padding:"30px 35px",
+    background:"linear-gradient(135deg,#2563eb,#1d4ed8)",
+    color:"#ffffff"
 
 },
-
-
-
 
 closeButton:{
 
-border:"none",
-
-background:"#f1f5f9",
-
-width:"42px",
-
-height:"42px",
-
-borderRadius:"50%",
-
-fontSize:"26px",
-
-cursor:"pointer",
-
-color:"#475569",
-
-display:"flex",
-
-alignItems:"center",
-
-justifyContent:"center",
-
-transition:"0.3s"
+    width:"44px",
+    height:"44px",
+    border:"none",
+    borderRadius:"50%",
+    background:"rgba(255,255,255,.18)",
+    color:"#ffffff",
+    fontSize:"28px",
+    cursor:"pointer",
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"center",
+    transition:"all .25s ease"
 
 },
 
-
-
-
 formGroup:{
 
-display:"flex",
-
-flexDirection:"column",
-
-gap:"10px",
-
-marginBottom:"22px"
+    display:"flex",
+    flexDirection:"column",
+    gap:"10px",
+    padding:"0 35px",
+    marginBottom:"24px"
 
 },
 passwordLabel:{
 
-fontSize:"14px",
-
-fontWeight:"700",
-
-color:"#334155"
+    fontSize:"14px",
+    fontWeight:"700",
+    color:"#1e293b",
+    letterSpacing:".2px"
 
 },
-
 
 passwordInput:{
 
-padding:"15px 18px",
-
-borderRadius:"14px",
-
-border:"1px solid #cbd5e1",
-
-fontSize:"15px",
-
-outline:"none",
-
-transition:"0.25s",
-
-background:"#f8fafc"
+    width:"100%",
+    padding:"16px 18px",
+    borderRadius:"16px",
+    border:"1px solid #dbe4f0",
+    background:"#f8fafc",
+    color:"#0f172a",
+    fontSize:"15px",
+    fontWeight:"500",
+    outline:"none",
+    boxSizing:"border-box",
+    transition:"all .25s ease",
+    boxShadow:"inset 0 1px 2px rgba(15,23,42,.04)"
 
 },
-
 
 passwordInputFocus:{
 
-border:
-"1px solid #2563eb",
-
-boxShadow:
-"0 0 0 4px rgba(37,99,235,.15)"
+    border:"1px solid #2563eb",
+    boxShadow:"0 0 0 4px rgba(37,99,235,.15)"
 
 },
-
 
 formGroupLabel:{
 
-fontSize:"14px",
-
-fontWeight:"600",
-
-color:"#334155"
+    fontSize:"14px",
+    fontWeight:"700",
+    color:"#334155",
+    marginBottom:"8px"
 
 },
-
-
 
 formGroupInput:{
 
-padding:"14px 16px",
-
-border:"1px solid #cbd5e1",
-
-borderRadius:"12px",
-
-fontSize:"15px",
-
-outline:"none"
+    width:"100%",
+    padding:"16px 18px",
+    borderRadius:"16px",
+    border:"1px solid #dbe4f0",
+    background:"#f8fafc",
+    color:"#0f172a",
+    fontSize:"15px",
+    outline:"none",
+    boxSizing:"border-box",
+    transition:"all .25s ease"
 
 },
-
-
-
 
 passwordActions:{
 
-display:"flex",
-
-justifyContent:"space-between",
-
-gap:"15px",
-
-marginTop:"35px"
+    display:"flex",
+    gap:"18px",
+    padding:"10px 35px 35px",
+    marginTop:"10px"
 
 },
 
-
-
-
 cancelButton:{
 
-flex:1,
-
-padding:"14px",
-
-borderRadius:"14px",
-
-border:"1px solid #cbd5e1",
-
-background:"#ffffff",
-
-color:"#475569",
-
-fontWeight:"700",
-
-cursor:"pointer",
-
-fontSize:"15px",
-
-transition:"0.25s"
+    flex:1,
+    height:"54px",
+    border:"1px solid #cbd5e1",
+    borderRadius:"16px",
+    background:"#ffffff",
+    color:"#475569",
+    fontWeight:"700",
+    fontSize:"15px",
+    cursor:"pointer",
+    transition:"all .25s ease"
 
 },
 
 updatePasswordButton:{
 
-padding:"12px 25px",
-
-borderRadius:"12px",
-
-border:"none",
-
-background:"#2563eb",
-
-color:"white",
-
-fontWeight:"600",
-
-cursor:"pointer"
+    flex:1,
+    height:"54px",
+    border:"none",
+    borderRadius:"16px",
+    background:"linear-gradient(135deg,#2563eb,#1d4ed8)",
+    color:"#ffffff",
+    fontWeight:"700",
+    fontSize:"15px",
+    cursor:"pointer",
+    transition:"all .25s ease",
+    boxShadow:"0 12px 30px rgba(37,99,235,.30)"
 
 }
 
-
-
 };
+
 
 
 
